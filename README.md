@@ -1,4 +1,4 @@
-# Carbon DIDs
+# Copper Multicodec
 A partial implementation of [Multicodec](https://github.com/multiformats/multicodec) in Java.
 
 [![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)

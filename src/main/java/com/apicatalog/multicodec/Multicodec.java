@@ -13,11 +13,17 @@ import java.util.Optional;
  */
 public final class Multicodec {
 
+    /**
+     * Recognized multicodec types
+     */
     public enum Type {
         Key,
         Multihash,
     }
 
+    /**
+     * Recognized codecs
+     */
     public enum Codec {
         Identity(Type.Multihash, new byte[]{(byte)0x00}),
         
@@ -76,21 +82,39 @@ public final class Multicodec {
         add(Codec.P521PublicKey);
     }
 
+    /**
+     * Adds a new code to the registry.
+     * 
+     * @param codec a new codec to add
+     */
     static void add(final Codec codec) {
         KEY_REGISTRY.put(codec.asInteger(), codec);
     }
 
-    static Optional<Codec> find(byte[] code) {
+    /**
+     * Finds key codec in the registry if exists
+     *  
+     * @param code a byte array identifying a multicodec 
+     * @return key codec or an empty {@link Optional} if the multicodec does not exist 
+     */
+    static Optional<Codec> findKey(byte[] code) {
         return Optional.ofNullable(KEY_REGISTRY.get(new BigInteger(code).intValue()));
     }
 
+    /**
+     * Finds a codec in the registry if exists
+     *  
+     * @param type a multicodec type
+     * @param encoded a byte array identifying a multicodec 
+     * @return a codec or an empty {@link Optional} if the multicodec does not exist 
+     */
     public static Optional<Codec> codec(Type type, final byte[] encoded) {
 
         switch (type) {
         case Key:
-            return Optional.ofNullable(find(Arrays.copyOf(encoded, 4))  // try first 4 bytes
-                    .orElseGet(() -> find(Arrays.copyOf(encoded, 2))    // try first 2 bytes
-                    .orElseGet(() -> find(Arrays.copyOf(encoded, 1))    // try the first byte
+            return Optional.ofNullable(findKey(Arrays.copyOf(encoded, 4))  // try first 4 bytes
+                    .orElseGet(() -> findKey(Arrays.copyOf(encoded, 2))    // try first 2 bytes
+                    .orElseGet(() -> findKey(Arrays.copyOf(encoded, 1))    // try the first byte
                     .orElse(null)
                     )));
 
@@ -101,6 +125,13 @@ public final class Multicodec {
         throw new IllegalArgumentException("Unsupported type [" + type + "].");
     }
 
+    /**
+     * Encode a value with a codec.
+     * 
+     * @param codec to encode the value
+     * @param value a value to encode
+     * @return an encoded value
+     */
     public static byte[] encode(Codec codec, byte[] value) {
 
         final byte[] encoded = new byte[codec.length() + value.length];
@@ -111,10 +142,26 @@ public final class Multicodec {
         return encoded;
     }
 
+    /**
+     * Decode an encoded value
+     * 
+     * @param codec used to encode the value
+     * @param encoded value to decode
+     * @return a decoded value
+     */
     public static byte[] decode(final Codec codec, final byte[] encoded) {
         return Arrays.copyOfRange(encoded, codec.length(), encoded.length);
     }
 
+    /**
+     * Decode an encoded value
+     * 
+     * @param type multicodec type used to encode the value
+     * @param encoded to decode
+     * @return a decoded value
+     * 
+     * @throws IllegalArgumentException if the value cannot be decoded
+     */
     public static byte[] decode(final Type type, final byte[] encoded) throws IllegalArgumentException {
         return codec(type, encoded)
                 .map(codec -> decode(codec, encoded))

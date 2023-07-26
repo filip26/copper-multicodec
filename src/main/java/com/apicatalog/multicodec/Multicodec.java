@@ -8,7 +8,9 @@ import java.util.Optional;
 
 /**
  *
- * @see <a href="https://github.com/multiformats/multicodec/blob/master/table.csv">Codes Table</a>
+ * @see <a href=
+ *      "https://github.com/multiformats/multicodec/blob/master/table.csv">Codes
+ *      Table</a>
  *
  */
 public final class Multicodec {
@@ -25,22 +27,21 @@ public final class Multicodec {
      * Recognized codecs
      */
     public enum Codec {
-        Identity(Type.Multihash, new byte[]{(byte)0x00}),
-        
-        Ed25519PublicKey(Type.Key,  new byte[]{(byte)0xed, (byte)0x01}),
-        Ed25519PrivateKey(Type.Key, new byte[]{(byte)0x13, (byte)0x00}),
-        
-        X25519PublicKey(Type.Key, new byte[]{(byte)0xec}),
-        
-        P256PublicKey(Type.Key, new byte[] {(byte)0x12, (byte)0x00}),
-        P256PrivateKey(Type.Key, new byte[] {(byte)0x13, (byte)0x06}),
-        
-        P384PublicKey(Type.Key, new byte[] {(byte)0x12, (byte)0x01}),
-        P384PrivateKey(Type.Key, new byte[] {(byte)0x13, (byte)0x07}),
-        
-        P521PublicKey(Type.Key, new byte[] {(byte)0x12, (byte)0x02}),
-        P521PrivateKey(Type.Key, new byte[] {(byte)0x13, (byte)0x08})
-        ;
+        Identity(Type.Multihash, new byte[] { (byte) 0x00 }),
+
+        Ed25519PublicKey(Type.Key, new byte[] { (byte) 0xed, (byte) 0x01 }),
+        Ed25519PrivateKey(Type.Key, new byte[] { (byte) 0x13, (byte) 0x00 }),
+
+        X25519PublicKey(Type.Key, new byte[] { (byte) 0xec }),
+
+        P256PublicKey(Type.Key, new byte[] { (byte) 0x80, (byte) 0x24 }),
+        P256PrivateKey(Type.Key, new byte[] { (byte) 0x86, (byte) 0x26 }),
+
+        P384PublicKey(Type.Key, new byte[] { (byte) 0x81, (byte) 0x24 }),
+        P384PrivateKey(Type.Key, new byte[] { (byte) 0x87, (byte) 0x24 }),
+
+        P521PublicKey(Type.Key, new byte[] { (byte) 0x82, (byte) 0x26 }),
+        P521PrivateKey(Type.Key, new byte[] { (byte) 0x88, (byte) 0x26 });
 
         private final byte[] code;
         private final Type type;
@@ -75,8 +76,11 @@ public final class Multicodec {
         add(Codec.Ed25519PrivateKey);
         add(Codec.X25519PublicKey);
         add(Codec.P256PrivateKey);
+        add(Codec.P256PrivateKey);
+        add(Codec.P256PublicKey);
         add(Codec.P256PublicKey);
         add(Codec.P384PrivateKey);
+        add(Codec.P384PublicKey);
         add(Codec.P384PublicKey);
         add(Codec.P521PrivateKey);
         add(Codec.P521PublicKey);
@@ -93,9 +97,10 @@ public final class Multicodec {
 
     /**
      * Finds key codec in the registry if exists
-     *  
-     * @param code a byte array identifying a multicodec 
-     * @return key codec or an empty {@link Optional} if the multicodec does not exist 
+     * 
+     * @param code a byte array identifying a multicodec
+     * @return key codec or an empty {@link Optional} if the multicodec does not
+     *         exist
      */
     static Optional<Codec> findKey(byte[] code) {
         return Optional.ofNullable(KEY_REGISTRY.get(new BigInteger(code).intValue()));
@@ -103,20 +108,19 @@ public final class Multicodec {
 
     /**
      * Finds a codec in the registry if exists
-     *  
-     * @param type a multicodec type
-     * @param encoded a byte array identifying a multicodec 
-     * @return a codec or an empty {@link Optional} if the multicodec does not exist 
+     * 
+     * @param type    a multicodec type
+     * @param encoded a byte array identifying a multicodec
+     * @return a codec or an empty {@link Optional} if the multicodec does not exist
      */
     public static Optional<Codec> codec(Type type, final byte[] encoded) {
 
         switch (type) {
         case Key:
-            return Optional.ofNullable(findKey(Arrays.copyOf(encoded, 4))  // try first 4 bytes
-                    .orElseGet(() -> findKey(Arrays.copyOf(encoded, 2))    // try first 2 bytes
-                    .orElseGet(() -> findKey(Arrays.copyOf(encoded, 1))    // try the first byte
-                    .orElse(null)
-                    )));
+            return Optional.ofNullable(findKey(Arrays.copyOf(encoded, 4)) // try first 4 bytes
+                    .orElseGet(() -> findKey(Arrays.copyOf(encoded, 2)) // try first 2 bytes
+                            .orElseGet(() -> findKey(Arrays.copyOf(encoded, 1)) // try the first byte
+                                    .orElse(null))));
 
         default:
             break;
@@ -145,7 +149,7 @@ public final class Multicodec {
     /**
      * Decode an encoded value
      * 
-     * @param codec used to encode the value
+     * @param codec   used to encode the value
      * @param encoded value to decode
      * @return a decoded value
      */
@@ -156,7 +160,7 @@ public final class Multicodec {
     /**
      * Decode an encoded value
      * 
-     * @param type multicodec type used to encode the value
+     * @param type    multicodec type used to encode the value
      * @param encoded to decode
      * @return a decoded value
      * 
@@ -165,6 +169,6 @@ public final class Multicodec {
     public static byte[] decode(final Type type, final byte[] encoded) throws IllegalArgumentException {
         return codec(type, encoded)
                 .map(codec -> decode(codec, encoded))
-                .orElseThrow(() -> new IllegalArgumentException("Unsupported multicode encoding"));
+                .orElseThrow(() -> new IllegalArgumentException("Unsupported multicode encoding [" + String.format("0x%hh, 0x%hh, ...", encoded[0], encoded[1]) + "]."));
     }
 }

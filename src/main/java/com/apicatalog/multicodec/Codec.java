@@ -20,9 +20,7 @@ public class Codec {
         Transport,
         VarSig,
     }
-    
-    public static Codec IDENTITY = new Codec("identity", Tag.MultiHash, new byte[] { (byte) 0x00 });
-    
+
     private final String name;
     private final byte[] code;
     private final Tag tag;
@@ -48,7 +46,7 @@ public class Codec {
     public Tag tag() {
         return tag;
     }
-    
+
     public String name() {
         return name;
     }
@@ -75,6 +73,6 @@ public class Codec {
 
     @Override
     public String toString() {
-        return "MultiCodec [name=" + name + ", tag=" + tag  + ", code=" + Arrays.toString(code) + "]";
-    }    
+        return "Codec [name=" + name + ", tag=" + tag + ", code=" + Arrays.toString(code) + "]";
+    }
 }

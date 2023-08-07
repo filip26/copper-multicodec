@@ -17,67 +17,23 @@ import com.apicatalog.multicodec.Codec.Tag;
  */
 public final class Multicodec {
 
-    /**
-     * Recognized codecs
-     */
-//    public enum Codec {
-//        Identity(Tag.Multihash, new byte[] { (byte) 0x00 }),
-//
-//        Ed25519PublicKey(Tag.Key, new byte[] { (byte) 0xed, (byte) 0x01 }),
-//        Ed25519PrivateKey(Tag.Key, new byte[] { (byte) 0x13, (byte) 0x00 }),
-//
-//        X25519PublicKey(Tag.Key, new byte[] { (byte) 0xec }),
-//
-//        P256PublicKey(Tag.Key, new byte[] { (byte) 0x80, (byte) 0x24 }),
-//        P256PrivateKey(Tag.Key, new byte[] { (byte) 0x86, (byte) 0x26 }),
-//
-//        P384PublicKey(Tag.Key, new byte[] { (byte) 0x81, (byte) 0x24 }),
-//        P384PrivateKey(Tag.Key, new byte[] { (byte) 0x87, (byte) 0x24 }),
-//
-//        P521PublicKey(Tag.Key, new byte[] { (byte) 0x82, (byte) 0x26 }),
-//        P521PrivateKey(Tag.Key, new byte[] { (byte) 0x88, (byte) 0x26 });
-//
-//        private final byte[] code;
-//        private final Tag type;
-//
-//        Codec(Tag type, byte[] code) {
-//            this.type = type;
-//            this.code = code;
-//        }
-//
-//        public int length() {
-//            return code.length;
-//        }
-//
-//        public int asInteger() {
-//            return new BigInteger(code).intValue();
-//        }
-//
-//        public byte[] code() {
-//            return code;
-//        }
-//
-//        public Tag type() {
-//            return type;
-//        }
-//    }
-//
-//    static {
-//        add(Codec.Identity);
-//        add(Codec.Ed25519PublicKey);
-//        add(Codec.Ed25519PrivateKey);
-//        add(Codec.X25519PublicKey);
-//        add(Codec.P256PrivateKey);
-//        add(Codec.P256PrivateKey);
-//        add(Codec.P256PublicKey);
-//        add(Codec.P256PublicKey);
-//        add(Codec.P384PrivateKey);
-//        add(Codec.P384PublicKey);
-//        add(Codec.P384PublicKey);
-//        add(Codec.P521PrivateKey);
-//        add(Codec.P521PublicKey);
-//    }
-//    
+    public static Codec IDENTITY = new Codec("identity", Tag.MultiHash, new byte[] { (byte) 0x00 });
+    
+    public static Codec Ed25519_PUBLIC_KEY = new Codec("ed25519-pub", Tag.Key, new byte[] { (byte) 0xed, (byte) 0x01 });
+    public static Codec Ed25519_PRIVATE_KEY = new Codec("ed25519-priv", Tag.Key, new byte[] { (byte) 0x13, (byte) 0x00 });
+    
+    public static Codec X25519_PUBLIC_KEY = new Codec("x25519-pub", Tag.Key, new byte[] { (byte) 0xec });
+    public static Codec X25519_PRIVATE_KEY = new Codec("x25519-priv", Tag.Key, new byte[] { (byte) 0x13, (byte)0x02 });
+    
+    public static Codec P256PublicKey = new Codec("p256-pub", Tag.Key, new byte[] { (byte) 0x80, (byte) 0x24 });
+    public static Codec P256PrivateKey = new Codec("p256-priv", Tag.Key, new byte[] { (byte) 0x86, (byte) 0x26 });
+    
+    public static Codec P384PublicKey = new Codec("p384-pub", Tag.Key, new byte[] { (byte) 0x81, (byte) 0x24 });
+    public static Codec P384PrivateKey = new Codec("p384-priv", Tag.Key, new byte[] { (byte) 0x87, (byte) 0x24 });
+    
+    public static Codec P521PublicKey = new Codec("p521-pub", Tag.Key, new byte[] { (byte) 0x82, (byte) 0x26 });
+    public static Codec P521PrivateKey = new Codec("p521-priv", Tag.Key, new byte[] { (byte) 0x88, (byte) 0x26 });
+
     private final Map<Integer, Codec> codecs;
 
     protected Multicodec(Map<Integer, Codec> codecs) {

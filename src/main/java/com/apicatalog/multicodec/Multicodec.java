@@ -40,8 +40,8 @@ public final class Multicodec {
         P384PublicKey(Type.Key, new byte[] { (byte) 0x81, (byte) 0x24 }),
         P384PrivateKey(Type.Key, new byte[] { (byte) 0x87, (byte) 0x24 }),
 
-        P521PublicKey(Type.Key, new byte[] { (byte) 0x82, (byte) 0x26 }),
-        P521PrivateKey(Type.Key, new byte[] { (byte) 0x88, (byte) 0x26 });
+        P512PublicKey(Type.Key, new byte[] { (byte) 0x82, (byte) 0x26 }),
+        P512PrivateKey(Type.Key, new byte[] { (byte) 0x88, (byte) 0x26 });
 
         private final byte[] code;
         private final Type type;
@@ -82,8 +82,8 @@ public final class Multicodec {
         add(Codec.P384PrivateKey);
         add(Codec.P384PublicKey);
         add(Codec.P384PublicKey);
-        add(Codec.P521PrivateKey);
-        add(Codec.P521PublicKey);
+        add(Codec.P512PrivateKey);
+        add(Codec.P512PublicKey);
     }
 
     /**

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import com.apicatalog.multicodec.Codec.Tag;
+
 /**
  *
  * @see <a href=
@@ -16,74 +18,74 @@ import java.util.Optional;
 public final class Multicodec {
 
     /**
-     * Recognized multicodec types
-     */
-    public enum Type {
-        Key,
-        Multihash,
-    }
-
-    /**
      * Recognized codecs
      */
-    public enum Codec {
-        Identity(Type.Multihash, new byte[] { (byte) 0x00 }),
+//    public enum Codec {
+//        Identity(Tag.Multihash, new byte[] { (byte) 0x00 }),
+//
+//        Ed25519PublicKey(Tag.Key, new byte[] { (byte) 0xed, (byte) 0x01 }),
+//        Ed25519PrivateKey(Tag.Key, new byte[] { (byte) 0x13, (byte) 0x00 }),
+//
+//        X25519PublicKey(Tag.Key, new byte[] { (byte) 0xec }),
+//
+//        P256PublicKey(Tag.Key, new byte[] { (byte) 0x80, (byte) 0x24 }),
+//        P256PrivateKey(Tag.Key, new byte[] { (byte) 0x86, (byte) 0x26 }),
+//
+//        P384PublicKey(Tag.Key, new byte[] { (byte) 0x81, (byte) 0x24 }),
+//        P384PrivateKey(Tag.Key, new byte[] { (byte) 0x87, (byte) 0x24 }),
+//
+//        P521PublicKey(Tag.Key, new byte[] { (byte) 0x82, (byte) 0x26 }),
+//        P521PrivateKey(Tag.Key, new byte[] { (byte) 0x88, (byte) 0x26 });
+//
+//        private final byte[] code;
+//        private final Tag type;
+//
+//        Codec(Tag type, byte[] code) {
+//            this.type = type;
+//            this.code = code;
+//        }
+//
+//        public int length() {
+//            return code.length;
+//        }
+//
+//        public int asInteger() {
+//            return new BigInteger(code).intValue();
+//        }
+//
+//        public byte[] code() {
+//            return code;
+//        }
+//
+//        public Tag type() {
+//            return type;
+//        }
+//    }
+//
+//    static {
+//        add(Codec.Identity);
+//        add(Codec.Ed25519PublicKey);
+//        add(Codec.Ed25519PrivateKey);
+//        add(Codec.X25519PublicKey);
+//        add(Codec.P256PrivateKey);
+//        add(Codec.P256PrivateKey);
+//        add(Codec.P256PublicKey);
+//        add(Codec.P256PublicKey);
+//        add(Codec.P384PrivateKey);
+//        add(Codec.P384PublicKey);
+//        add(Codec.P384PublicKey);
+//        add(Codec.P521PrivateKey);
+//        add(Codec.P521PublicKey);
+//    }
+//    
+    private final Map<Integer, Codec> codecs;
 
-        Ed25519PublicKey(Type.Key, new byte[] { (byte) 0xed, (byte) 0x01 }),
-        Ed25519PrivateKey(Type.Key, new byte[] { (byte) 0x13, (byte) 0x00 }),
-
-        X25519PublicKey(Type.Key, new byte[] { (byte) 0xec }),
-
-        P256PublicKey(Type.Key, new byte[] { (byte) 0x80, (byte) 0x24 }),
-        P256PrivateKey(Type.Key, new byte[] { (byte) 0x86, (byte) 0x26 }),
-
-        P384PublicKey(Type.Key, new byte[] { (byte) 0x81, (byte) 0x24 }),
-        P384PrivateKey(Type.Key, new byte[] { (byte) 0x87, (byte) 0x24 }),
-
-        P512PublicKey(Type.Key, new byte[] { (byte) 0x82, (byte) 0x26 }),
-        P512PrivateKey(Type.Key, new byte[] { (byte) 0x88, (byte) 0x26 });
-
-        private final byte[] code;
-        private final Type type;
-
-        Codec(Type type, byte[] code) {
-            this.type = type;
-            this.code = code;
-        }
-
-        public int length() {
-            return code.length;
-        }
-
-        public int asInteger() {
-            return new BigInteger(code).intValue();
-        }
-
-        public byte[] code() {
-            return code;
-        }
-
-        public Type type() {
-            return type;
-        }
+    protected Multicodec(Map<Integer, Codec> codecs) {
+        this.codecs = codecs;
     }
 
-    static Map<Integer, Codec> KEY_REGISTRY = new HashMap<>();
-
-    static {
-        add(Codec.Identity);
-        add(Codec.Ed25519PublicKey);
-        add(Codec.Ed25519PrivateKey);
-        add(Codec.X25519PublicKey);
-        add(Codec.P256PrivateKey);
-        add(Codec.P256PrivateKey);
-        add(Codec.P256PublicKey);
-        add(Codec.P256PublicKey);
-        add(Codec.P384PrivateKey);
-        add(Codec.P384PublicKey);
-        add(Codec.P384PublicKey);
-        add(Codec.P512PrivateKey);
-        add(Codec.P512PublicKey);
+    public static Multicodec getInstance() {
+        return new Multicodec(new HashMap<>());
     }
 
     /**
@@ -91,8 +93,9 @@ public final class Multicodec {
      * 
      * @param codec a new codec to add
      */
-    static void add(final Codec codec) {
-        KEY_REGISTRY.put(codec.asInteger(), codec);
+    public Multicodec add(final Codec codec) {
+        codecs.put(codec.asInteger(), codec);
+        return this;
     }
 
     /**
@@ -102,8 +105,8 @@ public final class Multicodec {
      * @return key codec or an empty {@link Optional} if the multicodec does not
      *         exist
      */
-    static Optional<Codec> findKey(byte[] code) {
-        return Optional.ofNullable(KEY_REGISTRY.get(new BigInteger(code).intValue()));
+    public Optional<Codec> findKey(byte[] code) {
+        return Optional.ofNullable(codecs.get(new BigInteger(code).intValue()));
     }
 
     /**
@@ -113,7 +116,7 @@ public final class Multicodec {
      * @param encoded a byte array identifying a multicodec
      * @return a codec or an empty {@link Optional} if the multicodec does not exist
      */
-    public static Optional<Codec> codec(Type type, final byte[] encoded) {
+    public Optional<Codec> codec(Tag type, final byte[] encoded) {
 
         switch (type) {
         case Key:
@@ -136,11 +139,11 @@ public final class Multicodec {
      * @param value a value to encode
      * @return an encoded value
      */
-    public static byte[] encode(Codec codec, byte[] value) {
+    public byte[] encode(Codec codec, byte[] value) {
 
         final byte[] encoded = new byte[codec.length() + value.length];
 
-        System.arraycopy(codec.code, 0, encoded, 0, codec.length());
+        System.arraycopy(codec.code(), 0, encoded, 0, codec.length());
         System.arraycopy(value, 0, encoded, codec.length(), value.length);
 
         return encoded;
@@ -153,7 +156,7 @@ public final class Multicodec {
      * @param encoded value to decode
      * @return a decoded value
      */
-    public static byte[] decode(final Codec codec, final byte[] encoded) {
+    public byte[] decode(final Codec codec, final byte[] encoded) {
         return Arrays.copyOfRange(encoded, codec.length(), encoded.length);
     }
 
@@ -166,7 +169,7 @@ public final class Multicodec {
      * 
      * @throws IllegalArgumentException if the value cannot be decoded
      */
-    public static byte[] decode(final Type type, final byte[] encoded) throws IllegalArgumentException {
+    public byte[] decode(final Tag type, final byte[] encoded) throws IllegalArgumentException {
         return codec(type, encoded)
                 .map(codec -> decode(codec, encoded))
                 .orElseThrow(() -> new IllegalArgumentException("Unsupported multicode encoding [" + String.format("0x%hh, 0x%hh, ...", encoded[0], encoded[1]) + "]."));

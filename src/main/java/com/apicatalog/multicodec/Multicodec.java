@@ -75,7 +75,14 @@ public class Multicodec {
      * @param value a value to encode
      * @return an encoded value
      */
-    public byte[] encode(byte[] value) {
+    public byte[] encode(final byte[] value) {
+        
+        if (value == null) {
+            throw new IllegalArgumentException("The value to encdode must not be null.");
+        }
+        if (value.length == 0) {
+            throw new IllegalArgumentException("The value to encode must be non empty byte array.");
+        }
 
         final byte[] encoded = new byte[code.length + value.length];
 
@@ -92,6 +99,13 @@ public class Multicodec {
      * @return a decoded value
      */
     public byte[] decode(final byte[] encoded) {
+        if (encoded == null) {
+            throw new IllegalArgumentException("The value to decode must not be null.");
+        }
+        if (encoded.length == 0) {
+            throw new IllegalArgumentException("The value to decode must be non empty byte array.");
+        }
+        
         return Arrays.copyOfRange(encoded, code.length, encoded.length);
     }
 
@@ -114,6 +128,6 @@ public class Multicodec {
 
     @Override
     public String toString() {
-        return "Codec [name=" + name + ", tag=" + tag + ", code=" + Arrays.toString(code) + "]";
+        return "Multicodec [name=" + name + ", tag=" + tag + ", code=" + Arrays.toString(code) + "]";
     }
 }

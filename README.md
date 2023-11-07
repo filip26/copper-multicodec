@@ -14,7 +14,7 @@ A partial implementation of [Multicodec](https://github.com/multiformats/multico
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 

@@ -56,12 +56,33 @@ public final class Multicoder {
      * @return a codec or an empty {@link Optional} if the multicodec does not exist
      */
     public Optional<Multicodec> getCodec(final Tag type, final byte[] encoded) {
+
+        if (encoded == null) {
+            throw new IllegalArgumentException("The encoded value must not be null.");
+        }
+
+        if (encoded.length == 0) {
+            throw new IllegalArgumentException("The encoded value be non empty byte array.");
+        }
+
         switch (type) {
         case Key:
-            return Optional.ofNullable(findKey(Arrays.copyOf(encoded, 4)) // try first 4 bytes
-                    .orElseGet(() -> findKey(Arrays.copyOf(encoded, 2)) // try first 2 bytes
-                            .orElseGet(() -> findKey(Arrays.copyOf(encoded, 1)) // try the first byte
-                                    .orElse(null))));
+            if (encoded.length >= 4) {
+                return Optional.ofNullable(findKey(Arrays.copyOf(encoded, 4)) // try first 4 bytes
+                        .orElseGet(() -> findKey(Arrays.copyOf(encoded, 2)) // try first 2 bytes
+                                .orElseGet(() -> findKey(Arrays.copyOf(encoded, 1)) // try the first byte
+                                        .orElse(null))));
+            }
+            if (encoded.length >= 2) {
+                return Optional.ofNullable(
+                        findKey(Arrays.copyOf(encoded, 2)) // try first 2 bytes
+                                .orElseGet(() -> findKey(Arrays.copyOf(encoded, 1)) // try the first byte
+                                        .orElse(null)));
+                
+            }
+
+            return findKey(Arrays.copyOf(encoded, 1));
+            
         default:
             break;
         }

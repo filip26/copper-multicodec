@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 
 public class CvsImporter {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException {
 
-        try (Stream<String> stream = Files.lines(Paths.get("table.csv"))) {
-            
+        try (final Stream<String> stream = Files.lines(Paths.get("table.csv"))) {
+
             StringWriter sw = new StringWriter();
             PrintWriter writer = new PrintWriter(sw);
 
@@ -26,20 +26,18 @@ public class CvsImporter {
             writer.println(" */");
             writer.println("public class MulticodecRegistry {");
             writer.println();
-            
+
             stream.map(CodecDef::from)
                     .filter(def -> def != null)
                     .sorted((d1, d2) -> d1.name.compareTo(d2.name))
-                    .forEach(def -> 
-                    { def.writeCode(writer);
+                    .forEach(def -> {
+                        def.writeCode(writer);
                         writer.println();
-                        
+
                     });
             writer.println("}");
-            System.out.println(sw.toString());
-            
-            Files.write(Paths.get("src/main/java/com/apicatalog/multicodec/MulticodecRegistry.java"), sw.toString().getBytes());
+
+            Files.write(Paths.get("src/main/java/" + MulticodecRegistry.class.getCanonicalName().replaceAll("\\.", "/") + ".java"), sw.toString().getBytes());
         }
     }
-
 }

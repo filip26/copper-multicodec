@@ -127,6 +127,6 @@ public class Multicodec {
 
     @Override
     public String toString() {
-        return "Multicodec [name=" + name + ", tag=" + tag + ", code=" + Arrays.toString(varint) + "]";
+        return "Multicodec [name=" + name + ", tag=" + tag + ", varint=" + Arrays.toString(varint) + "]";
     }
 }

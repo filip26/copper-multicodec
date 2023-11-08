@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  * Decodes unsigned var[int|long] byte array into ints and longs.
  */
-public class VarInputStream {
+public class UVarIntInputStream {
 
     final ByteArrayInputStream is;
 
@@ -14,7 +14,7 @@ public class VarInputStream {
     int varLength;
     long value;
 
-    public VarInputStream(ByteArrayInputStream is) {
+    public UVarIntInputStream(final ByteArrayInputStream is) {
         this.is = is;
         this.variant = new byte[UVarInt.MAX_VAR_LENGTH];
         this.varLength = -1;
@@ -53,7 +53,7 @@ public class VarInputStream {
             offset++;
 
             next = ((b & UVarInt.CONTINUE_BIT) != 0);
-System.out.println("NEXT" + next + "," + offset);
+
         } while (next);
 
         value = v;
@@ -62,7 +62,7 @@ System.out.println("NEXT" + next + "," + offset);
         return true;
     }
 
-    public boolean isVarInt() {
+    public boolean isInteger() {
         return varLength > 0 &&
                 ((varLength < 5)
                         || (varLength == 5 &&
@@ -70,11 +70,11 @@ System.out.println("NEXT" + next + "," + offset);
     }
 
     /**
-     * Get last read var.
+     * Get last read unsigned varint.
      * 
-     * @return encoded var representation
+     * @return encoded unsigned varubt representation
      */
-    public byte[] getVar() {
+    public byte[] getValue() {
         return varLength < 0
                 ? null
                 : (varLength == UVarInt.MAX_VAR_LENGTH
@@ -82,44 +82,28 @@ System.out.println("NEXT" + next + "," + offset);
                         : Arrays.copyOfRange(variant, 0, varLength));
     }
 
-    public long getVarLong() {
+    public long getLong() {
         if (varLength <= 0) {
             throw new IllegalStateException("No value has been read. Call read before getVar method.");
         }
         return value;
     }
-    
-    public int getVarInt() {
+
+    public int getInt() {
         if (varLength <= 0) {
             throw new IllegalStateException("No value has been read. Call read before getVar method.");
-        }        
-        return (int)value;
+        }
+        return (int) value;
     }
-    
-    public static long readVarLong(byte[] varlong) {
 
-        final VarInputStream reader = new VarInputStream(new ByteArrayInputStream(varlong));
+    public static long readLong(byte[] varlong) {
+
+        final UVarIntInputStream reader = new UVarIntInputStream(new ByteArrayInputStream(varlong));
 
         if (!reader.read()) {
             throw new IllegalArgumentException("Nothing to read.");
         }
 
-        return reader.getVarLong();
+        return reader.getLong();
     }
-
-    public static void main(String[] args) {
-
-        VarInputStream reader = new VarInputStream(new ByteArrayInputStream(new byte[]{
-                (byte)0x88,
-                0x26,
-//                0x13,
-  //              0x08,
-                }));
-        
-        System.out.println("read" + reader.read());
-        
-        System.out.println(">> " + String.format("%04X", reader.getVarLong()));
-        System.out.println("> " + reader.getVar().length);
-    }
-
 }

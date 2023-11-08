@@ -3,7 +3,7 @@ package com.apicatalog.multicodec;
 import java.io.PrintWriter;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
-import com.apicatalog.uvarint.VarEncoder;
+import com.apicatalog.uvarint.UVarIntEncoder;
 
 public class CodecDef {
 
@@ -29,7 +29,7 @@ public class CodecDef {
         String type = columns[1].trim();
         
         def.code = Long.parseLong(columns[2].trim().substring(2), 16);
-        def.varint = VarEncoder.encode(def.code);
+        def.varint = UVarIntEncoder.encode(def.code);
 
         def.name = columns[0].trim();
         def.tag = Tag.valueOf(Character.toUpperCase(type.charAt(0)) + type.substring(1));
@@ -47,7 +47,7 @@ public class CodecDef {
         writer.print(", status = ");
         writer.print(status);
         writer.print(", code = ");
-        writer.print(code);
+        writer.print(String.format("0x%x", code));
         writer.println(" */");
 
         writer.print("    ");

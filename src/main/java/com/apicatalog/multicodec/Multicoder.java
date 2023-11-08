@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
-import com.apicatalog.uvarint.VarInputStream;
+import com.apicatalog.uvarint.UVarIntInputStream;
 
 /**
  *
@@ -67,7 +67,7 @@ public final class Multicoder {
 
         switch (type) {
         case Key:
-            final long code = VarInputStream.readVarLong(encoded);
+            final long code = UVarIntInputStream.readLong(encoded);
             
             return findKey(code);
 

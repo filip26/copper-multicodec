@@ -1,4 +1,4 @@
-package com.apicatalog.multicodec;
+package com.apicatalog.uvarint;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
@@ -8,13 +8,6 @@ import java.util.Arrays;
  */
 public class VarInputStream {
 
-    /** Maximum encoded var length in bytes */
-    final public static int MAX_VAR_LENGTH = 9;
-
-    public static final int SEGMENT_BITS = 0x7F;
-    public static final int CONTINUE_BIT = 0x80;
-    public static final int INT_OVERFLOW_BITS = 0x70;
-
     final ByteArrayInputStream is;
 
     byte[] variant;
@@ -23,7 +16,7 @@ public class VarInputStream {
 
     public VarInputStream(ByteArrayInputStream is) {
         this.is = is;
-        this.variant = new byte[MAX_VAR_LENGTH];
+        this.variant = new byte[UVarInt.MAX_VAR_LENGTH];
         this.varLength = -1;
         this.value = -1;
     }
@@ -41,8 +34,8 @@ public class VarInputStream {
         long v = 0;
 
         do {
-            if (offset >= MAX_VAR_LENGTH) {
-                throw new IllegalArgumentException("A var longer than " + MAX_VAR_LENGTH + " has been found. Only vars up to " + MAX_VAR_LENGTH + " are supported.");
+            if (offset >= UVarInt.MAX_VAR_LENGTH) {
+                throw new IllegalArgumentException("A var longer than " + UVarInt.MAX_VAR_LENGTH + " has been found. Only vars up to " + UVarInt.MAX_VAR_LENGTH + " are supported.");
             }
 
             int b = is.read();
@@ -55,11 +48,11 @@ public class VarInputStream {
             }
 
             variant[offset] = (byte) b;
-            v |= (b & SEGMENT_BITS) << (offset * 7);
+            v |= (b & UVarInt.SEGMENT_BITS) << (offset * 7);
 
             offset++;
 
-            next = ((b & CONTINUE_BIT) != 0);
+            next = ((b & UVarInt.CONTINUE_BIT) != 0);
 System.out.println("NEXT" + next + "," + offset);
         } while (next);
 
@@ -73,7 +66,7 @@ System.out.println("NEXT" + next + "," + offset);
         return varLength > 0 &&
                 ((varLength < 5)
                         || (varLength == 5 &&
-                                ((variant[4] & INT_OVERFLOW_BITS) == 0)));
+                                ((variant[4] & UVarInt.INT_OVERFLOW_BITS) == 0)));
     }
 
     /**
@@ -84,7 +77,7 @@ System.out.println("NEXT" + next + "," + offset);
     public byte[] getVar() {
         return varLength < 0
                 ? null
-                : (varLength == MAX_VAR_LENGTH
+                : (varLength == UVarInt.MAX_VAR_LENGTH
                         ? variant
                         : Arrays.copyOfRange(variant, 0, varLength));
     }
@@ -103,7 +96,7 @@ System.out.println("NEXT" + next + "," + offset);
         return (int)value;
     }
     
-    public static long readVarLong(byte[] varlong, int offset) {
+    public static long readVarLong(byte[] varlong) {
 
         final VarInputStream reader = new VarInputStream(new ByteArrayInputStream(varlong));
 

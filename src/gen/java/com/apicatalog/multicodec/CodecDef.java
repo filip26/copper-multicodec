@@ -3,12 +3,13 @@ package com.apicatalog.multicodec;
 import java.io.PrintWriter;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
+import com.apicatalog.uvarint.VarEncoder;
 
 public class CodecDef {
 
     String name;
     Tag tag;
-    String code;
+    Long code;
     byte[] varint;
     String status;
     String description;
@@ -27,8 +28,8 @@ public class CodecDef {
         
         String type = columns[1].trim();
         
-        def.code = columns[2].trim();
-        def.varint = VarEncoder.encode(Long.parseLong(def.code.substring(2), 16));
+        def.code = Long.parseLong(columns[2].trim().substring(2), 16);
+        def.varint = VarEncoder.encode(def.code);
 
         def.name = columns[0].trim();
         def.tag = Tag.valueOf(Character.toUpperCase(type.charAt(0)) + type.substring(1));
@@ -59,6 +60,8 @@ public class CodecDef {
         writer.print(name);
         writer.print("\", Tag.");
         writer.print(tag.name());
+        writer.print(", ");
+        writer.print(code);
         writer.print(", new byte[] {");
         for (int i = 0; i < varint.length; i++) {
             if (i > 0) {

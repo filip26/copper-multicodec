@@ -39,7 +39,6 @@ public class CvsImporter {
             System.out.println(sw.toString());
             
             Files.write(Paths.get("src/main/java/com/apicatalog/multicodec/MulticodecRegistry.java"), sw.toString().getBytes());
-            
         }
     }
 

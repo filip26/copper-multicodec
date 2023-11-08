@@ -1,6 +1,6 @@
 package com.apicatalog.multicodec;
 
-import java.math.BigInteger;
+import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,9 +17,9 @@ import com.apicatalog.multicodec.Multicodec.Tag;
  */
 public final class Multicoder {
 
-    private final Map<Integer, Multicodec> codecs;
+    private final Map<String, Multicodec> codecs;
 
-    protected Multicoder(Map<Integer, Multicodec> codecs) {
+    protected Multicoder(Map<String, Multicodec> codecs) {
         this.codecs = codecs;
     }
 
@@ -33,7 +33,7 @@ public final class Multicoder {
      * @param codec a new codec to add
      */
     public Multicoder add(final Multicodec codec) {
-        codecs.put(codec.asInteger(), codec);
+        codecs.put(varintToKey(codec.varint()), codec);
         return this;
     }
 
@@ -45,7 +45,7 @@ public final class Multicoder {
      *         exist
      */
     private Optional<Multicodec> findKey(byte[] code) {
-        return Optional.ofNullable(codecs.get(new BigInteger(code).intValue()));
+        return Optional.ofNullable(codecs.get(varintToKey(code)));
     }
 
     /**
@@ -78,11 +78,11 @@ public final class Multicoder {
                         findKey(Arrays.copyOf(encoded, 2)) // try first 2 bytes
                                 .orElseGet(() -> findKey(Arrays.copyOf(encoded, 1)) // try the first byte
                                         .orElse(null)));
-                
+
             }
 
             return findKey(Arrays.copyOf(encoded, 1));
-            
+
         default:
             break;
         }
@@ -103,5 +103,13 @@ public final class Multicoder {
         return getCodec(type, encoded)
                 .map(codec -> codec.decode(encoded))
                 .orElseThrow(() -> new IllegalArgumentException("Unsupported multicode encoding [" + String.format("0x%hh, 0x%hh, ...", encoded[0], encoded[1]) + "]."));
+    }
+
+    public final static String varintToKey(byte[] varint) {
+        final StringWriter writer = new StringWriter(varint.length * 2);
+        for (int i = 0; i < varint.length; i++) {
+            writer.write(String.format("%02x", varint[i]));
+        }
+        return writer.toString();
     }
 }

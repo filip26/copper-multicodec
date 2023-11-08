@@ -10,18 +10,18 @@ public class Multicodec {
      */
     public enum Tag {
         Key,
-        MultiHash,
-        MultiAddr,
+        Multihash,
+        Multiaddr,
         Hash,
         Cid,
         Namespace,
-        MultiFormat,
+        Multiformat,
         Serialization,
         Transport,
-        VarSig,
+        Varsig,
     }
     
-    public static Multicodec IDENTITY = new Multicodec("identity", Tag.MultiHash, new byte[] { (byte) 0x00 });
+    public static Multicodec IDENTITY = new Multicodec("identity", Tag.Multihash, new byte[] { (byte) 0x00 });
     
     public static Multicodec Ed25519_PUBLIC_KEY = new Multicodec("ed25519-pub", Tag.Key, new byte[] { (byte) 0xed, (byte) 0x01 });
     public static Multicodec Ed25519_PRIVATE_KEY = new Multicodec("ed25519-priv", Tag.Key, new byte[] { (byte) 0x13, (byte) 0x00 });

@@ -6,29 +6,37 @@ import com.apicatalog.multicodec.Multicodec.Tag;
 
 public class CodecDef {
 
-    String name; 
+    String name;
     Tag tag;
-    byte[] code;
+    String code;
+    byte[] varint;
     String status;
     String description;
- 
+
     public static final CodecDef from(String line) {
-        
+
         final String[] columns = line.split(",");
 
         // import only keys
-        if (!"key".equals(columns[1].trim())) {
+        if (!"key".equals(columns[1].trim())
+                && !"identity".equals(columns[0].trim())) {
             return null;
         }
 
         final CodecDef def = new CodecDef();
+        
+        String type = columns[1].trim();
+        
+        def.code = columns[2].trim();
+        def.varint = VarEncoder.encode(Long.parseLong(def.code.substring(2), 16));
+
         def.name = columns[0].trim();
-        def.tag = Tag.Key;
+        def.tag = Tag.valueOf(Character.toUpperCase(type.charAt(0)) + type.substring(1));
         def.status = columns[3].trim();
         def.description = columns[4].trim();
         return def;
     }
-    
+
     public final void writeCode(PrintWriter writer) {
         writer.print("    ");
         writer.print("/** ");
@@ -37,17 +45,31 @@ public class CodecDef {
         writer.print(description);
         writer.print(", status = ");
         writer.print(status);
+        writer.print(", code = ");
+        writer.print(code);
         writer.println(" */");
-        
+
         writer.print("    ");
         writer.print("public static Multicodec ");
         writer.print(toName(name));
-        writer.print("_KEY = new Multicodec(\"");
+        if (Tag.Key == tag) {
+            writer.print("_KEY");
+        }
+        writer.print(" = new Multicodec(\"");
         writer.print(name);
-        writer.print("\", Tag.Key, new byte[] {");
+        writer.print("\", Tag.");
+        writer.print(tag.name());
+        writer.print(", new byte[] {");
+        for (int i = 0; i < varint.length; i++) {
+            if (i > 0) {
+                writer.print(", ");
+            }
+            writer.print("(byte)");
+            writer.print(String.format("0x%02x", varint[i]));
+        }
         writer.println("});");
     }
-    
+
     static final String toName(String name) {
         return name.replaceAll("-", "_")
                 .replace("priv", "PRIVATE")

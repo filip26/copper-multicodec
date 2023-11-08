@@ -11,9 +11,9 @@ public class VarInputStream {
     /** Maximum encoded var length in bytes */
     final public static int MAX_VAR_LENGTH = 9;
 
-    private static final int SEGMENT_BITS = 0x7F;
-    private static final int CONTINUE_BIT = 0x80;
-    private static final int INT_OVERFLOW_BITS = 0x70;
+    public static final int SEGMENT_BITS = 0x7F;
+    public static final int CONTINUE_BIT = 0x80;
+    public static final int INT_OVERFLOW_BITS = 0x70;
 
     final ByteArrayInputStream is;
 

@@ -5,6 +5,9 @@ A partial implementation of [Multicodec](https://github.com/multiformats/multico
 [![Maven Central](https://img.shields.io/maven-central/v/com.apicatalog/copper-multicodec.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.apicatalog%22%20AND%20a:%22copper-multicodec%22)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+## Features
+ * `statuc` registry of `key` multicodecs
+ * Unsigned VarInt encoder/decoder
 
 ## Installation
 

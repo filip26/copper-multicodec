@@ -6,7 +6,7 @@ A partial implementation of [Multicodec](https://github.com/multiformats/multico
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Features
- * `statuc` registry of `key` multicodecs
+ * `static` registry of `key` multicodecs
  * Unsigned VarInt encoder/decoder
 
 ## Installation

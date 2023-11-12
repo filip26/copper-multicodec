@@ -25,9 +25,9 @@ public class CodecDef {
         }
 
         final CodecDef def = new CodecDef();
-        
+
         String type = columns[1].trim();
-        
+
         def.code = Long.parseLong(columns[2].trim().substring(2), 16);
         def.varint = UVarIntEncoder.encode(def.code);
 
@@ -52,10 +52,7 @@ public class CodecDef {
 
         writer.print("    ");
         writer.print("public static Multicodec ");
-        writer.print(toName(name));
-        if (Tag.Key == tag) {
-            writer.print("_KEY");
-        }
+        writer.print(getJavaName());
         writer.print(" = new Multicodec(\"");
         writer.print(name);
         writer.print("\", Tag.");
@@ -73,10 +70,11 @@ public class CodecDef {
         writer.println("});");
     }
 
-    static final String toName(String name) {
+    protected final String getJavaName() {
         return name.replaceAll("-", "_")
                 .replace("priv", "PRIVATE")
                 .replace("pub", "PUBLIC")
-                .toUpperCase();
+                .toUpperCase()
+                + ((Tag.Key == tag) ? "_KEY" : "");
     }
 }

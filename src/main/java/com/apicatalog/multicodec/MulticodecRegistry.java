@@ -1,8 +1,11 @@
 package com.apicatalog.multicodec;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Wed Nov 08 18:19:56 CET 2023 */
+/** Multicodec Registry - generated: Sun Nov 12 20:59:19 CET 2023 */
 public class MulticodecRegistry {
 
     /** aes-128: 128-bit AES symmetric key, status = draft, code = 0xa0 */
@@ -92,4 +95,37 @@ public class MulticodecRegistry {
     /** x448-pub: X448 public Key, status = draft, code = 0x1204 */
     public static Multicodec X448_PUBLIC_KEY = new Multicodec("x448-pub", Tag.Key, 4612, new byte[] {(byte)0x84, (byte)0x24});
 
+    public static Map<Long, Multicodec> CODECS = new LinkedHashMap<>();
+
+    static {
+      CODECS.put(AES_128_KEY.code(), AES_128_KEY);
+      CODECS.put(AES_192_KEY.code(), AES_192_KEY);
+      CODECS.put(AES_256_KEY.code(), AES_256_KEY);
+      CODECS.put(BLS12_381_G1_PUBLIC_KEY.code(), BLS12_381_G1_PUBLIC_KEY);
+      CODECS.put(BLS12_381_G1G2_PUBLIC_KEY.code(), BLS12_381_G1G2_PUBLIC_KEY);
+      CODECS.put(BLS12_381_G2_PUBLIC_KEY.code(), BLS12_381_G2_PUBLIC_KEY);
+      CODECS.put(CHACHA_128_KEY.code(), CHACHA_128_KEY);
+      CODECS.put(CHACHA_256_KEY.code(), CHACHA_256_KEY);
+      CODECS.put(ED25519_PRIVATE_KEY.code(), ED25519_PRIVATE_KEY);
+      CODECS.put(ED25519_PUBLIC_KEY.code(), ED25519_PUBLIC_KEY);
+      CODECS.put(ED448_PUBLIC_KEY.code(), ED448_PUBLIC_KEY);
+      CODECS.put(IDENTITY.code(), IDENTITY);
+      CODECS.put(JWK_JCS_PUBLIC_KEY.code(), JWK_JCS_PUBLIC_KEY);
+      CODECS.put(P256_PRIVATE_KEY.code(), P256_PRIVATE_KEY);
+      CODECS.put(P256_PUBLIC_KEY.code(), P256_PUBLIC_KEY);
+      CODECS.put(P384_PRIVATE_KEY.code(), P384_PRIVATE_KEY);
+      CODECS.put(P384_PUBLIC_KEY.code(), P384_PUBLIC_KEY);
+      CODECS.put(P521_PRIVATE_KEY.code(), P521_PRIVATE_KEY);
+      CODECS.put(P521_PUBLIC_KEY.code(), P521_PUBLIC_KEY);
+      CODECS.put(RSA_PRIVATE_KEY.code(), RSA_PRIVATE_KEY);
+      CODECS.put(RSA_PUBLIC_KEY.code(), RSA_PUBLIC_KEY);
+      CODECS.put(SECP256K1_PRIVATE_KEY.code(), SECP256K1_PRIVATE_KEY);
+      CODECS.put(SECP256K1_PUBLIC_KEY.code(), SECP256K1_PUBLIC_KEY);
+      CODECS.put(SM2_PUBLIC_KEY.code(), SM2_PUBLIC_KEY);
+      CODECS.put(SR25519_PRIVATE_KEY.code(), SR25519_PRIVATE_KEY);
+      CODECS.put(SR25519_PUBLIC_KEY.code(), SR25519_PUBLIC_KEY);
+      CODECS.put(X25519_PRIVATE_KEY.code(), X25519_PRIVATE_KEY);
+      CODECS.put(X25519_PUBLIC_KEY.code(), X25519_PUBLIC_KEY);
+      CODECS.put(X448_PUBLIC_KEY.code(), X448_PUBLIC_KEY);
+    }
 }

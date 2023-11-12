@@ -1,9 +1,13 @@
 package com.apicatalog.multicodec;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.uvarint.UVarIntInputStream;
 
 /**
@@ -23,6 +27,21 @@ public final class Multicoder {
 
     public static Multicoder getEmptyInstance() {
         return new Multicoder(new HashMap<>());
+    }
+
+    /**
+     * Creates a new instance initialized with codecs matching the provided tags.
+     * See {@link MulticodecRegistry} for the complete list of included codecs.
+     * 
+     * @param tags a tag or a list of tags to match
+     * @return a new instance
+     */
+    public static Multicoder getInstance(Tag... tags) {
+        Map<Long, Multicodec> codecs = MulticodecRegistry.CODECS.values().stream()
+                .filter(codec -> Arrays.stream(tags).anyMatch(tag -> tag == codec.tag()))
+                .collect(Collectors.toMap(Multicodec::code, Function.identity()));
+
+        return new Multicoder(codecs);
     }
 
     /**
@@ -53,7 +72,7 @@ public final class Multicoder {
         }
 
         final long code = UVarIntInputStream.readLong(encoded);
-        
+
         return Optional.ofNullable(codecs.get(code));
     }
 

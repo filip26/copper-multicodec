@@ -1,7 +1,7 @@
 package com.apicatalog.multicodec;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -26,7 +26,7 @@ public final class Multicoder {
     }
 
     public static Multicoder getEmptyInstance() {
-        return new Multicoder(new HashMap<>());
+        return new Multicoder(new LinkedHashMap<>());
     }
 
     /**
@@ -37,11 +37,22 @@ public final class Multicoder {
      * @return a new instance
      */
     public static Multicoder getInstance(Tag... tags) {
-        Map<Long, Multicodec> codecs = MulticodecRegistry.CODECS.values().stream()
-                .filter(codec -> Arrays.stream(tags).anyMatch(tag -> tag == codec.tag()))
-                .collect(Collectors.toMap(Multicodec::code, Function.identity()));
+        return new Multicoder(
+                new LinkedHashMap<>(
+                        MulticodecRegistry.CODECS.values().stream()
+                                .filter(codec -> tags.length == 1
+                                        ? tags[0] == codec.tag()
+                                        : Arrays.stream(tags).anyMatch(tag -> tag == codec.tag()))
+                                .collect(Collectors.toMap(Multicodec::code, Function.identity()))));
+    }
 
-        return new Multicoder(codecs);
+    /**
+     * Creates a new instance initialized with all codecs listed in {@link MulticodecRegistry}.
+     * 
+     * @return a new instance
+     */
+    public static Multicoder getInstance() {
+        return new Multicoder(new LinkedHashMap<>(MulticodecRegistry.CODECS));
     }
 
     /**

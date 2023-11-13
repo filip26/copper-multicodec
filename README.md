@@ -7,7 +7,7 @@ A partial implementation of [Multicodec](https://github.com/multiformats/multico
 
 ## Features
  * `static` registry of `key` multicodecs
- * Unsigned VarInt encoder/decoder
+ * Unsigned VarInt
 
 ## Installation
 
@@ -45,4 +45,5 @@ Fork and clone the project repository.
 ## Resources
 
 * [Multicodec](https://github.com/multiformats/multicodec)
+* [unsigned-varint](https://github.com/multiformats/unsigned-varint)
 

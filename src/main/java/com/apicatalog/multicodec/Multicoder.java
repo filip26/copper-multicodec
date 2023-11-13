@@ -8,7 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
-import com.apicatalog.uvarint.UVarIntInputStream;
+import com.apicatalog.uvarint.UVarInt;
 
 /**
  *
@@ -82,7 +82,7 @@ public final class Multicoder {
             throw new IllegalArgumentException("The encoded value be non empty byte array.");
         }
 
-        final long code = UVarIntInputStream.readLong(encoded);
+        final long code = UVarInt.decode(encoded);
 
         return Optional.ofNullable(codecs.get(code));
     }

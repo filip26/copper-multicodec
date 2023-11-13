@@ -1,6 +1,7 @@
 package com.apicatalog.uvarint;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Stream;
 
@@ -8,16 +9,23 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class UVarIntEncoderTest {
+public class UVarIntTest {
 
     @ParameterizedTest(name = "{index}: {0}")
-    @MethodSource("provideStringsForIsBlank")
+    @MethodSource("testData")
     void testEncode(Long input, byte[] expedcted) {
-        byte[] output = UVarIntEncoder.encode(input);
+        byte[] output = UVarInt.encode(input);
         assertArrayEquals(expedcted, output);
     }
 
-    static Stream<Arguments> provideStringsForIsBlank() {
+    @ParameterizedTest(name = "{index}: {0}")
+    @MethodSource("testData")
+    void testDecode(Long expected, byte[] input) {
+        long output = UVarInt.decode(input);
+        assertEquals(expected, output);
+    }
+    
+    static Stream<Arguments> testData() {
         return Stream.of(
           Arguments.of(1l, new byte[] {1}),
           Arguments.of(127l, new byte[] {0x7f}),

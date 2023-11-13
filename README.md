@@ -7,7 +7,7 @@ A partial implementation of [Multicodec](https://github.com/multiformats/multico
 
 ## Features
  * `statuc` registry of `key` multicodecs
- * [Unsigned VarInt](https://github.com/multiformats/unsigned-varint) encoder/decoder
+ * Unsigned VarInt
 
 ## Installation
 

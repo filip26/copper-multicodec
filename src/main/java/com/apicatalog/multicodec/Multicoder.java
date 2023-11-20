@@ -1,9 +1,9 @@
 package com.apicatalog.multicodec;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -25,8 +25,10 @@ public final class Multicoder {
         this.codecs = codecs;
     }
 
-    public static Multicoder getEmptyInstance() {
-        return new Multicoder(new LinkedHashMap<>());
+    public static Multicoder getInstance(Multicodec... codecs) {
+        return new Multicoder(
+                Arrays.stream(codecs)
+                        .collect(Collectors.toMap(Multicodec::code, Function.identity())));
     }
 
     /**
@@ -38,7 +40,7 @@ public final class Multicoder {
      */
     public static Multicoder getInstance(Tag... tags) {
         return new Multicoder(
-                new LinkedHashMap<>(
+                new TreeMap<>(
                         MulticodecRegistry.CODECS.values().stream()
                                 .filter(codec -> tags.length == 1
                                         ? tags[0] == codec.tag()
@@ -47,22 +49,13 @@ public final class Multicoder {
     }
 
     /**
-     * Creates a new instance initialized with all codecs listed in {@link MulticodecRegistry}.
+     * Creates a new instance initialized with all codecs listed in
+     * {@link MulticodecRegistry}.
      * 
      * @return a new instance
      */
     public static Multicoder getInstance() {
-        return new Multicoder(new LinkedHashMap<>(MulticodecRegistry.CODECS));
-    }
-
-    /**
-     * Adds a new code to the registry.
-     * 
-     * @param codec a new codec to add
-     */
-    public Multicoder add(final Multicodec codec) {
-        codecs.put(codec.code(), codec);
-        return this;
+        return new Multicoder(MulticodecRegistry.CODECS);
     }
 
     /**

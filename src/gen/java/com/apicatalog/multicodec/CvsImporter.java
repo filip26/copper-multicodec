@@ -21,7 +21,7 @@ public class CvsImporter {
 
             writer.println("package com.apicatalog.multicodec;");
             writer.println();
-            writer.println("import java.util.LinkedHashMap;");
+            writer.println("import java.util.TreeMap;");
             writer.println("import java.util.Map;");
             writer.println();
             writer.println("import com.apicatalog.multicodec.Multicodec.Tag;");
@@ -42,7 +42,7 @@ public class CvsImporter {
                 writer.println();
             });
                         
-            writer.println("    public static Map<Long, Multicodec> CODECS = new LinkedHashMap<>();");
+            writer.println("    public static Map<Long, Multicodec> CODECS = new TreeMap<>();");
             writer.println();            
             writer.println("    static {");
 

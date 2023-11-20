@@ -16,7 +16,7 @@ import com.apicatalog.uvarint.UVarInt;
  *      Table</a>
  *
  */
-public final class Multicoder {
+public class Multicoder {
 
     private final Map<Long, Multicodec> codecs;
 

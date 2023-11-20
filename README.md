@@ -8,6 +8,7 @@ A partial implementation of [Multicodec](https://github.com/multiformats/multico
 ## Features
  * `static` registry of `key` multicodecs
  * Unsigned VarInt
+ * [Multibase](https://github.com/filip26/copper-multibase)
 
 ## Installation
 

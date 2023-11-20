@@ -16,16 +16,16 @@ import com.apicatalog.uvarint.UVarInt;
  *      Table</a>
  *
  */
-public class Multicoder {
+public class MulticodecDecoder {
 
     private final Map<Long, Multicodec> codecs;
 
-    protected Multicoder(Map<Long, Multicodec> codecs) {
+    protected MulticodecDecoder(Map<Long, Multicodec> codecs) {
         this.codecs = codecs;
     }
 
-    public static Multicoder getInstance(Multicodec... codecs) {
-        return new Multicoder(
+    public static MulticodecDecoder getInstance(Multicodec... codecs) {
+        return new MulticodecDecoder(
                 Arrays.stream(codecs)
                         .collect(Collectors.toMap(Multicodec::code, Function.identity())));
     }
@@ -37,8 +37,8 @@ public class Multicoder {
      * @param tags a tag or a list of tags to match
      * @return a new instance
      */
-    public static Multicoder getInstance(Tag... tags) {
-        return new Multicoder(
+    public static MulticodecDecoder getInstance(Tag... tags) {
+        return new MulticodecDecoder(
                 MulticodecRegistry.CODECS.values().stream()
                         .filter(codec -> tags.length == 1
                                 ? tags[0] == codec.tag()
@@ -52,8 +52,8 @@ public class Multicoder {
      * 
      * @return a new instance
      */
-    public static Multicoder getInstance() {
-        return new Multicoder(MulticodecRegistry.CODECS);
+    public static MulticodecDecoder getInstance() {
+        return new MulticodecDecoder(MulticodecRegistry.CODECS);
     }
 
     /**

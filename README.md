@@ -1,5 +1,5 @@
 # Copper Multicodec
-A partial implementation of [Multicodec](https://github.com/multiformats/multicodec) in Java.
+A Java implementation of [Multicodec](https://github.com/multiformats/multicodec) in Java.
 
 [![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.apicatalog/copper-multicodec.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:com.apicatalog%20AND%20a:copper-multicodec)
@@ -43,7 +43,7 @@ Fork and clone the project repository.
 
 
 ## Resources
-
-* [Multicodec](https://github.com/multiformats/multicodec)
-* [unsigned-varint](https://github.com/multiformats/unsigned-varint)
+- [Copper Multibase](https://github.com/filip26/copper-multibase)
+- [Multicodec](https://github.com/multiformats/multicodec)
+- [unsigned-varint](https://github.com/multiformats/unsigned-varint)
 

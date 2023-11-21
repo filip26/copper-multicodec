@@ -1,11 +1,11 @@
 package com.apicatalog.multicodec;
 
-import java.util.LinkedHashMap;
+import java.util.TreeMap;
 import java.util.Map;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Nov 12 20:59:19 CET 2023 */
+/** Multicodec Registry - generated: Mon Nov 20 20:44:10 CET 2023 */
 public class MulticodecRegistry {
 
     /** aes-128: 128-bit AES symmetric key, status = draft, code = 0xa0 */
@@ -95,7 +95,7 @@ public class MulticodecRegistry {
     /** x448-pub: X448 public Key, status = draft, code = 0x1204 */
     public static Multicodec X448_PUBLIC_KEY = new Multicodec("x448-pub", Tag.Key, 4612, new byte[] {(byte)0x84, (byte)0x24});
 
-    public static Map<Long, Multicodec> CODECS = new LinkedHashMap<>();
+    public static Map<Long, Multicodec> CODECS = new TreeMap<>();
 
     static {
       CODECS.put(AES_128_KEY.code(), AES_128_KEY);

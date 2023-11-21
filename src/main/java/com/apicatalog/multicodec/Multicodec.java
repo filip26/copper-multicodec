@@ -2,7 +2,7 @@ package com.apicatalog.multicodec;
 
 import java.util.Arrays;
 
-public class Multicodec {
+public final class Multicodec {
 
     /**
      * Recognized multicodec tags

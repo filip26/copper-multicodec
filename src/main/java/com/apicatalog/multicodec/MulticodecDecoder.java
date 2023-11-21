@@ -1,7 +1,6 @@
 package com.apicatalog.multicodec;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -17,16 +16,18 @@ import com.apicatalog.uvarint.UVarInt;
  *      Table</a>
  *
  */
-public final class Multicoder {
+public class MulticodecDecoder {
 
     private final Map<Long, Multicodec> codecs;
 
-    protected Multicoder(Map<Long, Multicodec> codecs) {
+    protected MulticodecDecoder(Map<Long, Multicodec> codecs) {
         this.codecs = codecs;
     }
 
-    public static Multicoder getEmptyInstance() {
-        return new Multicoder(new LinkedHashMap<>());
+    public static MulticodecDecoder getInstance(Multicodec... codecs) {
+        return new MulticodecDecoder(
+                Arrays.stream(codecs)
+                        .collect(Collectors.toMap(Multicodec::code, Function.identity())));
     }
 
     /**
@@ -36,33 +37,23 @@ public final class Multicoder {
      * @param tags a tag or a list of tags to match
      * @return a new instance
      */
-    public static Multicoder getInstance(Tag... tags) {
-        return new Multicoder(
-                new LinkedHashMap<>(
-                        MulticodecRegistry.CODECS.values().stream()
-                                .filter(codec -> tags.length == 1
-                                        ? tags[0] == codec.tag()
-                                        : Arrays.stream(tags).anyMatch(tag -> tag == codec.tag()))
-                                .collect(Collectors.toMap(Multicodec::code, Function.identity()))));
+    public static MulticodecDecoder getInstance(Tag... tags) {
+        return new MulticodecDecoder(
+                MulticodecRegistry.CODECS.values().stream()
+                        .filter(codec -> tags.length == 1
+                                ? tags[0] == codec.tag()
+                                : Arrays.stream(tags).anyMatch(tag -> tag == codec.tag()))
+                        .collect(Collectors.toMap(Multicodec::code, Function.identity())));
     }
 
     /**
-     * Creates a new instance initialized with all codecs listed in {@link MulticodecRegistry}.
+     * Creates a new instance initialized with all codecs listed in
+     * {@link MulticodecRegistry}.
      * 
      * @return a new instance
      */
-    public static Multicoder getInstance() {
-        return new Multicoder(new LinkedHashMap<>(MulticodecRegistry.CODECS));
-    }
-
-    /**
-     * Adds a new code to the registry.
-     * 
-     * @param codec a new codec to add
-     */
-    public Multicoder add(final Multicodec codec) {
-        codecs.put(codec.code(), codec);
-        return this;
+    public static MulticodecDecoder getInstance() {
+        return new MulticodecDecoder(MulticodecRegistry.CODECS);
     }
 
     /**

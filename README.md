@@ -15,8 +15,19 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
 /* encode an input as P-521 public key */
 byte[] encoded = KeyCodec.P521_PUBLIC_KEY.encode(input);
 
+/* encode an input as an identity */
+byte[] encoded = MultihashCodec.IDENTITY.encode(input);
+
 /* get decoder instance initialized with all supported codecs */
 var decoder = MulticodecDecoder.getInstance();
+
+/* get decoder initialized with codecs tagged as key and hash */
+var decoder = MulticodecDecoder.getInstance(Tag.Key, Tag.Hash);
+
+/* get decoder initialized with custom codec set  */
+var decoder = MulticodecDecoder.getInstance(codecs...);
+
+/* decode */
 byte[] decoded = decoder.decode(encoded);
 
 /* or */
@@ -25,8 +36,6 @@ if (codec.isPresent()) {
    byte[] decoded = codec.get().decode(encoded);
 }
 
-/* get decoder initialized with codecs tagged as key and hash */
-var decoder = MulticodecDecoder.getInstance(Tag.Key, Tag.Hash);
 ```
 
 ## Installation

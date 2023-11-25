@@ -7,7 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
-import com.apicatalog.multicodec.codec.KeyCodec;
+import com.apicatalog.multicodec.codec.MulticodecRegistry;
 import com.apicatalog.uvarint.UVarInt;
 
 /**
@@ -40,7 +40,7 @@ public class MulticodecDecoder {
      */
     public static MulticodecDecoder getInstance(Tag... tags) {
         return new MulticodecDecoder(
-                KeyCodec.ALL.values().stream()
+                MulticodecRegistry.ALL.values().stream()
                         .filter(codec -> tags.length == 1
                                 ? tags[0] == codec.tag()
                                 : Arrays.stream(tags).anyMatch(tag -> tag == codec.tag()))
@@ -54,7 +54,7 @@ public class MulticodecDecoder {
      * @return a new instance
      */
     public static MulticodecDecoder getInstance() {
-        return new MulticodecDecoder(KeyCodec.ALL);
+        return new MulticodecDecoder(MulticodecRegistry.ALL);   
     }
 
     /**

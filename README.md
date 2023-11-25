@@ -6,8 +6,28 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Features
- * `static` registry
- * Unsigned VarInt
+ * `static` codecs registry
+ * `Unsigned VarInt` support
+
+## Example
+
+```java
+/* encode an input as P-521 public key */
+byte[] encoded = KeyCodec.P521_PUBLIC_KEY.encode(input);
+
+/* get decoder instance initialized with all supported codecs */
+var decoder = MulticodecDecoder.getInstance();
+byte[] decoded = decoder.decode(encoded);
+
+/* or */
+Optional<Multicodec> codec = decoder.getCodec(encoded);
+if (codec.isPresent()) {
+   byte[] decoded = codec.get().decode(encoded);
+}
+
+/* get decoder initialized with codecs tagged as key and hash */
+var decoder = MulticodecDecoder.getInstance(Tag.Key, Tag.Hash);
+```
 
 ## Installation
 

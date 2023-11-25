@@ -30,12 +30,14 @@ var decoder = MulticodecDecoder.getInstance(codecs...);
 /* decode */
 byte[] decoded = decoder.decode(encoded);
 
-/* or */
+/* or check if encoding is supported  */
 Optional<Multicodec> codec = decoder.getCodec(encoded);
 if (codec.isPresent()) {
    byte[] decoded = codec.get().decode(encoded);
 }
 
+/* or directy when only one codec is supported */
+byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);
 ```
 
 ## Installation

@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sat Nov 25 23:25:18 CET 2023 */
+/** Multicodec Registry - generated: Sat Nov 25 23:45:54 CET 2023 */
 public class MultihashCodec {
 
     /** Multihash: blake2b-104, status = draft, code = 0xb20d */

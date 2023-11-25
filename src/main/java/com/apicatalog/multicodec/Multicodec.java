@@ -1,7 +1,11 @@
 package com.apicatalog.multicodec;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
+/**
+ * Represents a multicodec definition and encoder/decoder instance.
+ */
 public final class Multicodec {
 
     /**
@@ -57,12 +61,15 @@ public final class Multicodec {
      * 
      * @param value a value to encode
      * @return an encoded value
+     * 
+     * @throws IllegalArgumentException if the value cannot be encoded 
      */
     public byte[] encode(final byte[] value) {
 
         if (value == null) {
             throw new IllegalArgumentException("The value to encdode must not be null.");
         }
+
         if (value.length == 0) {
             throw new IllegalArgumentException("The value to encode must be non empty byte array.");
         }
@@ -80,13 +87,21 @@ public final class Multicodec {
      * 
      * @param encoded value to decode
      * @return a decoded value
+     * 
+     * @throws IllegalArgumentException if the encoded value cannot be decoded
      */
     public byte[] decode(final byte[] encoded) {
+        
         if (encoded == null) {
             throw new IllegalArgumentException("The value to decode must not be null.");
         }
-        if (encoded.length == 0) {
-            throw new IllegalArgumentException("The value to decode must be non empty byte array.");
+        
+        if (encoded.length < varint.length) {
+            throw new IllegalArgumentException("The value to decode must be non empty byte array, min length = " + varint.length + ", actual = " + encoded.length + ".");
+        }
+        
+        if (!IntStream.range(0, varint.length).allMatch(i -> varint[i] == encoded[i])) {
+            throw new IllegalArgumentException("The value to decode is not encoded with " + toString() + ".");
         }
 
         return Arrays.copyOfRange(encoded, varint.length, encoded.length);

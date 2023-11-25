@@ -14,15 +14,7 @@ public class CodecDef {
     String status;
     String description;
 
-    public static final CodecDef from(String line) {
-
-        final String[] columns = line.split(",");
-
-        // import only keys
-        if (!"key".equals(columns[1].trim())
-                && !"identity".equals(columns[0].trim())) {
-            return null;
-        }
+    public static final CodecDef from(String[] columns) {
 
         final CodecDef def = new CodecDef();
 
@@ -34,7 +26,7 @@ public class CodecDef {
         def.name = columns[0].trim();
         def.tag = Tag.valueOf(Character.toUpperCase(type.charAt(0)) + type.substring(1));
         def.status = columns[3].trim();
-        def.description = columns[4].trim();
+        def.description = columns.length > 4 ? columns[4].trim() : null;
         return def;
     }
 

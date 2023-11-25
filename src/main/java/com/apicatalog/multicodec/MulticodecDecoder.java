@@ -7,6 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
+import com.apicatalog.multicodec.codec.KeyCodec;
 import com.apicatalog.uvarint.UVarInt;
 
 /**
@@ -32,14 +33,14 @@ public class MulticodecDecoder {
 
     /**
      * Creates a new instance initialized with codecs matching the provided tags.
-     * See {@link MulticodecRegistry} for the complete list of included codecs.
+     * See {@link CodecsKey} for the complete list of included codecs.
      * 
      * @param tags a tag or a list of tags to match
      * @return a new instance
      */
     public static MulticodecDecoder getInstance(Tag... tags) {
         return new MulticodecDecoder(
-                MulticodecRegistry.CODECS.values().stream()
+                KeyCodec.ALL.values().stream()
                         .filter(codec -> tags.length == 1
                                 ? tags[0] == codec.tag()
                                 : Arrays.stream(tags).anyMatch(tag -> tag == codec.tag()))
@@ -48,12 +49,12 @@ public class MulticodecDecoder {
 
     /**
      * Creates a new instance initialized with all codecs listed in
-     * {@link MulticodecRegistry}.
+     * {@link CodecsKey}.
      * 
      * @return a new instance
      */
     public static MulticodecDecoder getInstance() {
-        return new MulticodecDecoder(MulticodecRegistry.CODECS);
+        return new MulticodecDecoder(KeyCodec.ALL);
     }
 
     /**

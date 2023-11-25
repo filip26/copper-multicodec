@@ -9,5 +9,6 @@ public class CvsImporter {
         CodecTag.generate("multiformat", "MultiformatCodec");
         CodecTag.generate("hash", "HashCodec");
         CodecTag.generate("multihash", "MultihashCodec");
+        CodecTag.generate("varsig", "VarsigCodec");
     }
 }

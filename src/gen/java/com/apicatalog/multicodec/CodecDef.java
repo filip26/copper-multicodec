@@ -33,9 +33,13 @@ public class CodecDef {
     public final void writeCode(PrintWriter writer) {
         writer.print("    ");
         writer.print("/** ");
-        writer.print(name);
+        writer.print(tag);
         writer.print(": ");
-        writer.print(description);
+        writer.print(name);
+        if (description != null) {
+            writer.print(", ");
+            writer.print(description);
+        }
         writer.print(", status = ");
         writer.print(status);
         writer.print(", code = ");

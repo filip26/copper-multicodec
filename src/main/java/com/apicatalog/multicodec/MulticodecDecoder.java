@@ -33,7 +33,7 @@ public class MulticodecDecoder {
 
     /**
      * Creates a new instance initialized with codecs matching the provided tags.
-     * See {@link CodecsKey} for the complete list of included codecs.
+     * See <code>codec</code> package for the complete list of included codecs.
      * 
      * @param tags a tag or a list of tags to match
      * @return a new instance
@@ -48,8 +48,7 @@ public class MulticodecDecoder {
     }
 
     /**
-     * Creates a new instance initialized with all codecs listed in
-     * {@link CodecsKey}.
+     * Creates a new instance initialized with all supported codecs.
      * 
      * @return a new instance
      */

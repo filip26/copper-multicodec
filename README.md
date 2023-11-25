@@ -17,10 +17,9 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>0.0.5</version>
+    <version>0.1.0</version>
 </dependency>
 ```
-
 
 ## Documentation
 

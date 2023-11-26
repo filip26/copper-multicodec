@@ -28,6 +28,7 @@ public class UVarIntTest {
     static Stream<Arguments> testData() {
         return Stream.of(
           Arguments.of(1l, new byte[] {1}),
+          Arguments.of(123l, new byte[] {0x7b}),
           Arguments.of(127l, new byte[] {0x7f}),
           Arguments.of(128l, new byte[] {(byte)0x80, 0x01}),
           Arguments.of(255l, new byte[] {(byte)0xff, 0x01}),

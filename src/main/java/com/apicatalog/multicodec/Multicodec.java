@@ -51,7 +51,7 @@ public final class Multicodec {
     public String name() {
         return name;
     }
-    
+
     public long code() {
         return code;
     }
@@ -62,7 +62,7 @@ public final class Multicodec {
      * @param value a value to encode
      * @return an encoded value
      * 
-     * @throws IllegalArgumentException if the value cannot be encoded 
+     * @throws IllegalArgumentException if the value cannot be encoded
      */
     public byte[] encode(final byte[] value) {
 
@@ -83,6 +83,19 @@ public final class Multicodec {
     }
 
     /**
+     * Checks if the given value is encoded with the codec.
+     * 
+     * @param encoded an encoded value to test
+     * @return <code>true</code> is the given value is encoded with the codec,
+     *         <code>false</code> otherwise
+     */
+    public boolean isEncoded(final byte[] encoded) {
+        return encoded != null
+                && encoded.length >= varint.length
+                && IntStream.range(0, varint.length).allMatch(i -> varint[i] == encoded[i]);
+    }
+
+    /**
      * Decode an encoded value
      * 
      * @param encoded value to decode
@@ -91,15 +104,15 @@ public final class Multicodec {
      * @throws IllegalArgumentException if the encoded value cannot be decoded
      */
     public byte[] decode(final byte[] encoded) {
-        
+
         if (encoded == null) {
             throw new IllegalArgumentException("The value to decode must not be null.");
         }
-        
+
         if (encoded.length < varint.length) {
             throw new IllegalArgumentException("The value to decode must be non empty byte array, min length = " + varint.length + ", actual = " + encoded.length + ".");
         }
-        
+
         if (!IntStream.range(0, varint.length).allMatch(i -> varint[i] == encoded[i])) {
             throw new IllegalArgumentException("The value to decode is not encoded with " + toString() + ".");
         }

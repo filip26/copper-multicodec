@@ -9,6 +9,7 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
  * `static` codecs registry
    * no lookups for a codec when encoding
    * direct `static` access to codecs
+   * confirugable set of codecs to support when decoding
  * built-in `Unsigned VarInt` support
 
 ## Example

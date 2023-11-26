@@ -33,10 +33,8 @@ var decoder = MulticodecDecoder.getInstance(codecs...);
 byte[] decoded = decoder.decode(encoded);
 
 /* or check if encoding is supported  */
-Optional<Multicodec> codec = decoder.getCodec(encoded);
-if (codec.isPresent()) {
-   byte[] decoded = codec.get().decode(encoded);
-}
+Multicodec codec = decoder.getCodec(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
+byte[] decoded = codec.decode(encoded);
 
 /* or directy when only one codec is supported */
 byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);

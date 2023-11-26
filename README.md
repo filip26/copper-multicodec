@@ -7,6 +7,8 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
 
 ## Features
  * `static` codecs registry
+   * no lookups for a codec when encoding
+   * direct `static` access to codecs
  * `Unsigned VarInt` support
 
 ## Example
@@ -38,6 +40,11 @@ if (codec.isPresent()) {
 
 /* or directy when only one codec is supported */
 byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);
+
+/* check if byte array is encoded with a codec */
+if (KeyCodec.P521_PUBLIC_KEY.isEncoded(encoded)) {
+  ...
+}
 ```
 
 ## Installation
@@ -48,8 +55,14 @@ byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
+```
+
+### Gradle
+
+```gradle
+implementation("com.apicatalog:copper-multicodec:0.1.1")
 ```
 
 ## Documentation

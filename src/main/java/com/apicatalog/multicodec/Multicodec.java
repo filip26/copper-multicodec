@@ -85,7 +85,7 @@ public final class Multicodec {
     /**
      * Checks if the given value is encoded with the codec.
      * 
-     * @param value an encoded value to test
+     * @param encoded an encoded value to test
      * @return <code>true</code> is the given value is encoded with the codec,
      *         <code>false</code> otherwise
      */

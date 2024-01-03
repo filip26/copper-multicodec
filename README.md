@@ -11,6 +11,7 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
    * direct `static` access to codecs
    * confirugable set of codecs to support when decoding
  * built-in `Unsigned VarInt` support
+ * no 3rd pary dependencies
 
 ## Example
 

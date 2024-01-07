@@ -15,7 +15,7 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
 
 ## Example
 
-```java
+```javascript
 /* encode an input as P-521 public key */
 byte[] encoded = KeyCodec.P521_PUBLIC_KEY.encode(input);
 
@@ -31,11 +31,14 @@ var decoder = MulticodecDecoder.getInstance(Tag.Key, Tag.Hash);
 /* get decoder initialized with custom codec set  */
 var decoder = MulticodecDecoder.getInstance(codecs...);
 
-/* decode */
+/* detect multicodec and decode */
 byte[] decoded = decoder.decode(encoded);
 
 /* or check if encoding is supported  */
 Multicodec codec = decoder.getCodec(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
+/* or get base by code */
+Multicodec codec = decoder.getCodec(code).orElseThrow(...);
+/* decode */
 byte[] decoded = codec.decode(encoded);
 
 /* or directy when only one codec is supported */
@@ -55,14 +58,14 @@ if (KeyCodec.P521_PUBLIC_KEY.isEncoded(encoded)) {
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>0.1.1</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation("com.apicatalog:copper-multicodec:0.1.1")
+implementation("com.apicatalog:copper-multicodec:0.2.0")
 ```
 
 ## Documentation

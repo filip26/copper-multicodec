@@ -79,9 +79,9 @@ public class MulticodecDecoder {
     }
 
     /**
-     * Returns a codec associated with the given prefix.
+     * Returns a codec associated with the given code.
      * 
-     * @param prefix associated with the codec
+     * @param code associated with the codec
      * @return a codec or {@link Optional#empty()}
      */
     public Optional<Multicodec> getCodec(final long code) {

@@ -53,7 +53,7 @@ public class MulticodecDecoder {
      * @return a new instance
      */
     public static MulticodecDecoder getInstance() {
-        return new MulticodecDecoder(MulticodecRegistry.ALL);   
+        return new MulticodecDecoder(MulticodecRegistry.ALL);
     }
 
     /**
@@ -75,6 +75,16 @@ public class MulticodecDecoder {
 
         final long code = UVarInt.decode(encoded);
 
+        return getCodec(code);
+    }
+
+    /**
+     * Returns a codec associated with the given code.
+     * 
+     * @param code associated with the codec
+     * @return a codec or {@link Optional#empty()}
+     */
+    public Optional<Multicodec> getCodec(final long code) {
         return Optional.ofNullable(codecs.get(code));
     }
 

@@ -59,7 +59,7 @@ var codec = Multicodec.of(name, tag, code);
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>0.9.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -68,7 +68,7 @@ var codec = Multicodec.of(name, tag, code);
 Android 12+ (API Level >=32)
 
 ```gradle
-implementation("com.apicatalog:copper-multicodec:0.9.0")
+implementation("com.apicatalog:copper-multicodec:1.0.0")
 ```
 
 ## Documentation

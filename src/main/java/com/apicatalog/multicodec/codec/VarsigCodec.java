@@ -6,40 +6,40 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Jul 07 20:55:50 CEST 2024 */
+/** Multicodec Registry - generated: Sun Jul 07 23:55:48 CEST 2024 */
 public class VarsigCodec {
 
     protected VarsigCodec() { /* protected */ }
 
     /** Varsig: bls-12381-g1-sig, G1 signature for BLS-12381-G2, status = draft, code = 0xd0ea */
-    public static final Multicodec BLS_12381_G1_SIG = new Multicodec("bls-12381-g1-sig", Tag.Varsig, 53482, new byte[] {(byte)0xea, (byte)0xa1, (byte)0x03});
+    public static final Multicodec BLS_12381_G1_SIG = Multicodec.of("bls-12381-g1-sig", Tag.Varsig, 0xd0ea);
 
     /** Varsig: bls-12381-g2-sig, G2 signature for BLS-12381-G1, status = draft, code = 0xd0eb */
-    public static final Multicodec BLS_12381_G2_SIG = new Multicodec("bls-12381-g2-sig", Tag.Varsig, 53483, new byte[] {(byte)0xeb, (byte)0xa1, (byte)0x03});
+    public static final Multicodec BLS_12381_G2_SIG = Multicodec.of("bls-12381-g2-sig", Tag.Varsig, 0xd0eb);
 
     /** Varsig: eddsa, Edwards-Curve Digital Signature Algorithm, status = draft, code = 0xd0ed */
-    public static final Multicodec EDDSA = new Multicodec("eddsa", Tag.Varsig, 53485, new byte[] {(byte)0xed, (byte)0xa1, (byte)0x03});
+    public static final Multicodec EDDSA = Multicodec.of("eddsa", Tag.Varsig, 0xd0ed);
 
     /** Varsig: eip-191, EIP-191 Ethereum Signed Data Standard, status = draft, code = 0xd191 */
-    public static final Multicodec EIP_191 = new Multicodec("eip-191", Tag.Varsig, 53649, new byte[] {(byte)0x91, (byte)0xa3, (byte)0x03});
+    public static final Multicodec EIP_191 = Multicodec.of("eip-191", Tag.Varsig, 0xd191);
 
     /** Varsig: es256, ES256 Signature Algorithm, status = draft, code = 0xd01200 */
-    public static final Multicodec ES256 = new Multicodec("es256", Tag.Varsig, 13636096, new byte[] {(byte)0x80, (byte)0xa4, (byte)0xc0, (byte)0x06});
+    public static final Multicodec ES256 = Multicodec.of("es256", Tag.Varsig, 0xd01200);
 
     /** Varsig: es256k, ES256K Siganture Algorithm (secp256k1), status = draft, code = 0xd0e7 */
-    public static final Multicodec ES256K = new Multicodec("es256k", Tag.Varsig, 53479, new byte[] {(byte)0xe7, (byte)0xa1, (byte)0x03});
+    public static final Multicodec ES256K = Multicodec.of("es256k", Tag.Varsig, 0xd0e7);
 
     /** Varsig: es284, ES384 Signature Algorithm, status = draft, code = 0xd01201 */
-    public static final Multicodec ES284 = new Multicodec("es284", Tag.Varsig, 13636097, new byte[] {(byte)0x81, (byte)0xa4, (byte)0xc0, (byte)0x06});
+    public static final Multicodec ES284 = Multicodec.of("es284", Tag.Varsig, 0xd01201);
 
     /** Varsig: es512, ES512 Signature Algorithm, status = draft, code = 0xd01202 */
-    public static final Multicodec ES512 = new Multicodec("es512", Tag.Varsig, 13636098, new byte[] {(byte)0x82, (byte)0xa4, (byte)0xc0, (byte)0x06});
+    public static final Multicodec ES512 = Multicodec.of("es512", Tag.Varsig, 0xd01202);
 
     /** Varsig: nonstandard-sig, Namespace for all not yet standard signature algorithms, status = deprecated, code = 0xd000 */
-    public static final Multicodec NONSTANDARD_SIG = new Multicodec("nonstandard-sig", Tag.Varsig, 53248, new byte[] {(byte)0x80, (byte)0xa0, (byte)0x03});
+    public static final Multicodec NONSTANDARD_SIG = Multicodec.of("nonstandard-sig", Tag.Varsig, 0xd000);
 
     /** Varsig: rs256, RS256 Signature Algorithm, status = draft, code = 0xd01205 */
-    public static final Multicodec RS256 = new Multicodec("rs256", Tag.Varsig, 13636101, new byte[] {(byte)0x85, (byte)0xa4, (byte)0xc0, (byte)0x06});
+    public static final Multicodec RS256 = Multicodec.of("rs256", Tag.Varsig, 0xd01205);
 
     protected static final Map<Long, Multicodec> ALL = new TreeMap<>();
 

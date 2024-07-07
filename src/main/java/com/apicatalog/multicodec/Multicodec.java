@@ -3,6 +3,8 @@ package com.apicatalog.multicodec;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import com.apicatalog.uvarint.UVarInt;
+
 /**
  * Represents a multicodec definition and encoder/decoder instance.
  */
@@ -29,13 +31,17 @@ public final class Multicodec {
     private final long code;
     private final Tag tag;
 
-    public Multicodec(String name, Tag tag, long code, byte[] varint) {
+    protected Multicodec(String name, Tag tag, long code, byte[] uvarint) {
         this.tag = tag;
         this.name = name;
         this.code = code;
-        this.varint = varint;
+        this.varint = uvarint;
     }
 
+    public static Multicodec of(String name, Tag tag, long code) {
+        return new Multicodec(name, tag, code, UVarInt.encode(code));
+    }
+    
     public int length() {
         return varint.length;
     }

@@ -6,31 +6,31 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Jul 07 20:55:50 CEST 2024 */
+/** Multicodec Registry - generated: Sun Jul 07 23:55:48 CEST 2024 */
 public class MultiformatCodec {
 
     protected MultiformatCodec() { /* protected */ }
 
     /** Multiformat: caip-50, CAIP-50 multi-chain account id, status = draft, code = 0xca */
-    public static final Multicodec CAIP_50 = new Multicodec("caip-50", Tag.Multiformat, 202, new byte[] {(byte)0xca, (byte)0x01});
+    public static final Multicodec CAIP_50 = Multicodec.of("caip-50", Tag.Multiformat, 0xca);
 
     /** Multiformat: multiaddr, status = draft, code = 0x32 */
-    public static final Multicodec MULTIADDR = new Multicodec("multiaddr", Tag.Multiformat, 50, new byte[] {(byte)0x32});
+    public static final Multicodec MULTIADDR = Multicodec.of("multiaddr", Tag.Multiformat, 0x32);
 
     /** Multiformat: multibase, status = draft, code = 0x33 */
-    public static final Multicodec MULTIBASE = new Multicodec("multibase", Tag.Multiformat, 51, new byte[] {(byte)0x33});
+    public static final Multicodec MULTIBASE = Multicodec.of("multibase", Tag.Multiformat, 0x33);
 
     /** Multiformat: multicodec, status = draft, code = 0x30 */
-    public static final Multicodec MULTICODEC = new Multicodec("multicodec", Tag.Multiformat, 48, new byte[] {(byte)0x30});
+    public static final Multicodec MULTICODEC = Multicodec.of("multicodec", Tag.Multiformat, 0x30);
 
     /** Multiformat: multidid, Compact encoding for Decentralized Identifers, status = draft, code = 0xd1d */
-    public static final Multicodec MULTIDID = new Multicodec("multidid", Tag.Multiformat, 3357, new byte[] {(byte)0x9d, (byte)0x1a});
+    public static final Multicodec MULTIDID = Multicodec.of("multidid", Tag.Multiformat, 0xd1d);
 
     /** Multiformat: multihash, status = draft, code = 0x31 */
-    public static final Multicodec MULTIHASH = new Multicodec("multihash", Tag.Multiformat, 49, new byte[] {(byte)0x31});
+    public static final Multicodec MULTIHASH = Multicodec.of("multihash", Tag.Multiformat, 0x31);
 
     /** Multiformat: varsig, Variable signature (varsig) multiformat, status = draft, code = 0x34 */
-    public static final Multicodec VARSIG = new Multicodec("varsig", Tag.Multiformat, 52, new byte[] {(byte)0x34});
+    public static final Multicodec VARSIG = Multicodec.of("varsig", Tag.Multiformat, 0x34);
 
     protected static final Map<Long, Multicodec> ALL = new TreeMap<>();
 

@@ -1,10 +1,6 @@
 package com.apicatalog.multicodec;
 
-import java.util.Arrays;
-import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.codec.MulticodecRegistry;
@@ -19,16 +15,14 @@ import com.apicatalog.uvarint.UVarInt;
  */
 public class MulticodecDecoder {
 
-    private final Map<Long, Multicodec> codecs;
+    private final MulticodecRegistry registry;
 
-    protected MulticodecDecoder(Map<Long, Multicodec> codecs) {
-        this.codecs = codecs;
+    protected MulticodecDecoder(MulticodecRegistry registry) {
+        this.registry = registry;
     }
 
     public static MulticodecDecoder getInstance(Multicodec... codecs) {
-        return new MulticodecDecoder(
-                Arrays.stream(codecs)
-                        .collect(Collectors.toMap(Multicodec::code, Function.identity())));
+        return new MulticodecDecoder(MulticodecRegistry.getInstance(codecs));
     }
 
     /**
@@ -39,12 +33,7 @@ public class MulticodecDecoder {
      * @return a new instance
      */
     public static MulticodecDecoder getInstance(Tag... tags) {
-        return new MulticodecDecoder(
-                MulticodecRegistry.values().stream()
-                        .filter(codec -> tags.length == 1
-                                ? tags[0] == codec.tag()
-                                : Arrays.stream(tags).anyMatch(tag -> tag == codec.tag()))
-                        .collect(Collectors.toMap(Multicodec::code, Function.identity())));
+        return new MulticodecDecoder(MulticodecRegistry.getInstance(tags));
     }
 
     /**
@@ -53,7 +42,7 @@ public class MulticodecDecoder {
      * @return a new instance
      */
     public static MulticodecDecoder getInstance() {
-        return new MulticodecDecoder(MulticodecRegistry.data());
+        return new MulticodecDecoder(MulticodecRegistry.getInstance());
     }
 
     /**
@@ -75,17 +64,11 @@ public class MulticodecDecoder {
 
         final long code = UVarInt.decode(encoded);
 
-        return getCodec(code);
+        return registry.getCodec(code);
     }
 
-    /**
-     * Returns a codec associated with the given code.
-     * 
-     * @param code associated with the codec
-     * @return a codec or {@link Optional#empty()}
-     */
-    public Optional<Multicodec> getCodec(final long code) {
-        return Optional.ofNullable(codecs.get(code));
+    public MulticodecRegistry getRegistry() {
+        return registry;
     }
 
     /**

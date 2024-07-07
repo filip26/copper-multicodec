@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.MulticodecDecoder;
 
-public class MulticodecDecoderTest {
+class MulticodecDecoderTest {
 
     @Test
     void testGetInstance() {

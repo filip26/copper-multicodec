@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.uvarint.UVarInt;
 
-public class MulticodecTest {
+class MulticodecTest {
 
     @Test
     void testIsEncoded() {

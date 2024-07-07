@@ -47,7 +47,7 @@ public class CodecDef {
         writer.println(" */");
 
         writer.print("    ");
-        writer.print("public static Multicodec ");
+        writer.print("public static final Multicodec ");
         writer.print(getJavaName());
         writer.print(" = new Multicodec(\"");
         writer.print(name);

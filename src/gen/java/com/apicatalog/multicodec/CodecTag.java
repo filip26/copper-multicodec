@@ -35,6 +35,11 @@ public class CodecTag {
             writer.print(className);
             writer.println(" {");
             writer.println();
+            writer.print("    protected ");
+            writer.print(className);
+            writer.println("() { /* protected */ }");
+            writer.println();
+            
 
             Collection<CodecDef> defs = stream
                     .filter(columns -> tag.equals(columns[1].trim()))
@@ -48,7 +53,7 @@ public class CodecTag {
                 writer.println();
             });
                         
-            writer.println("    public static Map<Long, Multicodec> ALL = new TreeMap<>();");
+            writer.println("    public static final Map<Long, Multicodec> ALL = new TreeMap<>();");
             writer.println();            
             writer.println("    static {");
 

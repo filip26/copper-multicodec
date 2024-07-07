@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Jul 07 23:55:48 CEST 2024 */
+/** Multicodec Registry - generated: Mon Jul 08 00:02:45 CEST 2024 */
 public class HashCodec {
 
     protected HashCodec() { /* protected */ }

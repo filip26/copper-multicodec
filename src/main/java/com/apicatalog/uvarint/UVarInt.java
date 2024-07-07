@@ -88,20 +88,19 @@ public final class UVarInt {
         if (value <= MAX_VALUES[0]) {
             return 1;
         }
-        if (value > MAX_VALUES[8]) {
-            throw new IllegalArgumentException("A var longer than " + UVarInt.MAX_VAR_LENGTH + " has been found. Only vars up to " + UVarInt.MAX_VAR_LENGTH + " are supported.");
+        if (value <= MAX_VALUES[2]) {
+            return (value <= MAX_VALUES[1]) ? 2 : 3;
         }
         if (value <= MAX_VALUES[4]) {
-            if (value <= MAX_VALUES[2]) {
-                return (value <= MAX_VALUES[1]) ? 2 : 3;
-            }
             return (value <= MAX_VALUES[3]) ? 4 : 5;
         }
-
         if (value <= MAX_VALUES[6]) {
             return (value <= MAX_VALUES[5]) ? 6 : 7;
         }
+        if (value <= MAX_VALUES[8]) {
+            return (value <= MAX_VALUES[7]) ? 8 : MAX_VAR_LENGTH;
+        }
 
-        return (value <= MAX_VALUES[7]) ? 8 : MAX_VAR_LENGTH;
+        throw new IllegalArgumentException("A var longer than " + UVarInt.MAX_VAR_LENGTH + " has been found. Only vars up to " + UVarInt.MAX_VAR_LENGTH + " are supported.");
     }
 }

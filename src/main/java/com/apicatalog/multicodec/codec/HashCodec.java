@@ -6,40 +6,40 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Jul 07 20:55:50 CEST 2024 */
+/** Multicodec Registry - generated: Mon Jul 08 00:02:45 CEST 2024 */
 public class HashCodec {
 
     protected HashCodec() { /* protected */ }
 
     /** Hash: crc32, CRC-32 non-cryptographic hash algorithm (IEEE 802.3), status = draft, code = 0x132 */
-    public static final Multicodec CRC32 = new Multicodec("crc32", Tag.Hash, 306, new byte[] {(byte)0xb2, (byte)0x02});
+    public static final Multicodec CRC32 = Multicodec.of("crc32", Tag.Hash, 0x132);
 
     /** Hash: crc64-ecma, CRC-64 non-cryptographic hash algorithm (ECMA-182 - Annex B), status = draft, code = 0x164 */
-    public static final Multicodec CRC64_ECMA = new Multicodec("crc64-ecma", Tag.Hash, 356, new byte[] {(byte)0xe4, (byte)0x02});
+    public static final Multicodec CRC64_ECMA = Multicodec.of("crc64-ecma", Tag.Hash, 0x164);
 
     /** Hash: murmur3-32, status = draft, code = 0x23 */
-    public static final Multicodec MURMUR3_32 = new Multicodec("murmur3-32", Tag.Hash, 35, new byte[] {(byte)0x23});
+    public static final Multicodec MURMUR3_32 = Multicodec.of("murmur3-32", Tag.Hash, 0x23);
 
     /** Hash: murmur3-x64-128, status = draft, code = 0x1022 */
-    public static final Multicodec MURMUR3_X64_128 = new Multicodec("murmur3-x64-128", Tag.Hash, 4130, new byte[] {(byte)0xa2, (byte)0x20});
+    public static final Multicodec MURMUR3_X64_128 = Multicodec.of("murmur3-x64-128", Tag.Hash, 0x1022);
 
     /** Hash: murmur3-x64-64, The first 64-bits of a murmur3-x64-128 - used for UnixFS directory sharding., status = permanent, code = 0x22 */
-    public static final Multicodec MURMUR3_X64_64 = new Multicodec("murmur3-x64-64", Tag.Hash, 34, new byte[] {(byte)0x22});
+    public static final Multicodec MURMUR3_X64_64 = Multicodec.of("murmur3-x64-64", Tag.Hash, 0x22);
 
     /** Hash: sha256a, The sum of multiple sha2-256 hashes; as specified by Ceramic CIP-124., status = draft, code = 0x7012 */
-    public static final Multicodec SHA256A = new Multicodec("sha256a", Tag.Hash, 28690, new byte[] {(byte)0x92, (byte)0xe0, (byte)0x01});
+    public static final Multicodec SHA256A = Multicodec.of("sha256a", Tag.Hash, 0x7012);
 
     /** Hash: xxh-32, Extremely fast non-cryptographic hash algorithm, status = draft, code = 0xb3e1 */
-    public static final Multicodec XXH_32 = new Multicodec("xxh-32", Tag.Hash, 46049, new byte[] {(byte)0xe1, (byte)0xe7, (byte)0x02});
+    public static final Multicodec XXH_32 = Multicodec.of("xxh-32", Tag.Hash, 0xb3e1);
 
     /** Hash: xxh-64, Extremely fast non-cryptographic hash algorithm, status = draft, code = 0xb3e2 */
-    public static final Multicodec XXH_64 = new Multicodec("xxh-64", Tag.Hash, 46050, new byte[] {(byte)0xe2, (byte)0xe7, (byte)0x02});
+    public static final Multicodec XXH_64 = Multicodec.of("xxh-64", Tag.Hash, 0xb3e2);
 
     /** Hash: xxh3-128, Extremely fast non-cryptographic hash algorithm, status = draft, code = 0xb3e4 */
-    public static final Multicodec XXH3_128 = new Multicodec("xxh3-128", Tag.Hash, 46052, new byte[] {(byte)0xe4, (byte)0xe7, (byte)0x02});
+    public static final Multicodec XXH3_128 = Multicodec.of("xxh3-128", Tag.Hash, 0xb3e4);
 
     /** Hash: xxh3-64, Extremely fast non-cryptographic hash algorithm, status = draft, code = 0xb3e3 */
-    public static final Multicodec XXH3_64 = new Multicodec("xxh3-64", Tag.Hash, 46051, new byte[] {(byte)0xe3, (byte)0xe7, (byte)0x02});
+    public static final Multicodec XXH3_64 = Multicodec.of("xxh3-64", Tag.Hash, 0xb3e3);
 
     protected static final Map<Long, Multicodec> ALL = new TreeMap<>();
 

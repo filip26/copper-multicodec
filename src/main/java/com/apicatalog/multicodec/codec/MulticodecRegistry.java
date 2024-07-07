@@ -13,10 +13,15 @@ import com.apicatalog.multicodec.Multicodec.Tag;
 public final class MulticodecRegistry {
 
     private static final Map<Long, Multicodec> ALL = Stream.of(
-            HashCodec.ALL,
             KeyCodec.ALL,
-            MultiformatCodec.ALL,
             MultihashCodec.ALL,
+            MultiaddrCodec.ALL,
+            HashCodec.ALL,
+            CidCodec.ALL,
+            NamespaceCodec.ALL,
+            MultiformatCodec.ALL,
+            SerializationCodec.ALL,
+            TransportCodec.ALL,
             VarsigCodec.ALL)
             .flatMap(map -> map.entrySet().stream())
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));

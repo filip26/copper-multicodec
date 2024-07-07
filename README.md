@@ -46,6 +46,9 @@ byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);
 if (KeyCodec.P521_PUBLIC_KEY.isEncoded(encoded)) {
   ...
 }
+
+/* create a custom codec */
+var codec = Multicodec.of(name, tag, code);
 ```
 
 ## Installation

@@ -1,7 +1,5 @@
 package com.apicatalog.uvarint;
 
-import java.util.Arrays;
-
 public class UVarInt {
 
     /** Maximum encoded var length in bytes */
@@ -10,24 +8,26 @@ public class UVarInt {
     public static final int SEGMENT_BITS = 0x7F;
     public static final int CONTINUE_BIT = 0x80;
     public static final int INT_OVERFLOW_BITS = 0x70;
-    
+
     public static final byte[] encode(final long value) {
 
-        byte[] buffer = new byte[UVarInt.MAX_VAR_LENGTH];
+        final int length = getLength(value);
+
+        if (length == 1) {
+            return new byte[] { (byte) value };
+        }
+
+        byte[] uintvar = new byte[length];
         int offset = 0;
         long bytes = value;
 
         boolean next = false;
         do {
-            if (offset >= UVarInt.MAX_VAR_LENGTH) {
-                throw new IllegalArgumentException("A var longer than " + UVarInt.MAX_VAR_LENGTH + " has been found. Only vars up to " + UVarInt.MAX_VAR_LENGTH + " are supported.");
-            }
-
             if (next) {
-                buffer[offset - 1] |= UVarInt.CONTINUE_BIT;
+                uintvar[offset - 1] |= UVarInt.CONTINUE_BIT;
             }
 
-            buffer[offset] = (byte) (bytes & UVarInt.SEGMENT_BITS);
+            uintvar[offset] = (byte) (bytes & UVarInt.SEGMENT_BITS);
 
             bytes >>>= 7;
 
@@ -37,13 +37,11 @@ public class UVarInt {
 
         } while (next);
 
-        return offset == UVarInt.MAX_VAR_LENGTH
-                ? buffer
-                : Arrays.copyOfRange(buffer, 0, offset);
+        return uintvar;
     }
-    
+
     public static final long decode(final byte[] uvarint) {
-        
+
         int offset = 0;
 
         boolean next = false;
@@ -59,14 +57,47 @@ public class UVarInt {
 
             int b = uvarint[offset];
 
-            value |= (b & UVarInt.SEGMENT_BITS) << (offset * 7);
-
-            offset++;
+            value |= (long) (b & UVarInt.SEGMENT_BITS) << (offset * 7);
 
             next = ((b & UVarInt.CONTINUE_BIT) != 0);
+
+            offset++;
 
         } while (next);
 
         return value;
+    }
+
+    protected static long[] MAX_VALUES = {
+            0x7FL,
+            0x3FFFL,
+            0x1FFFFFL,
+            0xFFFFFFFL,
+            0x7FFFFFFFFL,
+            0x3FFFFFFFFFFL,
+            0x1FFFFFFFFFFFFL,
+            0xFFFFFFFFFFFFFFL,
+            0x7FFFFFFFFFFFFFFFL
+    };
+
+    protected static final int getLength(long value) {
+        if (value <= MAX_VALUES[0]) {
+            return 1;
+        }
+        if (value > MAX_VALUES[8]) {
+            throw new IllegalArgumentException("A var longer than " + UVarInt.MAX_VAR_LENGTH + " has been found. Only vars up to " + UVarInt.MAX_VAR_LENGTH + " are supported.");
+        }
+        if (value <= MAX_VALUES[4]) {
+            if (value <= MAX_VALUES[2]) {
+                return (value <= MAX_VALUES[1]) ? 2 : 3;
+            }
+            return (value <= MAX_VALUES[3]) ? 4 : 5;
+        }
+
+        if (value <= MAX_VALUES[6]) {
+            return (value <= MAX_VALUES[5]) ? 6 : 7;
+        }
+
+        return (value <= MAX_VALUES[7]) ? 8 : MAX_VAR_LENGTH;
     }
 }

@@ -40,7 +40,7 @@ public class MulticodecDecoder {
      */
     public static MulticodecDecoder getInstance(Tag... tags) {
         return new MulticodecDecoder(
-                MulticodecRegistry.ALL.values().stream()
+                MulticodecRegistry.values().stream()
                         .filter(codec -> tags.length == 1
                                 ? tags[0] == codec.tag()
                                 : Arrays.stream(tags).anyMatch(tag -> tag == codec.tag()))
@@ -53,7 +53,7 @@ public class MulticodecDecoder {
      * @return a new instance
      */
     public static MulticodecDecoder getInstance() {
-        return new MulticodecDecoder(MulticodecRegistry.ALL);
+        return new MulticodecDecoder(MulticodecRegistry.data());
     }
 
     /**

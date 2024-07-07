@@ -61,6 +61,8 @@ if (KeyCodec.P521_PUBLIC_KEY.isEncoded(encoded)) {
 
 ### Gradle
 
+Android 12+ (API Level >=32)
+
 ```gradle
 implementation("com.apicatalog:copper-multicodec:0.1.1")
 ```

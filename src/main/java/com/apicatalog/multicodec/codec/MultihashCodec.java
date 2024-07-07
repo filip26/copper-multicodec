@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sat Nov 25 23:45:54 CET 2023 */
+/** Multicodec Registry - generated: Sun Jul 07 20:45:04 CEST 2024 */
 public class MultihashCodec {
 
     /** Multihash: blake2b-104, status = draft, code = 0xb20d */
@@ -353,6 +353,9 @@ public class MultihashCodec {
 
     /** Multihash: sha2-256, status = permanent, code = 0x12 */
     public static Multicodec SHA2_256 = new Multicodec("sha2-256", Tag.Multihash, 18, new byte[] {(byte)0x12});
+
+    /** Multihash: sha2-256-chunked, Hash of concatenated SHA2-256 digests of 8*2^n MiB source chunks; n = ceil(log2(source_size/(10^4 * 8MiB))), status = draft, code = 0xb510 */
+    public static Multicodec SHA2_256_CHUNKED = new Multicodec("sha2-256-chunked", Tag.Multihash, 46352, new byte[] {(byte)0x90, (byte)0xea, (byte)0x02});
 
     /** Multihash: sha2-256-trunc254-padded, SHA2-256 with the two most significant bits from the last byte zeroed (as via a mask with 0b00111111) - used for proving trees as in Filecoin, status = permanent, code = 0x1012 */
     public static Multicodec SHA2_256_TRUNC254_PADDED = new Multicodec("sha2-256-trunc254-padded", Tag.Multihash, 4114, new byte[] {(byte)0x92, (byte)0x20});
@@ -1186,6 +1189,7 @@ public class MultihashCodec {
       ALL.put(SHA1.code(), SHA1);
       ALL.put(SHA2_224.code(), SHA2_224);
       ALL.put(SHA2_256.code(), SHA2_256);
+      ALL.put(SHA2_256_CHUNKED.code(), SHA2_256_CHUNKED);
       ALL.put(SHA2_256_TRUNC254_PADDED.code(), SHA2_256_TRUNC254_PADDED);
       ALL.put(SHA2_384.code(), SHA2_384);
       ALL.put(SHA2_512.code(), SHA2_512);

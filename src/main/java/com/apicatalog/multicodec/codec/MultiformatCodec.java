@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sat Nov 25 23:45:54 CET 2023 */
+/** Multicodec Registry - generated: Sun Jul 07 20:45:04 CEST 2024 */
 public class MultiformatCodec {
 
     /** Multiformat: caip-50, CAIP-50 multi-chain account id, status = draft, code = 0xca */

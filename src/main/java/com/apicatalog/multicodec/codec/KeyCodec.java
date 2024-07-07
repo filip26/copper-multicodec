@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sat Nov 25 23:45:54 CET 2023 */
+/** Multicodec Registry - generated: Sun Jul 07 20:45:04 CEST 2024 */
 public class KeyCodec {
 
     /** Key: aes-128, 128-bit AES symmetric key, status = draft, code = 0xa0 */
@@ -18,11 +18,20 @@ public class KeyCodec {
     /** Key: aes-256, 256-bit AES symmetric key, status = draft, code = 0xa2 */
     public static Multicodec AES_256_KEY = new Multicodec("aes-256", Tag.Key, 162, new byte[] {(byte)0xa2, (byte)0x01});
 
+    /** Key: bls12_381-g1-priv, BLS12-381 G1 private key, status = draft, code = 0x1309 */
+    public static Multicodec BLS12_381_G1_PRIVATE_KEY = new Multicodec("bls12_381-g1-priv", Tag.Key, 4873, new byte[] {(byte)0x89, (byte)0x26});
+
     /** Key: bls12_381-g1-pub, BLS12-381 public key in the G1 field, status = draft, code = 0xea */
     public static Multicodec BLS12_381_G1_PUBLIC_KEY = new Multicodec("bls12_381-g1-pub", Tag.Key, 234, new byte[] {(byte)0xea, (byte)0x01});
 
+    /** Key: bls12_381-g1g2-priv, BLS12-381 G1 and G2 private key, status = draft, code = 0x130b */
+    public static Multicodec BLS12_381_G1G2_PRIVATE_KEY = new Multicodec("bls12_381-g1g2-priv", Tag.Key, 4875, new byte[] {(byte)0x8b, (byte)0x26});
+
     /** Key: bls12_381-g1g2-pub, BLS12-381 concatenated public keys in both the G1 and G2 fields, status = draft, code = 0xee */
     public static Multicodec BLS12_381_G1G2_PUBLIC_KEY = new Multicodec("bls12_381-g1g2-pub", Tag.Key, 238, new byte[] {(byte)0xee, (byte)0x01});
+
+    /** Key: bls12_381-g2-priv, BLS12-381 G2 private key, status = draft, code = 0x130a */
+    public static Multicodec BLS12_381_G2_PRIVATE_KEY = new Multicodec("bls12_381-g2-priv", Tag.Key, 4874, new byte[] {(byte)0x8a, (byte)0x26});
 
     /** Key: bls12_381-g2-pub, BLS12-381 public key in the G2 field, status = draft, code = 0xeb */
     public static Multicodec BLS12_381_G2_PUBLIC_KEY = new Multicodec("bls12_381-g2-pub", Tag.Key, 235, new byte[] {(byte)0xeb, (byte)0x01});
@@ -99,8 +108,11 @@ public class KeyCodec {
       ALL.put(AES_128_KEY.code(), AES_128_KEY);
       ALL.put(AES_192_KEY.code(), AES_192_KEY);
       ALL.put(AES_256_KEY.code(), AES_256_KEY);
+      ALL.put(BLS12_381_G1_PRIVATE_KEY.code(), BLS12_381_G1_PRIVATE_KEY);
       ALL.put(BLS12_381_G1_PUBLIC_KEY.code(), BLS12_381_G1_PUBLIC_KEY);
+      ALL.put(BLS12_381_G1G2_PRIVATE_KEY.code(), BLS12_381_G1G2_PRIVATE_KEY);
       ALL.put(BLS12_381_G1G2_PUBLIC_KEY.code(), BLS12_381_G1G2_PUBLIC_KEY);
+      ALL.put(BLS12_381_G2_PRIVATE_KEY.code(), BLS12_381_G2_PRIVATE_KEY);
       ALL.put(BLS12_381_G2_PUBLIC_KEY.code(), BLS12_381_G2_PUBLIC_KEY);
       ALL.put(CHACHA_128_KEY.code(), CHACHA_128_KEY);
       ALL.put(CHACHA_256_KEY.code(), CHACHA_256_KEY);

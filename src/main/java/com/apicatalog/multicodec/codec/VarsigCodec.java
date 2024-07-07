@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Jul 07 20:52:59 CEST 2024 */
+/** Multicodec Registry - generated: Sun Jul 07 20:55:50 CEST 2024 */
 public class VarsigCodec {
 
     protected VarsigCodec() { /* protected */ }
@@ -41,7 +41,7 @@ public class VarsigCodec {
     /** Varsig: rs256, RS256 Signature Algorithm, status = draft, code = 0xd01205 */
     public static final Multicodec RS256 = new Multicodec("rs256", Tag.Varsig, 13636101, new byte[] {(byte)0x85, (byte)0xa4, (byte)0xc0, (byte)0x06});
 
-    public static final Map<Long, Multicodec> ALL = new TreeMap<>();
+    protected static final Map<Long, Multicodec> ALL = new TreeMap<>();
 
     static {
       ALL.put(BLS_12381_G1_SIG.code(), BLS_12381_G1_SIG);

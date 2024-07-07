@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Jul 07 20:52:59 CEST 2024 */
+/** Multicodec Registry - generated: Sun Jul 07 20:55:50 CEST 2024 */
 public class MultihashCodec {
 
     protected MultihashCodec() { /* protected */ }
@@ -1073,7 +1073,7 @@ public class MultihashCodec {
     /** Multihash: x11, status = draft, code = 0x1100 */
     public static final Multicodec X11 = new Multicodec("x11", Tag.Multihash, 4352, new byte[] {(byte)0x80, (byte)0x22});
 
-    public static final Map<Long, Multicodec> ALL = new TreeMap<>();
+    protected static final Map<Long, Multicodec> ALL = new TreeMap<>();
 
     static {
       ALL.put(BLAKE2B_104.code(), BLAKE2B_104);

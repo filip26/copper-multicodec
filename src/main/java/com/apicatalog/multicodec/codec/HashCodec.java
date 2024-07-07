@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Jul 07 20:52:59 CEST 2024 */
+/** Multicodec Registry - generated: Sun Jul 07 20:55:50 CEST 2024 */
 public class HashCodec {
 
     protected HashCodec() { /* protected */ }
@@ -41,7 +41,7 @@ public class HashCodec {
     /** Hash: xxh3-64, Extremely fast non-cryptographic hash algorithm, status = draft, code = 0xb3e3 */
     public static final Multicodec XXH3_64 = new Multicodec("xxh3-64", Tag.Hash, 46051, new byte[] {(byte)0xe3, (byte)0xe7, (byte)0x02});
 
-    public static final Map<Long, Multicodec> ALL = new TreeMap<>();
+    protected static final Map<Long, Multicodec> ALL = new TreeMap<>();
 
     static {
       ALL.put(CRC32.code(), CRC32);

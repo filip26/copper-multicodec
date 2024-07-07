@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Jul 07 20:52:59 CEST 2024 */
+/** Multicodec Registry - generated: Sun Jul 07 20:55:50 CEST 2024 */
 public class MultiformatCodec {
 
     protected MultiformatCodec() { /* protected */ }
@@ -32,7 +32,7 @@ public class MultiformatCodec {
     /** Multiformat: varsig, Variable signature (varsig) multiformat, status = draft, code = 0x34 */
     public static final Multicodec VARSIG = new Multicodec("varsig", Tag.Multiformat, 52, new byte[] {(byte)0x34});
 
-    public static final Map<Long, Multicodec> ALL = new TreeMap<>();
+    protected static final Map<Long, Multicodec> ALL = new TreeMap<>();
 
     static {
       ALL.put(CAIP_50.code(), CAIP_50);

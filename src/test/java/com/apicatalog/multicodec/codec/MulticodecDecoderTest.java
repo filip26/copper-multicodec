@@ -1,4 +1,4 @@
-package com.apicatalog.multicodec;
+package com.apicatalog.multicodec.codec;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,11 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
-import com.apicatalog.multicodec.codec.HashCodec;
-import com.apicatalog.multicodec.codec.KeyCodec;
-import com.apicatalog.multicodec.codec.MultiformatCodec;
-import com.apicatalog.multicodec.codec.MultihashCodec;
-import com.apicatalog.multicodec.codec.VarsigCodec;
+import com.apicatalog.multicodec.MulticodecDecoder;
 
 public class MulticodecDecoderTest {
 

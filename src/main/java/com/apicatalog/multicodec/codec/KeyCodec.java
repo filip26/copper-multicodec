@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Sun Jul 07 20:52:59 CEST 2024 */
+/** Multicodec Registry - generated: Sun Jul 07 20:55:50 CEST 2024 */
 public class KeyCodec {
 
     protected KeyCodec() { /* protected */ }
@@ -104,7 +104,7 @@ public class KeyCodec {
     /** Key: x448-pub, X448 public Key, status = draft, code = 0x1204 */
     public static final Multicodec X448_PUBLIC_KEY = new Multicodec("x448-pub", Tag.Key, 4612, new byte[] {(byte)0x84, (byte)0x24});
 
-    public static final Map<Long, Multicodec> ALL = new TreeMap<>();
+    protected static final Map<Long, Multicodec> ALL = new TreeMap<>();
 
     static {
       ALL.put(AES_128_KEY.code(), AES_128_KEY);

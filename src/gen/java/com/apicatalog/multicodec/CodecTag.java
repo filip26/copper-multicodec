@@ -53,7 +53,7 @@ public class CodecTag {
                 writer.println();
             });
                         
-            writer.println("    public static final Map<Long, Multicodec> ALL = new TreeMap<>();");
+            writer.println("    protected static final Map<Long, Multicodec> ALL = new TreeMap<>();");
             writer.println();            
             writer.println("    static {");
 

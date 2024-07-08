@@ -26,10 +26,10 @@ byte[] encoded = MultihashCodec.IDENTITY.encode(input);
 /* get decoder instance initialized with all supported codecs */
 var decoder = MulticodecDecoder.getInstance();
 
-/* get decoder initialized with codecs tagged as key and hash */
+/* get custom decoder initialized with codecs tagged as key and hash */
 var decoder = MulticodecDecoder.getInstance(Tag.Key, Tag.Hash);
 
-/* get decoder initialized with custom codec set  */
+/* get custom decoder initialized with custom codec set  */
 var decoder = MulticodecDecoder.getInstance(codecs...);
 
 /* decode */
@@ -49,6 +49,19 @@ if (KeyCodec.P521_PUBLIC_KEY.isEncoded(encoded)) {
 
 /* create a custom codec */
 var codec = Multicodec.of(name, tag, code);
+
+/* get registry instance initialized with all supported codecs */
+var registry = MulticodecRegistry.getInstance();
+
+/* get custom registry initialized with codecs tagged as key and hash */
+var registry = MulticodecRegistry.getInstance(Tag.Key, Tag.Hash);
+
+/* get custom registry initialized with custom codec set  */
+var registry = MulticodecRegistry.getInstance(codecs...);
+
+/* get codec */
+var codec = registry.getCodec(code).orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
+
 ```
 
 ## Installation

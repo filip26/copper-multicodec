@@ -61,6 +61,7 @@ var registry = MulticodecRegistry.getInstance(codecs...);
 
 /* get codec */
 var codec = registry.getCodec(code).orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
+byte[] encoded = codec.encode(input);
 
 ```
 

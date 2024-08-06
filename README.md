@@ -77,16 +77,6 @@ byte[] encoded = codec.encode(input);
 </dependency>
 ```
 
-### Gradle
-
-Android 12+ (API Level >=32)
-
-```gradle
-implementation("com.apicatalog:copper-multicodec:1.0.0")
-```
-
-Do you need to support an older Android version? [Contact me](mailto:filip26@gmail.com)
-
 ## Documentation
 
 * [![javadoc](https://javadoc.io/badge2/com.apicatalog/copper-multicodec/javadoc.svg)](https://javadoc.io/doc/com.apicatalog/copper-multicodec)

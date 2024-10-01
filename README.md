@@ -1,5 +1,5 @@
 # Copper Multicodec
-A Java implementation of [Multicodec](https://github.com/multiformats/multicodec).
+A Java implementation of [Multicodec](https://github.com/multiformats/multicodec) and [Multihash](https://github.com/multiformats/multihash).
 
 [![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=filip26_copper-multicodec&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=filip26_copper-multicodec)

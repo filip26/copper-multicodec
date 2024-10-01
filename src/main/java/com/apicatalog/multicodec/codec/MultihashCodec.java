@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Tue Oct 01 13:38:20 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class MultihashCodec {
-
-    protected MultihashCodec() { /* protected */ }
 
     /** Multihash: bcrypt-pbkdf, Bcrypt-PBKDF key derivation function, status = draft, code = 0xd00d */
     public static final Multicodec BCRYPT_PBKDF = Multicodec.of("bcrypt-pbkdf", Tag.Multihash, 0xd00d);
@@ -1435,4 +1433,6 @@ public class MultihashCodec {
       ALL.put(SSZ_SHA2_256_BMT.code(), SSZ_SHA2_256_BMT);
       ALL.put(X11.code(), X11);
     }
+
+    protected MultihashCodec() { /* protected */ }
 }

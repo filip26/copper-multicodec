@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Tue Oct 01 13:38:20 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class CidCodec {
-
-    protected CidCodec() { /* protected */ }
 
     /** Cid: cidv1, CIDv1, status = permanent, code = 0x1 */
     public static final Multicodec CIDV1 = Multicodec.of("cidv1", Tag.Cid, 0x1);
@@ -27,4 +25,6 @@ public class CidCodec {
       ALL.put(CIDV2.code(), CIDV2);
       ALL.put(CIDV3.code(), CIDV3);
     }
+
+    protected CidCodec() { /* protected */ }
 }

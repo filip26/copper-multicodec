@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Tue Oct 01 13:38:20 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class TransportCodec {
-
-    protected TransportCodec() { /* protected */ }
 
     /** Transport: transport-bitswap, Bitswap datatransfer, status = draft, code = 0x900 */
     public static final Multicodec TRANSPORT_BITSWAP = Multicodec.of("transport-bitswap", Tag.Transport, 0x900);
@@ -27,4 +25,6 @@ public class TransportCodec {
       ALL.put(TRANSPORT_GRAPHSYNC_FILECOINV1.code(), TRANSPORT_GRAPHSYNC_FILECOINV1);
       ALL.put(TRANSPORT_IPFS_GATEWAY_HTTP.code(), TRANSPORT_IPFS_GATEWAY_HTTP);
     }
+
+    protected TransportCodec() { /* protected */ }
 }

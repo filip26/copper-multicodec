@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Tue Oct 01 13:38:20 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class KeyCodec {
-
-    protected KeyCodec() { /* protected */ }
 
     /** Key: aes-128, 128-bit AES symmetric key, status = draft, code = 0xa0 */
     public static final Multicodec AES_128_KEY = Multicodec.of("aes-128", Tag.Key, 0xa0);
@@ -191,4 +189,6 @@ public class KeyCodec {
       ALL.put(X25519_PUBLIC_KEY.code(), X25519_PUBLIC_KEY);
       ALL.put(X448_PUBLIC_KEY.code(), X448_PUBLIC_KEY);
     }
+
+    protected KeyCodec() { /* protected */ }
 }

@@ -35,12 +35,7 @@ public class CodecTag {
             writer.print(className);
             writer.println(" {");
             writer.println();
-            writer.print("    protected ");
-            writer.print(className);
-            writer.println("() { /* protected */ }");
-            writer.println();
             
-
             Collection<CodecDef> defs = stream
                     .filter(columns -> tag.equals(columns[1].trim()))
                     .map(CodecDef::from)
@@ -66,6 +61,12 @@ public class CodecTag {
             });
             
             writer.println("    }");
+            writer.println();
+            
+            writer.print("    protected ");
+            writer.print(className);
+            writer.println("() { /* protected */ }");
+
             writer.println("}");
 
             Files.write(Paths.get("src/main/java/com/apicatalog/multicodec/codec/" + className + ".java"), sw.toString().getBytes());

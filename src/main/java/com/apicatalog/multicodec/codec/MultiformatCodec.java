@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Tue Oct 01 13:38:20 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class MultiformatCodec {
-
-    protected MultiformatCodec() { /* protected */ }
 
     /** Multiformat: caip-50, CAIP-50 multi-chain account id, status = draft, code = 0xca */
     public static final Multicodec CAIP_50 = Multicodec.of("caip-50", Tag.Multiformat, 0xca);
@@ -51,4 +49,6 @@ public class MultiformatCodec {
       ALL.put(MULTISIG.code(), MULTISIG);
       ALL.put(VARSIG.code(), VARSIG);
     }
+
+    protected MultiformatCodec() { /* protected */ }
 }

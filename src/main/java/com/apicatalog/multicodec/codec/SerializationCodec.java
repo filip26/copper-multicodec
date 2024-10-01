@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Tue Oct 01 13:38:20 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class SerializationCodec {
-
-    protected SerializationCodec() { /* protected */ }
 
     /** Serialization: bencode, bencode, status = draft, code = 0x63 */
     public static final Multicodec BENCODE = Multicodec.of("bencode", Tag.Serialization, 0x63);
@@ -63,4 +61,6 @@ public class SerializationCodec {
       ALL.put(RLP.code(), RLP);
       ALL.put(SSZ.code(), SSZ);
     }
+
+    protected SerializationCodec() { /* protected */ }
 }

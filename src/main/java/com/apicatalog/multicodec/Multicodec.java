@@ -1,6 +1,7 @@
 package com.apicatalog.multicodec;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 import com.apicatalog.uvarint.UVarInt;
@@ -8,7 +9,7 @@ import com.apicatalog.uvarint.UVarInt;
 /**
  * Represents a multicodec definition and encoder/decoder instance.
  */
-public final class Multicodec {
+public class Multicodec {
 
     /**
      * Recognized multicodec tags
@@ -26,28 +27,28 @@ public final class Multicodec {
         Varsig,
     }
 
-    private final String name;
-    private final byte[] varint;
-    private final long code;
-    private final Tag tag;
+    protected final String name;
+    protected final byte[] codeVarint;
+    protected final long code;
+    protected final Tag tag;
 
     protected Multicodec(String name, Tag tag, long code, byte[] uvarint) {
         this.tag = tag;
         this.name = name;
         this.code = code;
-        this.varint = uvarint;
+        this.codeVarint = uvarint;
     }
 
     public static Multicodec of(String name, Tag tag, long code) {
         return new Multicodec(name, tag, code, UVarInt.encode(code));
     }
-    
+
     public int length() {
-        return varint.length;
+        return codeVarint.length;
     }
 
     public byte[] varint() {
-        return varint;
+        return codeVarint;
     }
 
     public Tag tag() {
@@ -80,10 +81,10 @@ public final class Multicodec {
             throw new IllegalArgumentException("The value to encode must be non empty byte array.");
         }
 
-        final byte[] encoded = new byte[varint.length + value.length];
+        final byte[] encoded = new byte[codeVarint.length + value.length];
 
-        System.arraycopy(varint, 0, encoded, 0, varint.length);
-        System.arraycopy(value, 0, encoded, varint.length, value.length);
+        System.arraycopy(codeVarint, 0, encoded, 0, codeVarint.length);
+        System.arraycopy(value, 0, encoded, codeVarint.length, value.length);
 
         return encoded;
     }
@@ -97,8 +98,8 @@ public final class Multicodec {
      */
     public boolean isEncoded(final byte[] encoded) {
         return encoded != null
-                && encoded.length >= varint.length
-                && IntStream.range(0, varint.length).allMatch(i -> varint[i] == encoded[i]);
+                && encoded.length >= codeVarint.length
+                && IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i]);
     }
 
     /**
@@ -111,39 +112,38 @@ public final class Multicodec {
      */
     public byte[] decode(final byte[] encoded) {
 
-        if (encoded == null) {
-            throw new IllegalArgumentException("The value to decode must not be null.");
+        Objects.requireNonNull(encoded);
+
+        if (encoded.length < (codeVarint.length + 1)) {
+            throw new IllegalArgumentException("The value to decode must be non empty byte array, min length = " + (codeVarint.length + 1) + ", actual = " + encoded.length + ".");
         }
 
-        if (encoded.length < varint.length) {
-            throw new IllegalArgumentException("The value to decode must be non empty byte array, min length = " + varint.length + ", actual = " + encoded.length + ".");
-        }
-
-        if (!IntStream.range(0, varint.length).allMatch(i -> varint[i] == encoded[i])) {
+        if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i])) {
             throw new IllegalArgumentException("The value to decode is not encoded with " + toString() + ".");
         }
 
-        return Arrays.copyOfRange(encoded, varint.length, encoded.length);
+        return Arrays.copyOfRange(encoded, codeVarint.length, encoded.length);
     }
 
     @Override
     public int hashCode() {
-        return 31 * Arrays.hashCode(varint);
+        return Objects.hash(code);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null)
             return false;
-        }
-        return code == ((Multicodec) obj).code;
+        if (getClass() != obj.getClass())
+            return false;
+        Multicodec other = (Multicodec) obj;
+        return code == other.code;
     }
 
     @Override
     public String toString() {
-        return "Multicodec [name=" + name + ", tag=" + tag + ", code=" + code + ", varint=" + Arrays.toString(varint) + "]";
+        return "Multicodec [name=" + name + ", tag=" + tag + ", code=" + code + ", varint=" + Arrays.toString(codeVarint) + "]";
     }
 }

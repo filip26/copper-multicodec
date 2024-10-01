@@ -1,7 +1,7 @@
 # Copper Multicodec
 A Java implementation of [Multicodec](https://github.com/multiformats/multicodec).
 
-[![Java 11 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java11-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java11-build.yml)
+[![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=filip26_copper-multicodec&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=filip26_copper-multicodec)
 [![Maven Central](https://img.shields.io/maven-central/v/com.apicatalog/copper-multicodec.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:com.apicatalog%20AND%20a:copper-multicodec)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -11,7 +11,8 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
    * no lookups for a codec when encoding
    * direct `static` access to codecs
    * confirugable set of codecs to support when decoding
- * built-in `Unsigned VarInt` support
+ * Multihash API
+ * `Unsigned VarInt` support
  * no 3rd party dependencies
 
 ## Example
@@ -100,5 +101,6 @@ Fork and clone the project repository.
 ## Resources
 - [Copper Multibase](https://github.com/filip26/copper-multibase)
 - [Multicodec](https://github.com/multiformats/multicodec)
+- [Multihash](https://github.com/multiformats/multihash)
 - [unsigned-varint](https://github.com/multiformats/unsigned-varint)
 

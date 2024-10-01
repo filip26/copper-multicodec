@@ -15,7 +15,7 @@ public final class UVarInt {
 
     public static final byte[] encode(final long value) {
 
-        final int length = getLength(value);
+        final int length = byteLength(value);
 
         if (length == 1) {
             return new byte[] { (byte) value };
@@ -45,8 +45,12 @@ public final class UVarInt {
     }
 
     public static final long decode(final byte[] uvarint) {
+        return decode(uvarint, 0);
+    }
+    
+    public static final long decode(final byte[] uvarint, int index) {
 
-        int offset = 0;
+        int offset = index;
 
         boolean next = false;
         long value = 0;
@@ -84,7 +88,7 @@ public final class UVarInt {
             0x7FFFFFFFFFFFFFFFL
     };
 
-    protected static final int getLength(long value) {
+    public static final int byteLength(long value) {
         if (value <= MAX_VALUES[0]) {
             return 1;
         }

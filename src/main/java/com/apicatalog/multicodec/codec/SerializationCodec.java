@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Mon Jul 08 00:02:45 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class SerializationCodec {
-
-    protected SerializationCodec() { /* protected */ }
 
     /** Serialization: bencode, bencode, status = draft, code = 0x63 */
     public static final Multicodec BENCODE = Multicodec.of("bencode", Tag.Serialization, 0x63);
@@ -32,6 +30,15 @@ public class SerializationCodec {
     /** Serialization: protobuf, Protocol Buffers, status = draft, code = 0x50 */
     public static final Multicodec PROTOBUF = Multicodec.of("protobuf", Tag.Serialization, 0x50);
 
+    /** Serialization: provenance-log, Verifiable and permissioned append-only log, status = draft, code = 0x1208 */
+    public static final Multicodec PROVENANCE_LOG = Multicodec.of("provenance-log", Tag.Serialization, 0x1208);
+
+    /** Serialization: provenance-log-entry, Verifiable and permissioned append-only log entry, status = draft, code = 0x1209 */
+    public static final Multicodec PROVENANCE_LOG_ENTRY = Multicodec.of("provenance-log-entry", Tag.Serialization, 0x1209);
+
+    /** Serialization: provenance-log-script, Verifiable and permissioned append-only log script, status = draft, code = 0x120a */
+    public static final Multicodec PROVENANCE_LOG_SCRIPT = Multicodec.of("provenance-log-script", Tag.Serialization, 0x120a);
+
     /** Serialization: rlp, recursive length prefix, status = draft, code = 0x60 */
     public static final Multicodec RLP = Multicodec.of("rlp", Tag.Serialization, 0x60);
 
@@ -48,7 +55,12 @@ public class SerializationCodec {
       ALL.put(IPNS_RECORD.code(), IPNS_RECORD);
       ALL.put(MESSAGEPACK.code(), MESSAGEPACK);
       ALL.put(PROTOBUF.code(), PROTOBUF);
+      ALL.put(PROVENANCE_LOG.code(), PROVENANCE_LOG);
+      ALL.put(PROVENANCE_LOG_ENTRY.code(), PROVENANCE_LOG_ENTRY);
+      ALL.put(PROVENANCE_LOG_SCRIPT.code(), PROVENANCE_LOG_SCRIPT);
       ALL.put(RLP.code(), RLP);
       ALL.put(SSZ.code(), SSZ);
     }
+
+    protected SerializationCodec() { /* protected */ }
 }

@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Mon Jul 08 00:02:45 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class VarsigCodec {
-
-    protected VarsigCodec() { /* protected */ }
 
     /** Varsig: bls-12381-g1-sig, G1 signature for BLS-12381-G2, status = draft, code = 0xd0ea */
     public static final Multicodec BLS_12381_G1_SIG = Multicodec.of("bls-12381-g1-sig", Tag.Varsig, 0xd0ea);
@@ -55,4 +53,6 @@ public class VarsigCodec {
       ALL.put(NONSTANDARD_SIG.code(), NONSTANDARD_SIG);
       ALL.put(RS256.code(), RS256);
     }
+
+    protected VarsigCodec() { /* protected */ }
 }

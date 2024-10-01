@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Mon Jul 08 00:02:45 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class MultiaddrCodec {
-
-    protected MultiaddrCodec() { /* protected */ }
 
     /** Multiaddr: certhash, TLS certificate's fingerprint as a multihash, status = draft, code = 0x1d2 */
     public static final Multicodec CERTHASH = Multicodec.of("certhash", Tag.Multiaddr, 0x1d2);
@@ -191,4 +189,6 @@ public class MultiaddrCodec {
       ALL.put(WS.code(), WS);
       ALL.put(WSS.code(), WSS);
     }
+
+    protected MultiaddrCodec() { /* protected */ }
 }

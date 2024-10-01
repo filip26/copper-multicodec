@@ -12,7 +12,7 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
    * direct `static` access to codecs
    * confirugable set of codecs to support when decoding
  * built-in `Unsigned VarInt` support
- * no 3rd pary dependencies
+ * no 3rd party dependencies
 
 ## Example
 
@@ -73,7 +73,7 @@ byte[] encoded = codec.encode(input);
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 

@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Mon Jul 08 00:02:45 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class KeyCodec {
-
-    protected KeyCodec() { /* protected */ }
 
     /** Key: aes-128, 128-bit AES symmetric key, status = draft, code = 0xa0 */
     public static final Multicodec AES_128_KEY = Multicodec.of("aes-128", Tag.Key, 0xa0);
@@ -23,8 +21,14 @@ public class KeyCodec {
     /** Key: bls12_381-g1-priv, BLS12-381 G1 private key, status = draft, code = 0x1309 */
     public static final Multicodec BLS12_381_G1_PRIVATE_KEY = Multicodec.of("bls12_381-g1-priv", Tag.Key, 0x1309);
 
+    /** Key: bls12_381-g1-priv-share, BLS12-381 G1 private key share, status = draft, code = 0x130e */
+    public static final Multicodec BLS12_381_G1_PRIVATE_SHARE_KEY = Multicodec.of("bls12_381-g1-priv-share", Tag.Key, 0x130e);
+
     /** Key: bls12_381-g1-pub, BLS12-381 public key in the G1 field, status = draft, code = 0xea */
     public static final Multicodec BLS12_381_G1_PUBLIC_KEY = Multicodec.of("bls12_381-g1-pub", Tag.Key, 0xea);
+
+    /** Key: bls12_381-g1-pub-share, BLS12-381 G1 public key share, status = draft, code = 0x130c */
+    public static final Multicodec BLS12_381_G1_PUBLIC_SHARE_KEY = Multicodec.of("bls12_381-g1-pub-share", Tag.Key, 0x130c);
 
     /** Key: bls12_381-g1g2-priv, BLS12-381 G1 and G2 private key, status = draft, code = 0x130b */
     public static final Multicodec BLS12_381_G1G2_PRIVATE_KEY = Multicodec.of("bls12_381-g1g2-priv", Tag.Key, 0x130b);
@@ -35,8 +39,14 @@ public class KeyCodec {
     /** Key: bls12_381-g2-priv, BLS12-381 G2 private key, status = draft, code = 0x130a */
     public static final Multicodec BLS12_381_G2_PRIVATE_KEY = Multicodec.of("bls12_381-g2-priv", Tag.Key, 0x130a);
 
+    /** Key: bls12_381-g2-priv-share, BLS12-381 G2 private key share, status = draft, code = 0x130f */
+    public static final Multicodec BLS12_381_G2_PRIVATE_SHARE_KEY = Multicodec.of("bls12_381-g2-priv-share", Tag.Key, 0x130f);
+
     /** Key: bls12_381-g2-pub, BLS12-381 public key in the G2 field, status = draft, code = 0xeb */
     public static final Multicodec BLS12_381_G2_PUBLIC_KEY = Multicodec.of("bls12_381-g2-pub", Tag.Key, 0xeb);
+
+    /** Key: bls12_381-g2-pub-share, BLS12-381 G2 public key share, status = draft, code = 0x130d */
+    public static final Multicodec BLS12_381_G2_PUBLIC_SHARE_KEY = Multicodec.of("bls12_381-g2-pub-share", Tag.Key, 0x130d);
 
     /** Key: chacha-128, 128-bit ChaCha symmetric key, status = draft, code = 0xa3 */
     public static final Multicodec CHACHA_128_KEY = Multicodec.of("chacha-128", Tag.Key, 0xa3);
@@ -55,6 +65,33 @@ public class KeyCodec {
 
     /** Key: jwk_jcs-pub, JSON object containing only the required members of a JWK (RFC 7518 and RFC 7517) representing the public key. Serialisation based on JCS (RFC 8785), status = draft, code = 0xeb51 */
     public static final Multicodec JWK_JCS_PUBLIC_KEY = Multicodec.of("jwk_jcs-pub", Tag.Key, 0xeb51);
+
+    /** Key: lamport-sha3-256-priv, Lamport private key based on SHA3-256, status = draft, code = 0x1a26 */
+    public static final Multicodec LAMPORT_SHA3_256_PRIVATE_KEY = Multicodec.of("lamport-sha3-256-priv", Tag.Key, 0x1a26);
+
+    /** Key: lamport-sha3-256-priv-share, Lamport private key share based on SHA3-256 and split with Shamir gf256, status = draft, code = 0x1a36 */
+    public static final Multicodec LAMPORT_SHA3_256_PRIVATE_SHARE_KEY = Multicodec.of("lamport-sha3-256-priv-share", Tag.Key, 0x1a36);
+
+    /** Key: lamport-sha3-256-pub, Lamport public key based on SHA3-256, status = draft, code = 0x1a16 */
+    public static final Multicodec LAMPORT_SHA3_256_PUBLIC_KEY = Multicodec.of("lamport-sha3-256-pub", Tag.Key, 0x1a16);
+
+    /** Key: lamport-sha3-384-priv, Lamport private key based on SHA3-384, status = draft, code = 0x1a25 */
+    public static final Multicodec LAMPORT_SHA3_384_PRIVATE_KEY = Multicodec.of("lamport-sha3-384-priv", Tag.Key, 0x1a25);
+
+    /** Key: lamport-sha3-384-priv-share, Lamport private key share based on SHA3-384 and split with Shamir gf256, status = draft, code = 0x1a35 */
+    public static final Multicodec LAMPORT_SHA3_384_PRIVATE_SHARE_KEY = Multicodec.of("lamport-sha3-384-priv-share", Tag.Key, 0x1a35);
+
+    /** Key: lamport-sha3-384-pub, Lamport public key based on SHA3-384, status = draft, code = 0x1a15 */
+    public static final Multicodec LAMPORT_SHA3_384_PUBLIC_KEY = Multicodec.of("lamport-sha3-384-pub", Tag.Key, 0x1a15);
+
+    /** Key: lamport-sha3-512-priv, Lamport private key based on SHA3-512, status = draft, code = 0x1a24 */
+    public static final Multicodec LAMPORT_SHA3_512_PRIVATE_KEY = Multicodec.of("lamport-sha3-512-priv", Tag.Key, 0x1a24);
+
+    /** Key: lamport-sha3-512-priv-share, Lamport private key share based on SHA3-512 and split with Shamir gf256, status = draft, code = 0x1a34 */
+    public static final Multicodec LAMPORT_SHA3_512_PRIVATE_SHARE_KEY = Multicodec.of("lamport-sha3-512-priv-share", Tag.Key, 0x1a34);
+
+    /** Key: lamport-sha3-512-pub, Lamport public key based on SHA3-512, status = draft, code = 0x1a14 */
+    public static final Multicodec LAMPORT_SHA3_512_PUBLIC_KEY = Multicodec.of("lamport-sha3-512-pub", Tag.Key, 0x1a14);
 
     /** Key: p256-priv, P-256 private key, status = draft, code = 0x1306 */
     public static final Multicodec P256_PRIVATE_KEY = Multicodec.of("p256-priv", Tag.Key, 0x1306);
@@ -111,17 +148,30 @@ public class KeyCodec {
       ALL.put(AES_192_KEY.code(), AES_192_KEY);
       ALL.put(AES_256_KEY.code(), AES_256_KEY);
       ALL.put(BLS12_381_G1_PRIVATE_KEY.code(), BLS12_381_G1_PRIVATE_KEY);
+      ALL.put(BLS12_381_G1_PRIVATE_SHARE_KEY.code(), BLS12_381_G1_PRIVATE_SHARE_KEY);
       ALL.put(BLS12_381_G1_PUBLIC_KEY.code(), BLS12_381_G1_PUBLIC_KEY);
+      ALL.put(BLS12_381_G1_PUBLIC_SHARE_KEY.code(), BLS12_381_G1_PUBLIC_SHARE_KEY);
       ALL.put(BLS12_381_G1G2_PRIVATE_KEY.code(), BLS12_381_G1G2_PRIVATE_KEY);
       ALL.put(BLS12_381_G1G2_PUBLIC_KEY.code(), BLS12_381_G1G2_PUBLIC_KEY);
       ALL.put(BLS12_381_G2_PRIVATE_KEY.code(), BLS12_381_G2_PRIVATE_KEY);
+      ALL.put(BLS12_381_G2_PRIVATE_SHARE_KEY.code(), BLS12_381_G2_PRIVATE_SHARE_KEY);
       ALL.put(BLS12_381_G2_PUBLIC_KEY.code(), BLS12_381_G2_PUBLIC_KEY);
+      ALL.put(BLS12_381_G2_PUBLIC_SHARE_KEY.code(), BLS12_381_G2_PUBLIC_SHARE_KEY);
       ALL.put(CHACHA_128_KEY.code(), CHACHA_128_KEY);
       ALL.put(CHACHA_256_KEY.code(), CHACHA_256_KEY);
       ALL.put(ED25519_PRIVATE_KEY.code(), ED25519_PRIVATE_KEY);
       ALL.put(ED25519_PUBLIC_KEY.code(), ED25519_PUBLIC_KEY);
       ALL.put(ED448_PUBLIC_KEY.code(), ED448_PUBLIC_KEY);
       ALL.put(JWK_JCS_PUBLIC_KEY.code(), JWK_JCS_PUBLIC_KEY);
+      ALL.put(LAMPORT_SHA3_256_PRIVATE_KEY.code(), LAMPORT_SHA3_256_PRIVATE_KEY);
+      ALL.put(LAMPORT_SHA3_256_PRIVATE_SHARE_KEY.code(), LAMPORT_SHA3_256_PRIVATE_SHARE_KEY);
+      ALL.put(LAMPORT_SHA3_256_PUBLIC_KEY.code(), LAMPORT_SHA3_256_PUBLIC_KEY);
+      ALL.put(LAMPORT_SHA3_384_PRIVATE_KEY.code(), LAMPORT_SHA3_384_PRIVATE_KEY);
+      ALL.put(LAMPORT_SHA3_384_PRIVATE_SHARE_KEY.code(), LAMPORT_SHA3_384_PRIVATE_SHARE_KEY);
+      ALL.put(LAMPORT_SHA3_384_PUBLIC_KEY.code(), LAMPORT_SHA3_384_PUBLIC_KEY);
+      ALL.put(LAMPORT_SHA3_512_PRIVATE_KEY.code(), LAMPORT_SHA3_512_PRIVATE_KEY);
+      ALL.put(LAMPORT_SHA3_512_PRIVATE_SHARE_KEY.code(), LAMPORT_SHA3_512_PRIVATE_SHARE_KEY);
+      ALL.put(LAMPORT_SHA3_512_PUBLIC_KEY.code(), LAMPORT_SHA3_512_PUBLIC_KEY);
       ALL.put(P256_PRIVATE_KEY.code(), P256_PRIVATE_KEY);
       ALL.put(P256_PUBLIC_KEY.code(), P256_PUBLIC_KEY);
       ALL.put(P384_PRIVATE_KEY.code(), P384_PRIVATE_KEY);
@@ -139,4 +189,6 @@ public class KeyCodec {
       ALL.put(X25519_PUBLIC_KEY.code(), X25519_PUBLIC_KEY);
       ALL.put(X448_PUBLIC_KEY.code(), X448_PUBLIC_KEY);
     }
+
+    protected KeyCodec() { /* protected */ }
 }

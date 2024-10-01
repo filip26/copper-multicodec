@@ -6,10 +6,8 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Mon Jul 08 00:02:45 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:47:11 CEST 2024 */
 public class NamespaceCodec {
-
-    protected NamespaceCodec() { /* protected */ }
 
     /** Namespace: arweave-ns, Arweave Namespace, status = draft, code = 0xb29910 */
     public static final Multicodec ARWEAVE_NS = Multicodec.of("arweave-ns", Tag.Namespace, 0xb29910);
@@ -67,4 +65,6 @@ public class NamespaceCodec {
       ALL.put(SWARM.code(), SWARM);
       ALL.put(ZERONET.code(), ZERONET);
     }
+
+    protected NamespaceCodec() { /* protected */ }
 }

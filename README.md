@@ -10,7 +10,7 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
  * `static` codecs registry
    * no lookups for a codec when encoding
    * direct `static` access to codecs
-   * confirugable set of codecs to support when decoding
+   * configurable set of codecs to support when decoding
  * Multihash support
  * `Unsigned VarInt` support
  * no 3rd party dependencies

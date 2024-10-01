@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class MultihashTest {
 
-    MultihashDecoder DECODER = MultihashDecoder.getInstance();
+    static final MultihashDecoder DECODER = MultihashDecoder.getInstance();
 
     @ParameterizedTest(name = "{index}")
     @MethodSource("testData")

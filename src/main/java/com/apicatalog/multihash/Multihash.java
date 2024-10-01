@@ -29,6 +29,7 @@ public class Multihash extends Multicodec {
      * 
      * @throws IllegalArgumentException if the value cannot be encoded
      */
+    @Override
     public byte[] encode(final byte[] value) {
 
         if (value == null) {

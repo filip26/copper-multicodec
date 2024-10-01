@@ -6,10 +6,13 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Mon Jul 08 00:02:45 CEST 2024 */
+/** Multicodec Registry - generated: Tue Oct 01 13:38:20 CEST 2024 */
 public class MultihashCodec {
 
     protected MultihashCodec() { /* protected */ }
+
+    /** Multihash: bcrypt-pbkdf, Bcrypt-PBKDF key derivation function, status = draft, code = 0xd00d */
+    public static final Multicodec BCRYPT_PBKDF = Multicodec.of("bcrypt-pbkdf", Tag.Multihash, 0xd00d);
 
     /** Multihash: blake2b-104, status = draft, code = 0xb20d */
     public static final Multicodec BLAKE2B_104 = Multicodec.of("blake2b-104", Tag.Multihash, 0xb20d);
@@ -1076,6 +1079,7 @@ public class MultihashCodec {
     protected static final Map<Long, Multicodec> ALL = new TreeMap<>();
 
     static {
+      ALL.put(BCRYPT_PBKDF.code(), BCRYPT_PBKDF);
       ALL.put(BLAKE2B_104.code(), BLAKE2B_104);
       ALL.put(BLAKE2B_112.code(), BLAKE2B_112);
       ALL.put(BLAKE2B_120.code(), BLAKE2B_120);

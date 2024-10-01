@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
+import com.apicatalog.multihash.MultihashRegistry;
 import com.apicatalog.multicodec.MulticodecDecoder;
 
 class MulticodecDecoderTest {
@@ -20,7 +21,7 @@ class MulticodecDecoderTest {
                 .allMatch(codec -> decoder.getCodec(codec.varint()).isPresent()));
         assertTrue(MultiformatCodec.ALL.values().stream()
                 .allMatch(codec -> decoder.getCodec(codec.varint()).isPresent()));
-        assertTrue(MultihashCodec.ALL.values().stream()
+        assertTrue(MultihashRegistry.registered().values().stream()
                 .allMatch(codec -> decoder.getCodec(codec.varint()).isPresent()));
         assertTrue(VarsigCodec.ALL.values().stream()
                 .allMatch(codec -> decoder.getCodec(codec.varint()).isPresent()));

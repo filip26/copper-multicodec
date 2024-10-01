@@ -48,9 +48,9 @@ public class MulticodecDecoder {
     /**
      * Finds a codec in the registry if exists
      * 
-     * @param encoded a byte array identifying a multicodec
+     * @param encoded a byte array encoded as multicodec
      * 
-     * @return a codec or an empty {@link Optional} if the multicodec does not exist
+     * @return codec or an empty {@link Optional} if the multicodec does not exist
      */
     public Optional<Multicodec> getCodec(final byte[] encoded) {
 
@@ -75,7 +75,7 @@ public class MulticodecDecoder {
      * Decode an encoded value
      * 
      * @param encoded to decode
-     * @return a decoded value
+     * @return decoded value
      * 
      * @throws IllegalArgumentException if the value cannot be decoded
      */

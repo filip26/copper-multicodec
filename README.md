@@ -11,11 +11,11 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
    * no lookups for a codec when encoding
    * direct `static` access to codecs
    * confirugable set of codecs to support when decoding
- * Multihash API
+ * Multihash support
  * `Unsigned VarInt` support
  * no 3rd party dependencies
 
-## Example
+## Examples
 
 ```java
 /* encode an input as P-521 public key */
@@ -40,7 +40,7 @@ byte[] decoded = decoder.decode(encoded);
 Multicodec codec = decoder.getCodec(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
 byte[] decoded = codec.decode(encoded);
 
-/* or directy when only one codec is supported */
+/* or directly when only one codec is supported */
 byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);
 
 /* check if byte array is encoded with a codec */
@@ -65,6 +65,44 @@ var codec = registry.getCodec(code).orElseThrow(() -> new IllegalArgumentExcepti
 byte[] encoded = codec.encode(input);
 
 ```
+
+### Multihash
+
+```java
+/* get multihash decoder initialized with all multihash codecs */
+var decoder = MultihashDecoder.getInstance();
+
+/* decode; digest size is checked and removed */
+byte[] decoded = decoder.decode(encoded);
+
+/* or check if supported  */
+Multihash multihash = decoder.get(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
+byte[] decoded = codec.decode(encoded);
+
+/* or directly */
+byte[] decoded = Multihash.SHA2_384.decode(encoded);
+
+/* 
+
+/* check if byte array is encoded with multihash codec */
+if (Multihash.SHA2_384.isEncoded(encoded)) {
+  ...
+}
+
+/* check if byte array is encoded with multihash codec and digest size match */
+if (Multihash.SHA2_384.isValid(encoded)) {
+  ...
+}
+
+/* get registry initialized with all multihash codecs */
+var registry = MultihashRegistry.getInstance();
+
+/* encode an input as multihash */
+var multihash = registry.get(code).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
+byte[] encoded = multihash.encode(input);
+
+```
+
 
 ## Installation
 

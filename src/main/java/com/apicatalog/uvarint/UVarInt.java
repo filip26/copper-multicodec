@@ -50,7 +50,7 @@ public final class UVarInt {
     
     public static final long decode(final byte[] uvarint, int index) {
 
-        int offset = index;
+        int offset = 0;
 
         boolean next = false;
         long value = 0;
@@ -63,7 +63,7 @@ public final class UVarInt {
                 throw new IllegalArgumentException("The input stream has ended unexpectedly, a next byte is expected.");
             }
 
-            int b = uvarint[offset];
+            int b = uvarint[offset + index];
 
             value |= (long) (b & UVarInt.SEGMENT_BITS) << (offset * 7);
 

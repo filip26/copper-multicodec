@@ -1,7 +1,7 @@
 # Copper Multicodec
 A Java implementation of [Multicodec](https://github.com/multiformats/multicodec).
 
-[![Java 11 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java11-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java11-build.yml)
+[![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=filip26_copper-multicodec&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=filip26_copper-multicodec)
 [![Maven Central](https://img.shields.io/maven-central/v/com.apicatalog/copper-multicodec.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:com.apicatalog%20AND%20a:copper-multicodec)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -11,10 +11,11 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
    * no lookups for a codec when encoding
    * direct `static` access to codecs
    * confirugable set of codecs to support when decoding
- * built-in `Unsigned VarInt` support
+ * Multihash support [2.0.0-SNAPSHOT]
+ * `Unsigned VarInt` support
  * no 3rd party dependencies
 
-## Example
+## Examples
 
 ```java
 /* encode an input as P-521 public key */
@@ -39,7 +40,7 @@ byte[] decoded = decoder.decode(encoded);
 Multicodec codec = decoder.getCodec(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
 byte[] decoded = codec.decode(encoded);
 
-/* or directy when only one codec is supported */
+/* or directly when only one codec is supported */
 byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);
 
 /* check if byte array is encoded with a codec */
@@ -64,6 +65,39 @@ var codec = registry.getCodec(code).orElseThrow(() -> new IllegalArgumentExcepti
 byte[] encoded = codec.encode(input);
 
 ```
+
+### Multihash
+
+```java
+/* get multihash decoder initialized with all multihash codecs */
+var decoder = MultihashDecoder.getInstance();
+
+/* decode; digest size is checked and removed */
+byte[] decoded = decoder.decode(encoded);
+
+/* or check if supported  */
+Multihash multihash = decoder.get(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
+byte[] decoded = codec.decode(encoded);
+
+/* or directly */
+byte[] decoded = MultihashRegistry.SHA2_384.decode(encoded);
+
+/* 
+
+/* check if byte array is encoded with multihash codec */
+if (MultihashRegistry.SHA2_384.isEncoded(encoded)) {
+  ...
+}
+
+/* get registry initialized with all multihash codecs */
+var registry = MultihashRegistry.getInstance();
+
+/* encode an input as multihash */
+var multihash = registry.get(code).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
+byte[] encoded = multihash.encode(input);
+
+```
+
 
 ## Installation
 
@@ -100,5 +134,6 @@ Fork and clone the project repository.
 ## Resources
 - [Copper Multibase](https://github.com/filip26/copper-multibase)
 - [Multicodec](https://github.com/multiformats/multicodec)
+- [Multihash](https://github.com/multiformats/multihash)
 - [unsigned-varint](https://github.com/multiformats/unsigned-varint)
 

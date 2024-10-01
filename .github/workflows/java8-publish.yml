@@ -11,21 +11,21 @@ jobs:
     environment: maven-central
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 11
+      - name: Set up JDK 8
         uses: actions/setup-java@v4
         with:
-          java-version: 11
+          java-version: 8
           distribution: 'temurin'
           server-id: ossrh
-      - name: Import GPG Key
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+#      - name: Import GPG Key
+#        uses: crazy-max/ghaction-import-gpg@v6
+#        with:
+#          gpg_private_key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+#          passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
       - name: Publish package
-        run: mvn -B -Pmaven-central -s .github/maven-central-settings.xml deploy
+        run: mvn -B -Pmaven-central deploy
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}

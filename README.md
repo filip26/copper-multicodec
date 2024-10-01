@@ -80,17 +80,12 @@ Multihash multihash = decoder.get(encoded).orElseThrow(() -> new IllegalArgument
 byte[] decoded = codec.decode(encoded);
 
 /* or directly */
-byte[] decoded = Multihash.SHA2_384.decode(encoded);
+byte[] decoded = MultihashRegistry.SHA2_384.decode(encoded);
 
 /* 
 
 /* check if byte array is encoded with multihash codec */
-if (Multihash.SHA2_384.isEncoded(encoded)) {
-  ...
-}
-
-/* check if byte array is encoded with multihash codec and digest size match */
-if (Multihash.SHA2_384.isValid(encoded)) {
+if (MultihashRegistry.SHA2_384.isEncoded(encoded)) {
   ...
 }
 

@@ -42,10 +42,10 @@ class MultihashTest {
     static Stream<Arguments> testData() {
         return Stream.of(
                 Arguments.of(Base64.getDecoder().decode("ERSIwvEfss45KstbKYbmQCEcRpAHPg=="),
-                        Multihash.SHA1,
+                        MultihashRegistry.SHA1,
                         Base64.getDecoder().decode("iMLxH7LOOSrLWymG5kAhHEaQBz4=")),
                 Arguments.of(Base64.getDecoder().decode("EiCcvAfD+ZFyWDajqipYHKICkZiqQgudmbwOEx2fPiy+Rw=="),
-                        Multihash.SHA2_256,
+                        MultihashRegistry.SHA2_256,
                         Base64.getDecoder().decode("nLwHw/mRclg2o6oqWByiApGYqkILnZm8DhMdnz4svkc=")));
     }
 }

@@ -11,7 +11,7 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
    * no lookups for a codec when encoding
    * direct `static` access to codecs
    * confirugable set of codecs to support when decoding
- * Multihash support
+ * Multihash support [2.0.0-SNAPSHOT]
  * `Unsigned VarInt` support
  * no 3rd party dependencies
 

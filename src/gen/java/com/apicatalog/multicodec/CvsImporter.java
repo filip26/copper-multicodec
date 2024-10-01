@@ -2,18 +2,20 @@ package com.apicatalog.multicodec;
 
 import java.io.IOException;
 
+import com.apicatalog.multihash.Multihash;
+
 public class CvsImporter {
 
     public static void main(final String[] args) throws IOException {
-        CodecTag.generate("key", "KeyCodec");
-        CodecTag.generate("multihash", "MultihashCodec");
-        CodecTag.generate("multiaddr", "MultiaddrCodec");
-        CodecTag.generate("hash", "HashCodec");
-        CodecTag.generate("cid", "CidCodec");
-        CodecTag.generate("namespace", "NamespaceCodec");
-        CodecTag.generate("multiformat", "MultiformatCodec");
-        CodecTag.generate("serialization", "SerializationCodec");
-        CodecTag.generate("transport", "TransportCodec");
-        CodecTag.generate("varsig", "VarsigCodec");
+        CodecTag.generate("key", "KeyCodec", Multicodec.class);
+        CodecTag.generate("multihash", "MultihashCodec", Multihash.class);
+        CodecTag.generate("multiaddr", "MultiaddrCodec", Multicodec.class);
+        CodecTag.generate("hash", "HashCodec", Multicodec.class);
+        CodecTag.generate("cid", "CidCodec", Multicodec.class);
+        CodecTag.generate("namespace", "NamespaceCodec", Multicodec.class);
+        CodecTag.generate("multiformat", "MultiformatCodec", Multicodec.class);
+        CodecTag.generate("serialization", "SerializationCodec", Multicodec.class);
+        CodecTag.generate("transport", "TransportCodec", Multicodec.class);
+        CodecTag.generate("varsig", "VarsigCodec", Multicodec.class);
     }
 }

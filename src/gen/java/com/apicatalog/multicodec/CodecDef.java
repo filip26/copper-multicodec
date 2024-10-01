@@ -26,7 +26,7 @@ public class CodecDef {
         return def;
     }
 
-    public final void writeCode(PrintWriter writer) {
+    public final void writeCode(PrintWriter writer, Class<?> clazz) {
         writer.print("    ");
         writer.print("/** ");
         writer.print(tag);
@@ -43,13 +43,20 @@ public class CodecDef {
         writer.println(" */");
 
         writer.print("    ");
-        writer.print("public static final Multicodec ");
+        writer.print("public static final ");
+        writer.print(clazz.getSimpleName());
+        writer.print(" ");
         writer.print(getJavaName());
-        writer.print(" = Multicodec.of(\"");
+        writer.print(" = ");
+        writer.print(clazz.getSimpleName());
+        writer.print(".of(\"");
         writer.print(name);
-        writer.print("\", Tag.");
-        writer.print(tag.name());
-        writer.print(", ");
+        writer.print("\", ");
+        if (Multicodec.class.equals(clazz)) {
+            writer.print(" Tag.");
+            writer.print(tag.name());
+            writer.print(", ");
+        }
         writer.print(String.format("0x%x",code));
         writer.println(");");
     }

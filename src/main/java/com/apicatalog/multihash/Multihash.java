@@ -13,12 +13,16 @@ import com.apicatalog.uvarint.UVarInt;
  */
 public class Multihash extends Multicodec {
 
-    protected Multihash(String name, long code, byte[] uvarint) {
-        super(name, Tag.Multihash, code, uvarint);
+    protected Multihash(String name, long code, byte[] uvarint, Status status) {
+        super(name, Tag.Multihash, code, uvarint, status);
     }
 
     public static Multihash of(String name, long code) {
-        return new Multihash(name, code, UVarInt.encode(code));
+        return of(name, code, null);
+    }
+
+    public static Multihash of(String name, long code, Status status) {
+        return new Multihash(name, code, UVarInt.encode(code), status);
     }
 
     /**
@@ -78,19 +82,7 @@ public class Multihash extends Multicodec {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Multihash other = (Multihash) obj;
-        return code == other.code;
-    }
-
-    @Override
     public String toString() {
-        return "Multihash [name=" + name + ", code=" + code + ", varint=" + Arrays.toString(codeVarint) + "]";
+        return "Multihash [name=" + name + ", code=" + code + "]";
     }
 }

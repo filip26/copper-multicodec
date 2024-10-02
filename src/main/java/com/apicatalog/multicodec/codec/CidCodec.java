@@ -6,16 +6,16 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Wed Oct 02 01:34:48 CEST 2024 */
+/** Multicodec Registry - generated: Wed Oct 02 02:08:33 CEST 2024 */
 public class CidCodec {
 
-    /** Cid: cidv1, CIDv1, status = permanent, code = 0x1 */
+    /** Cid: cidv1, CIDv1, status = Permanent, code = 0x1 */
     public static final Multicodec CIDV1 = Multicodec.of("cidv1",  Tag.Cid, 0x1);
 
-    /** Cid: cidv2, CIDv2, status = draft, code = 0x2 */
+    /** Cid: cidv2, CIDv2, status = Draft, code = 0x2 */
     public static final Multicodec CIDV2 = Multicodec.of("cidv2",  Tag.Cid, 0x2);
 
-    /** Cid: cidv3, CIDv3, status = draft, code = 0x3 */
+    /** Cid: cidv3, CIDv3, status = Draft, code = 0x3 */
     public static final Multicodec CIDV3 = Multicodec.of("cidv3",  Tag.Cid, 0x3);
 
     protected static final Map<Long,Multicodec> ALL = new TreeMap<>();

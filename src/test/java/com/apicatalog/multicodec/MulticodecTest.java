@@ -13,20 +13,20 @@ class MulticodecTest {
 
     @Test
     void testIsEncoded() {
-        final Multicodec codec = new Multicodec("test-hash", Tag.Hash, 123l, UVarInt.encode(123l));
+        final Multicodec codec = Multicodec.of("test-hash", Tag.Hash, 123l);
         assertTrue(codec.isEncoded(UVarInt.encode(123l)));
         assertFalse(codec.isEncoded(UVarInt.encode(124l)));
     }
 
     @Test
     void testEncode() {
-        final Multicodec codec = new Multicodec("test-hash", Tag.Hash, 123l, UVarInt.encode(123l));
+        final Multicodec codec = Multicodec.of("test-hash", Tag.Hash, 123l);
         assertArrayEquals(new byte[] { 0x7b, 0x48, 0x65, 0x6C, 0x6C, 0x6F }, codec.encode("Hello".getBytes()));
     }
 
     @Test
     void testDecode() {
-        final Multicodec codec = new Multicodec("test-hash", Tag.Hash, 123l, UVarInt.encode(123l));
+        final Multicodec codec = Multicodec.of("test-hash", Tag.Hash, 123l);
         assertArrayEquals("Hello".getBytes(), codec.decode(new byte[] { 0x7b, 0x48, 0x65, 0x6C, 0x6C, 0x6F }));
     }
 

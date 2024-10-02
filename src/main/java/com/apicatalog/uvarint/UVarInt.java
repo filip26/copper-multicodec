@@ -22,16 +22,24 @@ public final class UVarInt {
         }
 
         byte[] uintvar = new byte[length];
+        
+        writeEncoded(value, uintvar, 0);
+        
+        return uintvar;
+    }
+
+    public static final void writeEncoded(final long value, byte[] uintvar, int index) {
+
         int offset = 0;
         long bytes = value;
 
         boolean next = false;
         do {
             if (next) {
-                uintvar[offset - 1] |= UVarInt.CONTINUE_BIT;
+                uintvar[offset + index - 1] |= UVarInt.CONTINUE_BIT;
             }
 
-            uintvar[offset] = (byte) (bytes & UVarInt.SEGMENT_BITS);
+            uintvar[offset + index] = (byte) (bytes & UVarInt.SEGMENT_BITS);
 
             bytes >>>= 7;
 
@@ -41,7 +49,6 @@ public final class UVarInt {
 
         } while (next);
 
-        return uintvar;
     }
 
     public static final long decode(final byte[] uvarint) {

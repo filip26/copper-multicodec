@@ -27,20 +27,35 @@ public class Multicodec {
         Varsig,
     }
 
+    /**
+     * Common registration status
+     */
+    public enum Status {
+        Deprecated,
+        Draft,
+        Permanent,
+    }
+    
     protected final String name;
     protected final byte[] codeVarint;
     protected final long code;
     protected final Tag tag;
+    protected final Status status;
 
-    protected Multicodec(String name, Tag tag, long code, byte[] uvarint) {
+    protected Multicodec(String name, Tag tag, long code, byte[] uvarint, Status status) {
         this.tag = tag;
         this.name = name;
         this.code = code;
         this.codeVarint = uvarint;
+        this.status = status;
     }
 
     public static Multicodec of(String name, Tag tag, long code) {
-        return new Multicodec(name, tag, code, UVarInt.encode(code));
+        return of(name, tag, code);
+    }
+
+    public static Multicodec of(String name, Tag tag, long code, Status status) {
+        return new Multicodec(name, tag, code, UVarInt.encode(code), status);
     }
 
     public int length() {
@@ -63,6 +78,10 @@ public class Multicodec {
         return code;
     }
 
+    public Status status() {
+        return status;
+    }
+    
     /**
      * Encode a value with a codec.
      * 
@@ -144,6 +163,6 @@ public class Multicodec {
 
     @Override
     public String toString() {
-        return "Multicodec [name=" + name + ", tag=" + tag + ", code=" + code + ", varint=" + Arrays.toString(codeVarint) + "]";
+        return "Multicodec [name=" + name + ", tag=" + tag + ", code=" + code + "]";
     }
 }

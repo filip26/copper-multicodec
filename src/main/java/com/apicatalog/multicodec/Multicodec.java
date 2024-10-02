@@ -27,20 +27,35 @@ public class Multicodec {
         Varsig,
     }
 
+    /**
+     * Common registration status
+     */
+    public enum Status {
+        Deprecated,
+        Draft,
+        Permanent,
+    }
+
     protected final String name;
     protected final byte[] codeVarint;
     protected final long code;
     protected final Tag tag;
+    protected final Status status;
 
-    protected Multicodec(String name, Tag tag, long code, byte[] uvarint) {
+    protected Multicodec(String name, Tag tag, long code, byte[] uvarint, Status status) {
         this.tag = tag;
         this.name = name;
         this.code = code;
         this.codeVarint = uvarint;
+        this.status = status;
     }
 
     public static Multicodec of(String name, Tag tag, long code) {
-        return new Multicodec(name, tag, code, UVarInt.encode(code));
+        return of(name, tag, code, null);
+    }
+
+    public static Multicodec of(String name, Tag tag, long code, Status status) {
+        return new Multicodec(name, tag, code, UVarInt.encode(code), status);
     }
 
     public int length() {
@@ -63,6 +78,10 @@ public class Multicodec {
         return code;
     }
 
+    public Status status() {
+        return status;
+    }
+
     /**
      * Encode a value with a codec.
      * 
@@ -73,9 +92,7 @@ public class Multicodec {
      */
     public byte[] encode(final byte[] value) {
 
-        if (value == null) {
-            throw new IllegalArgumentException("The value to encdode must not be null.");
-        }
+        Objects.requireNonNull(value);
 
         if (value.length == 0) {
             throw new IllegalArgumentException("The value to encode must be non empty byte array.");
@@ -111,18 +128,31 @@ public class Multicodec {
      * @throws IllegalArgumentException if the encoded value cannot be decoded
      */
     public byte[] decode(final byte[] encoded) {
+        return decode(encoded, 0);
+    }
+    
+    /**
+     * Decode an encoded value
+     * 
+     * @param encoded value to decode
+     * @param index an index from which to start (included)
+     * @return a decoded value
+     * 
+     * @throws IllegalArgumentException if the encoded value cannot be decoded
+     */
+    public byte[] decode(final byte[] encoded, final int index) {
 
         Objects.requireNonNull(encoded);
 
-        if (encoded.length < (codeVarint.length + 1)) {
+        if ((encoded.length - index) < (codeVarint.length + 1)) {
             throw new IllegalArgumentException("The value to decode must be non empty byte array, min length = " + (codeVarint.length + 1) + ", actual = " + encoded.length + ".");
         }
 
-        if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i])) {
+        if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {
             throw new IllegalArgumentException("The value to decode is not encoded with " + toString() + ".");
         }
 
-        return Arrays.copyOfRange(encoded, codeVarint.length, encoded.length);
+        return Arrays.copyOfRange(encoded, index + codeVarint.length, encoded.length - index);
     }
 
     @Override
@@ -144,6 +174,6 @@ public class Multicodec {
 
     @Override
     public String toString() {
-        return "Multicodec [name=" + name + ", tag=" + tag + ", code=" + code + ", varint=" + Arrays.toString(codeVarint) + "]";
+        return "Multicodec [name=" + name + ", tag=" + tag + ", code=" + code + "]";
     }
 }

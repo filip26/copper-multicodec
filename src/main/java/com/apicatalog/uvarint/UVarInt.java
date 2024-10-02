@@ -9,6 +9,18 @@ public final class UVarInt {
     public static final int CONTINUE_BIT = 0x80;
     public static final int INT_OVERFLOW_BITS = 0x70;
 
+    protected static long[] MAX_VALUES = {
+            0x7FL,
+            0x3FFFL,
+            0x1FFFFFL,
+            0xFFFFFFFL,
+            0x7FFFFFFFFL,
+            0x3FFFFFFFFFFL,
+            0x1FFFFFFFFFFFFL,
+            0xFFFFFFFFFFFFFFL,
+            0x7FFFFFFFFFFFFFFFL
+    };
+
     protected UVarInt() {
         /* protected */
     }
@@ -21,17 +33,25 @@ public final class UVarInt {
             return new byte[] { (byte) value };
         }
 
-        byte[] uintvar = new byte[length];
+        byte[] uvarint = new byte[length];
+
+        write(value, uvarint, 0);
+
+        return uvarint;
+    }
+
+    public static final void write(final long value, final byte[] uvarint, final int index) {
+
         int offset = 0;
         long bytes = value;
 
         boolean next = false;
         do {
             if (next) {
-                uintvar[offset - 1] |= UVarInt.CONTINUE_BIT;
+                uvarint[offset + index - 1] |= UVarInt.CONTINUE_BIT;
             }
 
-            uintvar[offset] = (byte) (bytes & UVarInt.SEGMENT_BITS);
+            uvarint[offset + index] = (byte) (bytes & UVarInt.SEGMENT_BITS);
 
             bytes >>>= 7;
 
@@ -41,13 +61,12 @@ public final class UVarInt {
 
         } while (next);
 
-        return uintvar;
     }
 
     public static final long decode(final byte[] uvarint) {
         return decode(uvarint, 0);
     }
-    
+
     public static final long decode(final byte[] uvarint, int index) {
 
         int offset = 0;
@@ -75,18 +94,6 @@ public final class UVarInt {
 
         return value;
     }
-
-    protected static long[] MAX_VALUES = {
-            0x7FL,
-            0x3FFFL,
-            0x1FFFFFL,
-            0xFFFFFFFL,
-            0x7FFFFFFFFL,
-            0x3FFFFFFFFFFL,
-            0x1FFFFFFFFFFFFL,
-            0xFFFFFFFFFFFFFFL,
-            0x7FFFFFFFFFFFFFFFL
-    };
 
     public static final int byteLength(long value) {
         if (value <= MAX_VALUES[0]) {

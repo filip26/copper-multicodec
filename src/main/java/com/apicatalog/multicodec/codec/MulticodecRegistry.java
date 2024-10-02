@@ -9,13 +9,12 @@ import java.util.stream.Stream;
 
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
-import com.apicatalog.multihash.MultihashRegistry;
 
 public final class MulticodecRegistry {
 
     private static final Map<Long, Multicodec> ALL = Stream.of(
             KeyCodec.ALL,
-            MultihashRegistry.registered(),
+            MultihashCodec.ALL,
             MultiaddrCodec.ALL,
             HashCodec.ALL,
             CidCodec.ALL,

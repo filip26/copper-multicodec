@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 public class CodecTag {
 
-    public static void generate(String tag, String className) throws IOException {
+    public static void generate(final String tag, final String className, final Class<?> clazz) throws IOException {
 
         try (final Stream<String[]> stream = Files.lines(Paths.get("table.csv"))
                 .map(line -> line.trim().split(","))) {
@@ -25,8 +25,14 @@ public class CodecTag {
             writer.println("import java.util.TreeMap;");
             writer.println("import java.util.Map;");
             writer.println();
-            writer.println("import com.apicatalog.multicodec.Multicodec;");
-            writer.println("import com.apicatalog.multicodec.Multicodec.Tag;");
+            if (Multicodec.class.equals(clazz)) {
+                writer.println("import com.apicatalog.multicodec.Multicodec.Tag;");
+            } else {
+                writer.println("import com.apicatalog.multicodec.Multicodec;");
+            }
+            writer.print("import ");
+            writer.print(clazz.getCanonicalName());
+            writer.println(";");            
             writer.println();
             writer.print("/** Multicodec Registry - generated: ");
             writer.print(new Date().toString());
@@ -35,7 +41,7 @@ public class CodecTag {
             writer.print(className);
             writer.println(" {");
             writer.println();
-            
+
             Collection<CodecDef> defs = stream
                     .filter(columns -> tag.equals(columns[1].trim()))
                     .map(CodecDef::from)
@@ -44,12 +50,14 @@ public class CodecTag {
                     .collect(Collectors.toList());
 
             defs.forEach(def -> {
-                def.writeCode(writer);
+                def.writeCode(writer, clazz);
                 writer.println();
             });
-                        
-            writer.println("    protected static final Map<Long, Multicodec> ALL = new TreeMap<>();");
-            writer.println();            
+
+            writer.print("    protected static final Map<Long,");
+            writer.print(clazz.getSimpleName());
+            writer.println("> ALL = new TreeMap<>();");
+            writer.println();
             writer.println("    static {");
 
             defs.forEach(def -> {
@@ -59,10 +67,10 @@ public class CodecTag {
                 writer.print(def.getJavaName());
                 writer.println(");");
             });
-            
+
             writer.println("    }");
             writer.println();
-            
+
             writer.print("    protected ");
             writer.print(className);
             writer.println("() { /* protected */ }");

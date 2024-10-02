@@ -10,8 +10,8 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
  * `static` codecs registry
    * no lookups for a codec when encoding
    * direct `static` access to codecs
-   * confirugable set of codecs to support when decoding
- * Multihash support [2.0.0-SNAPSHOT]
+   * configurable set of codecs to support when decoding
+ * Multihash support
  * `Unsigned VarInt` support
  * no 3rd party dependencies
 
@@ -70,31 +70,31 @@ byte[] encoded = codec.encode(input);
 
 ```java
 /* get multihash decoder initialized with all multihash codecs */
-var decoder = MultihashDecoder.getInstance();
+var decoder = MulticodecDecoder.getInstance(Tag.Multihash);
 
 /* decode; digest size is checked and removed */
 byte[] decoded = decoder.decode(encoded);
 
 /* or check if supported  */
-Multihash multihash = decoder.get(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
+var codec = decoder.get(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
 byte[] decoded = codec.decode(encoded);
 
 /* or directly */
-byte[] decoded = MultihashRegistry.SHA2_384.decode(encoded);
+byte[] decoded = MultihashCodec.SHA2_384.decode(encoded);
 
 /* 
 
 /* check if byte array is encoded with multihash codec */
-if (MultihashRegistry.SHA2_384.isEncoded(encoded)) {
+if (MultihashCodec.SHA2_384.isEncoded(encoded)) {
   ...
 }
 
 /* get registry initialized with all multihash codecs */
-var registry = MultihashRegistry.getInstance();
+var registry = MulticodecRegistry.getInstance(Tag.Multihash);
 
 /* encode an input as multihash */
-var multihash = registry.get(code).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
-byte[] encoded = multihash.encode(input);
+var codec = registry.get(code).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
+byte[] encoded = codec.encode(input);
 
 ```
 
@@ -107,7 +107,7 @@ byte[] encoded = multihash.encode(input);
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 

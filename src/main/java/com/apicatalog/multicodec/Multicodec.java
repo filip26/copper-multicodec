@@ -51,7 +51,7 @@ public class Multicodec {
     }
 
     public static Multicodec of(String name, Tag tag, long code) {
-        return of(name, tag, code);
+        return of(name, tag, code, null);
     }
 
     public static Multicodec of(String name, Tag tag, long code, Status status) {

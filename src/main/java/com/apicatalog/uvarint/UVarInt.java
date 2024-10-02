@@ -95,34 +95,6 @@ public final class UVarInt {
         return value;
     }
 
-    public static final long read(final byte[] uvarint, int index) {
-
-        int offset = 0;
-
-        boolean next = false;
-        long value = 0;
-
-        do {
-            if (offset >= UVarInt.MAX_VAR_LENGTH) {
-                throw new IllegalArgumentException("uintvar longer than " + UVarInt.MAX_VAR_LENGTH + " has been found. Only uintvar up to " + UVarInt.MAX_VAR_LENGTH + " are supported.");
-            }
-            if (offset >= uvarint.length) {
-                throw new IllegalArgumentException("The input stream has ended unexpectedly, a next byte is expected.");
-            }
-
-            int b = uvarint[offset + index];
-
-            value |= (long) (b & UVarInt.SEGMENT_BITS) << (offset * 7);
-
-            next = ((b & UVarInt.CONTINUE_BIT) != 0);
-
-            offset++;
-
-        } while (next);
-
-        return value;
-    }
-
     public static final int byteLength(long value) {
         if (value <= MAX_VALUES[0]) {
             return 1;

@@ -6,47 +6,47 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
 
-/** Multicodec Registry - generated: Wed Oct 02 02:08:33 CEST 2024 */
+/** Multicodec Registry - generated: Wed Oct 02 16:23:27 CEST 2024 */
 public class NamespaceCodec {
 
-    /** Namespace: arweave-ns, Arweave Namespace, status = Draft, code = 0xb29910 */
-    public static final Multicodec ARWEAVE_NS = Multicodec.of("arweave-ns",  Tag.Namespace, 0xb29910);
+    /** Namespace: arweave-ns, Arweave Namespace, status = draft, code = 0xb29910 */
+    public static final Multicodec ARWEAVE_NS = Multicodec.of("arweave-ns", Tag.Namespace, 0xb29910, Multicodec.Status.Draft);
 
-    /** Namespace: dnslink, DNSLink path, status = Permanent, code = 0xe8 */
-    public static final Multicodec DNSLINK = Multicodec.of("dnslink",  Tag.Namespace, 0xe8);
+    /** Namespace: dnslink, DNSLink path, status = permanent, code = 0xe8 */
+    public static final Multicodec DNSLINK = Multicodec.of("dnslink", Tag.Namespace, 0xe8, Multicodec.Status.Permanent);
 
-    /** Namespace: ipfs, IPFS path, status = Draft, code = 0xe3 */
-    public static final Multicodec IPFS = Multicodec.of("ipfs",  Tag.Namespace, 0xe3);
+    /** Namespace: ipfs, IPFS path, status = draft, code = 0xe3 */
+    public static final Multicodec IPFS = Multicodec.of("ipfs", Tag.Namespace, 0xe3, Multicodec.Status.Draft);
 
-    /** Namespace: ipld, IPLD path, status = Draft, code = 0xe2 */
-    public static final Multicodec IPLD = Multicodec.of("ipld",  Tag.Namespace, 0xe2);
+    /** Namespace: ipld, IPLD path, status = draft, code = 0xe2 */
+    public static final Multicodec IPLD = Multicodec.of("ipld", Tag.Namespace, 0xe2, Multicodec.Status.Draft);
 
-    /** Namespace: ipns, IPNS path, status = Draft, code = 0xe5 */
-    public static final Multicodec IPNS = Multicodec.of("ipns",  Tag.Namespace, 0xe5);
+    /** Namespace: ipns, IPNS path, status = draft, code = 0xe5 */
+    public static final Multicodec IPNS = Multicodec.of("ipns", Tag.Namespace, 0xe5, Multicodec.Status.Draft);
 
-    /** Namespace: kumandra-ns, Kumandra Network Namespace, status = Draft, code = 0xb49910 */
-    public static final Multicodec KUMANDRA_NS = Multicodec.of("kumandra-ns",  Tag.Namespace, 0xb49910);
+    /** Namespace: kumandra-ns, Kumandra Network Namespace, status = draft, code = 0xb49910 */
+    public static final Multicodec KUMANDRA_NS = Multicodec.of("kumandra-ns", Tag.Namespace, 0xb49910, Multicodec.Status.Draft);
 
-    /** Namespace: lbry, LBRY Address, status = Draft, code = 0x8c */
-    public static final Multicodec LBRY = Multicodec.of("lbry",  Tag.Namespace, 0x8c);
+    /** Namespace: lbry, LBRY Address, status = draft, code = 0x8c */
+    public static final Multicodec LBRY = Multicodec.of("lbry", Tag.Namespace, 0x8c, Multicodec.Status.Draft);
 
-    /** Namespace: path, Namespace for string paths. Corresponds to `/` in ASCII., status = Permanent, code = 0x2f */
-    public static final Multicodec PATH = Multicodec.of("path",  Tag.Namespace, 0x2f);
+    /** Namespace: path, Namespace for string paths. Corresponds to `/` in ASCII., status = permanent, code = 0x2f */
+    public static final Multicodec PATH = Multicodec.of("path", Tag.Namespace, 0x2f, Multicodec.Status.Permanent);
 
-    /** Namespace: skynet-ns, Skynet Namespace, status = Draft, code = 0xb19910 */
-    public static final Multicodec SKYNET_NS = Multicodec.of("skynet-ns",  Tag.Namespace, 0xb19910);
+    /** Namespace: skynet-ns, Skynet Namespace, status = draft, code = 0xb19910 */
+    public static final Multicodec SKYNET_NS = Multicodec.of("skynet-ns", Tag.Namespace, 0xb19910, Multicodec.Status.Draft);
 
-    /** Namespace: streamid, Ceramic Stream Id, status = Draft, code = 0xce */
-    public static final Multicodec STREAMID = Multicodec.of("streamid",  Tag.Namespace, 0xce);
+    /** Namespace: streamid, Ceramic Stream Id, status = draft, code = 0xce */
+    public static final Multicodec STREAMID = Multicodec.of("streamid", Tag.Namespace, 0xce, Multicodec.Status.Draft);
 
-    /** Namespace: subspace-ns, Subspace Network Namespace, status = Draft, code = 0xb39910 */
-    public static final Multicodec SUBSPACE_NS = Multicodec.of("subspace-ns",  Tag.Namespace, 0xb39910);
+    /** Namespace: subspace-ns, Subspace Network Namespace, status = draft, code = 0xb39910 */
+    public static final Multicodec SUBSPACE_NS = Multicodec.of("subspace-ns", Tag.Namespace, 0xb39910, Multicodec.Status.Draft);
 
-    /** Namespace: swarm, Swarm path, status = Draft, code = 0xe4 */
-    public static final Multicodec SWARM = Multicodec.of("swarm",  Tag.Namespace, 0xe4);
+    /** Namespace: swarm, Swarm path, status = draft, code = 0xe4 */
+    public static final Multicodec SWARM = Multicodec.of("swarm", Tag.Namespace, 0xe4, Multicodec.Status.Draft);
 
-    /** Namespace: zeronet, ZeroNet site address, status = Draft, code = 0xe6 */
-    public static final Multicodec ZERONET = Multicodec.of("zeronet",  Tag.Namespace, 0xe6);
+    /** Namespace: zeronet, ZeroNet site address, status = draft, code = 0xe6 */
+    public static final Multicodec ZERONET = Multicodec.of("zeronet", Tag.Namespace, 0xe6, Multicodec.Status.Draft);
 
     protected static final Map<Long,Multicodec> ALL = new TreeMap<>();
 

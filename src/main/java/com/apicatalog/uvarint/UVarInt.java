@@ -9,6 +9,18 @@ public final class UVarInt {
     public static final int CONTINUE_BIT = 0x80;
     public static final int INT_OVERFLOW_BITS = 0x70;
 
+    protected static long[] MAX_VALUES = {
+            0x7FL,
+            0x3FFFL,
+            0x1FFFFFL,
+            0xFFFFFFFL,
+            0x7FFFFFFFFL,
+            0x3FFFFFFFFFFL,
+            0x1FFFFFFFFFFFFL,
+            0xFFFFFFFFFFFFFFL,
+            0x7FFFFFFFFFFFFFFFL
+    };
+
     protected UVarInt() {
         /* protected */
     }
@@ -21,14 +33,14 @@ public final class UVarInt {
             return new byte[] { (byte) value };
         }
 
-        byte[] uintvar = new byte[length];
+        byte[] uvarint = new byte[length];
 
-        writeEncoded(value, uintvar, 0);
+        write(value, uvarint, 0);
 
-        return uintvar;
+        return uvarint;
     }
 
-    public static final void writeEncoded(final long value, byte[] uintvar, int index) {
+    public static final void write(final long value, final byte[] uvarint, final int index) {
 
         int offset = 0;
         long bytes = value;
@@ -36,10 +48,10 @@ public final class UVarInt {
         boolean next = false;
         do {
             if (next) {
-                uintvar[offset + index - 1] |= UVarInt.CONTINUE_BIT;
+                uvarint[offset + index - 1] |= UVarInt.CONTINUE_BIT;
             }
 
-            uintvar[offset + index] = (byte) (bytes & UVarInt.SEGMENT_BITS);
+            uvarint[offset + index] = (byte) (bytes & UVarInt.SEGMENT_BITS);
 
             bytes >>>= 7;
 
@@ -83,17 +95,33 @@ public final class UVarInt {
         return value;
     }
 
-    protected static long[] MAX_VALUES = {
-            0x7FL,
-            0x3FFFL,
-            0x1FFFFFL,
-            0xFFFFFFFL,
-            0x7FFFFFFFFL,
-            0x3FFFFFFFFFFL,
-            0x1FFFFFFFFFFFFL,
-            0xFFFFFFFFFFFFFFL,
-            0x7FFFFFFFFFFFFFFFL
-    };
+    public static final long read(final byte[] uvarint, int index) {
+
+        int offset = 0;
+
+        boolean next = false;
+        long value = 0;
+
+        do {
+            if (offset >= UVarInt.MAX_VAR_LENGTH) {
+                throw new IllegalArgumentException("uintvar longer than " + UVarInt.MAX_VAR_LENGTH + " has been found. Only uintvar up to " + UVarInt.MAX_VAR_LENGTH + " are supported.");
+            }
+            if (offset >= uvarint.length) {
+                throw new IllegalArgumentException("The input stream has ended unexpectedly, a next byte is expected.");
+            }
+
+            int b = uvarint[offset + index];
+
+            value |= (long) (b & UVarInt.SEGMENT_BITS) << (offset * 7);
+
+            next = ((b & UVarInt.CONTINUE_BIT) != 0);
+
+            offset++;
+
+        } while (next);
+
+        return value;
+    }
 
     public static final int byteLength(long value) {
         if (value <= MAX_VALUES[0]) {

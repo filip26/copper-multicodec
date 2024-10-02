@@ -54,29 +54,29 @@ public class Multihash extends Multicodec {
     }
 
     @Override
-    public byte[] decode(byte[] encoded) {
+    public byte[] decode(byte[] encoded, int index) {
 
         Objects.requireNonNull(encoded);
 
-        if (encoded.length < (codeVarint.length + 2)) {
+        if ((encoded.length - index) < (codeVarint.length + 2)) {
             throw new IllegalArgumentException("The value to decode must be non empty byte array, min length = " + (codeVarint.length + 2) + ", actual = " + encoded.length + ".");
         }
 
-        if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i])) {
+        if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {
             throw new IllegalArgumentException("The value to decode is not encoded with " + toString() + ".");
         }
 
         // digest size
-        long size = UVarInt.decode(encoded, codeVarint.length);
+        long size = UVarInt.decode(encoded, index + codeVarint.length);
         int sizeVarintLength = UVarInt.byteLength(size);
 
-        if (size != (encoded.length - codeVarint.length - sizeVarintLength)) {
+        if (size != (encoded.length - index - codeVarint.length - sizeVarintLength)) {
             throw new IllegalArgumentException(
-                    "The declared digest size = " + size + " and the actual hash digest size = " + (encoded.length - codeVarint.length - sizeVarintLength) + " do not match.");
+                    "The declared digest size = " + size + " and the actual hash digest size = " + (encoded.length - index - codeVarint.length - sizeVarintLength) + " do not match.");
         }
 
         // digest
-        return Arrays.copyOfRange(encoded, codeVarint.length + sizeVarintLength, encoded.length);
+        return Arrays.copyOfRange(encoded, index + codeVarint.length + sizeVarintLength, encoded.length - index);
     }
 
     @Override

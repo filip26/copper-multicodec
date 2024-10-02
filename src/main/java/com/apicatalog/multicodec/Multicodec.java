@@ -128,18 +128,31 @@ public class Multicodec {
      * @throws IllegalArgumentException if the encoded value cannot be decoded
      */
     public byte[] decode(final byte[] encoded) {
+        return decode(encoded, 0);
+    }
+    
+    /**
+     * Decode an encoded value
+     * 
+     * @param encoded value to decode
+     * @param index an index from which to start (included)
+     * @return a decoded value
+     * 
+     * @throws IllegalArgumentException if the encoded value cannot be decoded
+     */
+    public byte[] decode(final byte[] encoded, final int index) {
 
         Objects.requireNonNull(encoded);
 
-        if (encoded.length < (codeVarint.length + 1)) {
+        if ((encoded.length - index) < (codeVarint.length + 1)) {
             throw new IllegalArgumentException("The value to decode must be non empty byte array, min length = " + (codeVarint.length + 1) + ", actual = " + encoded.length + ".");
         }
 
-        if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i])) {
+        if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {
             throw new IllegalArgumentException("The value to decode is not encoded with " + toString() + ".");
         }
 
-        return Arrays.copyOfRange(encoded, codeVarint.length, encoded.length);
+        return Arrays.copyOfRange(encoded, index + codeVarint.length, encoded.length - index);
     }
 
     @Override

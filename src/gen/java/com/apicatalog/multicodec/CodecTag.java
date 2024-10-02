@@ -25,12 +25,14 @@ public class CodecTag {
             writer.println("import java.util.TreeMap;");
             writer.println("import java.util.Map;");
             writer.println();
-            writer.print("import ");
-            writer.print(clazz.getCanonicalName());
-            writer.println(";");
             if (Multicodec.class.equals(clazz)) {
                 writer.println("import com.apicatalog.multicodec.Multicodec.Tag;");
+            } else {
+                writer.println("import com.apicatalog.multicodec.Multicodec;");
             }
+            writer.print("import ");
+            writer.print(clazz.getCanonicalName());
+            writer.println(";");            
             writer.println();
             writer.print("/** Multicodec Registry - generated: ");
             writer.print(new Date().toString());

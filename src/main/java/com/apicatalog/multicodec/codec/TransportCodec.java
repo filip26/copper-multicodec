@@ -3,10 +3,10 @@ package com.apicatalog.multicodec.codec;
 import java.util.TreeMap;
 import java.util.Map;
 
-import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multicodec.Multicodec.Tag;
+import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Wed Oct 02 16:23:27 CEST 2024 */
+/** Multicodec Registry - generated: Wed Oct 02 16:27:05 CEST 2024 */
 public class TransportCodec {
 
     /** Transport: transport-bitswap, Bitswap datatransfer, status = draft, code = 0x900 */

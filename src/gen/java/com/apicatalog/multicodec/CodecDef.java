@@ -65,9 +65,7 @@ public class CodecDef {
         }
         writer.print(String.format("0x%x", code));
         if (status != null) {
-            writer.print(", ");
-            writer.print(clazz.getSimpleName());
-            writer.print(".Status.");
+            writer.print(", Multicodec.Status.");
             writer.print(status);
         }
         writer.println(");");

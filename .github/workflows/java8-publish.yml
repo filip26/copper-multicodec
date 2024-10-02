@@ -1,4 +1,4 @@
-name: Publish JRE11 to the Maven Central
+name: Publish JRE8 to the Maven Central
 on:
   release:
     types: [created]
@@ -16,7 +16,7 @@ jobs:
         with:
           java-version: 8
           distribution: 'temurin'
-          server-id: ossrh
+#          server-id: ossrh
 #      - name: Import GPG Key
 #        uses: crazy-max/ghaction-import-gpg@v6
 #        with:

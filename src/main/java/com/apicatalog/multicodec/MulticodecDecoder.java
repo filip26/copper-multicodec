@@ -1,5 +1,6 @@
 package com.apicatalog.multicodec;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
@@ -54,9 +55,7 @@ public class MulticodecDecoder {
      */
     public Optional<Multicodec> getCodec(final byte[] encoded) {
 
-        if (encoded == null) {
-            throw new IllegalArgumentException("The encoded value must not be null.");
-        }
+        Objects.requireNonNull(encoded);
 
         if (encoded.length == 0) {
             throw new IllegalArgumentException("The encoded value be non empty byte array.");

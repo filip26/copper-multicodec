@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CodecTag {
-    
+
     public static void generate(final String tag, final String className, final Class<?> clazz) throws IOException {
 
         try (final Stream<String[]> stream = Files.lines(Paths.get("table.csv"))
@@ -29,7 +29,7 @@ public class CodecTag {
             writer.print(clazz.getCanonicalName());
             writer.println(";");
             if (Multicodec.class.equals(clazz)) {
-                writer.println("import com.apicatalog.multicodec.Multicodec.Tag;");                
+                writer.println("import com.apicatalog.multicodec.Multicodec.Tag;");
             }
             writer.println();
             writer.print("/** Multicodec Registry - generated: ");
@@ -39,7 +39,7 @@ public class CodecTag {
             writer.print(className);
             writer.println(" {");
             writer.println();
-            
+
             Collection<CodecDef> defs = stream
                     .filter(columns -> tag.equals(columns[1].trim()))
                     .map(CodecDef::from)
@@ -51,11 +51,11 @@ public class CodecTag {
                 def.writeCode(writer, clazz);
                 writer.println();
             });
-                        
+
             writer.print("    protected static final Map<Long,");
             writer.print(clazz.getSimpleName());
             writer.println("> ALL = new TreeMap<>();");
-            writer.println();            
+            writer.println();
             writer.println("    static {");
 
             defs.forEach(def -> {
@@ -65,10 +65,10 @@ public class CodecTag {
                 writer.print(def.getJavaName());
                 writer.println(");");
             });
-            
+
             writer.println("    }");
             writer.println();
-            
+
             writer.print("    protected ");
             writer.print(className);
             writer.println("() { /* protected */ }");

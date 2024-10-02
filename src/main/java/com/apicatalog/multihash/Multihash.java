@@ -36,9 +36,7 @@ public class Multihash extends Multicodec {
     @Override
     public byte[] encode(final byte[] value) {
 
-        if (value == null) {
-            throw new IllegalArgumentException("The value to encdode must not be null.");
-        }
+        Objects.requireNonNull(value);
 
         if (value.length == 0) {
             throw new IllegalArgumentException("The value to encode must be non empty byte array.");

@@ -22,9 +22,9 @@ public final class UVarInt {
         }
 
         byte[] uintvar = new byte[length];
-        
+
         writeEncoded(value, uintvar, 0);
-        
+
         return uintvar;
     }
 
@@ -54,7 +54,7 @@ public final class UVarInt {
     public static final long decode(final byte[] uvarint) {
         return decode(uvarint, 0);
     }
-    
+
     public static final long decode(final byte[] uvarint, int index) {
 
         int offset = 0;

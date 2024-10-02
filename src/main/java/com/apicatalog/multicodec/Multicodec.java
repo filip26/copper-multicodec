@@ -35,7 +35,7 @@ public class Multicodec {
         Draft,
         Permanent,
     }
-    
+
     protected final String name;
     protected final byte[] codeVarint;
     protected final long code;
@@ -81,7 +81,7 @@ public class Multicodec {
     public Status status() {
         return status;
     }
-    
+
     /**
      * Encode a value with a codec.
      * 
@@ -92,9 +92,7 @@ public class Multicodec {
      */
     public byte[] encode(final byte[] value) {
 
-        if (value == null) {
-            throw new IllegalArgumentException("The value to encdode must not be null.");
-        }
+        Objects.requireNonNull(value);
 
         if (value.length == 0) {
             throw new IllegalArgumentException("The value to encode must be non empty byte array.");

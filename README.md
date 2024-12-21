@@ -1,5 +1,6 @@
 # Copper Multicodec
-A Java implementation of [Multicodec](https://github.com/multiformats/multicodec) and [Multihash](https://github.com/multiformats/multihash).
+
+Copper Multicodec is a Java library that implements [Multicodec](https://github.com/multiformats/multicodec) and [Multihash](https://github.com/multiformats/multihash), enabling efficient encoding and decoding of data.
 
 [![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=filip26_copper-multicodec&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=filip26_copper-multicodec)
@@ -7,13 +8,14 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Features
- * `static` codec registry
-   * No lookups during encoding – Eliminates runtime searches for codecs
-   * Direct `static` access to codecs
-   * Configurable codec support for decoding – Allows customization of supported codecs
- * Multihash support – Provides compatibility with multihash encoding
- * `Unsigned VarInt` support – Handles unsigned variable-length integers
- * Zero third-party dependencies – Ensures lightweight and self-contained implementation
+
+- **Static Codec Registry:** Predefined codecs for efficient access.
+- **No Lookups During Encoding:** Eliminates runtime searches for codecs.
+- **Direct Static Access to Codecs:** Enables faster and simpler operations.
+- **Custom Codec Support:** Allows customization of supported codecs.
+- **Multihash Support:** Provides compatibility with multihash encoding.
+- **Unsigned VarInt Support:** Handles unsigned variable-length integers.
+- **Zero Third-Party Dependencies:** Ensures a lightweight and self-contained implementation.
 
 ## Examples
 
@@ -103,6 +105,8 @@ byte[] encoded = codec.encode(input);
 
 ### Maven
 
+To include Copper Multicodec in your project, add the following dependency to your `pom.xml`:
+
 ```xml
 <dependency>
     <groupId>com.apicatalog</groupId>
@@ -130,8 +134,7 @@ Fork and clone the project repository.
 > mvn clean package
 ```
 
-
-## Resources
+## Additional Resources
 - [Copper Multibase](https://github.com/filip26/copper-multibase)
 - [Multicodec](https://github.com/multiformats/multicodec)
 - [Multihash](https://github.com/multiformats/multihash)

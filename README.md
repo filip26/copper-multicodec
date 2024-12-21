@@ -10,8 +10,7 @@ Copper Multicodec is a Java library that implements [Multicodec](https://github.
 ## Features
 
 - **Static Codec Registry:** Predefined codecs for efficient access.
-- **No Lookups During Encoding:** Eliminates runtime searches for codecs.
-- **Direct Static Access to Codecs:** Enables faster and simpler operations.
+- **Direct Static Access to Codecs:** Eliminates runtime searches for codecs.
 - **Custom Codec Support:** Allows customization of supported codecs.
 - **Multihash Support:** Provides compatibility with multihash encoding.
 - **Unsigned VarInt Support:** Handles unsigned variable-length integers.

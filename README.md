@@ -7,13 +7,13 @@ A Java implementation of [Multicodec](https://github.com/multiformats/multicodec
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Features
- * `static` codecs registry
-   * no lookups for a codec when encoding
-   * direct `static` access to codecs
-   * configurable set of codecs to support when decoding
- * Multihash support
- * `Unsigned VarInt` support
- * no 3rd party dependencies
+ * `static` codec registry
+   * No lookups during encoding – Eliminates runtime searches for codecs
+   * Direct `static` access to codecs
+   * Configurable codec support for decoding – Allows customization of supported codecs
+ * Multihash support – Provides compatibility with multihash encoding
+ * `Unsigned VarInt` support – Handles unsigned variable-length integers
+ * Zero third-party dependencies – Ensures lightweight and self-contained implementation
 
 ## Examples
 

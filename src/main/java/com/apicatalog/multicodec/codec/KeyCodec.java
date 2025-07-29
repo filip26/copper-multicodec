@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Wed Oct 02 16:27:05 CEST 2024 */
+/** Multicodec Registry - generated: Tue Jul 29 16:54:27 CEST 2025 */
 public class KeyCodec {
 
     /** Key: aes-128, 128-bit AES symmetric key, status = draft, code = 0xa0 */
@@ -93,6 +93,15 @@ public class KeyCodec {
     /** Key: lamport-sha3-512-pub, Lamport public key based on SHA3-512, status = draft, code = 0x1a14 */
     public static final Multicodec LAMPORT_SHA3_512_PUBLIC_KEY = Multicodec.of("lamport-sha3-512-pub", Tag.Key, 0x1a14, Multicodec.Status.Draft);
 
+    /** Key: mlkem-1024-pub, ML-KEM 1024 public key; as specified by FIPS 203, status = draft, code = 0x120d */
+    public static final Multicodec MLKEM_1024_PUBLIC_KEY = Multicodec.of("mlkem-1024-pub", Tag.Key, 0x120d, Multicodec.Status.Draft);
+
+    /** Key: mlkem-512-pub, ML-KEM 512 public key; as specified by FIPS 203, status = draft, code = 0x120b */
+    public static final Multicodec MLKEM_512_PUBLIC_KEY = Multicodec.of("mlkem-512-pub", Tag.Key, 0x120b, Multicodec.Status.Draft);
+
+    /** Key: mlkem-768-pub, ML-KEM 768 public key; as specified by FIPS 203, status = draft, code = 0x120c */
+    public static final Multicodec MLKEM_768_PUBLIC_KEY = Multicodec.of("mlkem-768-pub", Tag.Key, 0x120c, Multicodec.Status.Draft);
+
     /** Key: p256-priv, P-256 private key, status = draft, code = 0x1306 */
     public static final Multicodec P256_PRIVATE_KEY = Multicodec.of("p256-priv", Tag.Key, 0x1306, Multicodec.Status.Draft);
 
@@ -122,6 +131,9 @@ public class KeyCodec {
 
     /** Key: secp256k1-pub, Secp256k1 public key (compressed), status = draft, code = 0xe7 */
     public static final Multicodec SECP256K1_PUBLIC_KEY = Multicodec.of("secp256k1-pub", Tag.Key, 0xe7, Multicodec.Status.Draft);
+
+    /** Key: sm2-priv, SM2 private key, status = draft, code = 0x1310 */
+    public static final Multicodec SM2_PRIVATE_KEY = Multicodec.of("sm2-priv", Tag.Key, 0x1310, Multicodec.Status.Draft);
 
     /** Key: sm2-pub, SM2 public key (compressed), status = draft, code = 0x1206 */
     public static final Multicodec SM2_PUBLIC_KEY = Multicodec.of("sm2-pub", Tag.Key, 0x1206, Multicodec.Status.Draft);
@@ -172,6 +184,9 @@ public class KeyCodec {
       ALL.put(LAMPORT_SHA3_512_PRIVATE_KEY.code(), LAMPORT_SHA3_512_PRIVATE_KEY);
       ALL.put(LAMPORT_SHA3_512_PRIVATE_SHARE_KEY.code(), LAMPORT_SHA3_512_PRIVATE_SHARE_KEY);
       ALL.put(LAMPORT_SHA3_512_PUBLIC_KEY.code(), LAMPORT_SHA3_512_PUBLIC_KEY);
+      ALL.put(MLKEM_1024_PUBLIC_KEY.code(), MLKEM_1024_PUBLIC_KEY);
+      ALL.put(MLKEM_512_PUBLIC_KEY.code(), MLKEM_512_PUBLIC_KEY);
+      ALL.put(MLKEM_768_PUBLIC_KEY.code(), MLKEM_768_PUBLIC_KEY);
       ALL.put(P256_PRIVATE_KEY.code(), P256_PRIVATE_KEY);
       ALL.put(P256_PUBLIC_KEY.code(), P256_PUBLIC_KEY);
       ALL.put(P384_PRIVATE_KEY.code(), P384_PRIVATE_KEY);
@@ -182,6 +197,7 @@ public class KeyCodec {
       ALL.put(RSA_PUBLIC_KEY.code(), RSA_PUBLIC_KEY);
       ALL.put(SECP256K1_PRIVATE_KEY.code(), SECP256K1_PRIVATE_KEY);
       ALL.put(SECP256K1_PUBLIC_KEY.code(), SECP256K1_PUBLIC_KEY);
+      ALL.put(SM2_PRIVATE_KEY.code(), SM2_PRIVATE_KEY);
       ALL.put(SM2_PUBLIC_KEY.code(), SM2_PUBLIC_KEY);
       ALL.put(SR25519_PRIVATE_KEY.code(), SR25519_PRIVATE_KEY);
       ALL.put(SR25519_PUBLIC_KEY.code(), SR25519_PUBLIC_KEY);

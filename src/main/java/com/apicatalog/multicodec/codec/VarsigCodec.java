@@ -6,14 +6,14 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Wed Oct 02 16:27:05 CEST 2024 */
+/** Multicodec Registry - generated: Tue Jul 29 16:54:27 CEST 2025 */
 public class VarsigCodec {
 
-    /** Varsig: bls-12381-g1-sig, G1 signature for BLS-12381-G2, status = draft, code = 0xd0ea */
-    public static final Multicodec BLS_12381_G1_SIG = Multicodec.of("bls-12381-g1-sig", Tag.Varsig, 0xd0ea, Multicodec.Status.Draft);
+    /** Varsig: bls12_381-g1-sig, G1 signature for BLS12-381, status = draft, code = 0xd0ea */
+    public static final Multicodec BLS12_381_G1_SIG = Multicodec.of("bls12_381-g1-sig", Tag.Varsig, 0xd0ea, Multicodec.Status.Draft);
 
-    /** Varsig: bls-12381-g2-sig, G2 signature for BLS-12381-G1, status = draft, code = 0xd0eb */
-    public static final Multicodec BLS_12381_G2_SIG = Multicodec.of("bls-12381-g2-sig", Tag.Varsig, 0xd0eb, Multicodec.Status.Draft);
+    /** Varsig: bls12_381-g2-sig, G2 signature for BLS12-381, status = draft, code = 0xd0eb */
+    public static final Multicodec BLS12_381_G2_SIG = Multicodec.of("bls12_381-g2-sig", Tag.Varsig, 0xd0eb, Multicodec.Status.Draft);
 
     /** Varsig: eddsa, Edwards-Curve Digital Signature Algorithm, status = draft, code = 0xd0ed */
     public static final Multicodec EDDSA = Multicodec.of("eddsa", Tag.Varsig, 0xd0ed, Multicodec.Status.Draft);
@@ -24,11 +24,11 @@ public class VarsigCodec {
     /** Varsig: es256, ES256 Signature Algorithm, status = draft, code = 0xd01200 */
     public static final Multicodec ES256 = Multicodec.of("es256", Tag.Varsig, 0xd01200, Multicodec.Status.Draft);
 
-    /** Varsig: es256k, ES256K Siganture Algorithm (secp256k1), status = draft, code = 0xd0e7 */
+    /** Varsig: es256k, ES256K Signature Algorithm (secp256k1), status = draft, code = 0xd0e7 */
     public static final Multicodec ES256K = Multicodec.of("es256k", Tag.Varsig, 0xd0e7, Multicodec.Status.Draft);
 
-    /** Varsig: es284, ES384 Signature Algorithm, status = draft, code = 0xd01201 */
-    public static final Multicodec ES284 = Multicodec.of("es284", Tag.Varsig, 0xd01201, Multicodec.Status.Draft);
+    /** Varsig: es384, ES384 Signature Algorithm, status = draft, code = 0xd01201 */
+    public static final Multicodec ES384 = Multicodec.of("es384", Tag.Varsig, 0xd01201, Multicodec.Status.Draft);
 
     /** Varsig: es512, ES512 Signature Algorithm, status = draft, code = 0xd01202 */
     public static final Multicodec ES512 = Multicodec.of("es512", Tag.Varsig, 0xd01202, Multicodec.Status.Draft);
@@ -42,13 +42,13 @@ public class VarsigCodec {
     protected static final Map<Long,Multicodec> ALL = new TreeMap<>();
 
     static {
-      ALL.put(BLS_12381_G1_SIG.code(), BLS_12381_G1_SIG);
-      ALL.put(BLS_12381_G2_SIG.code(), BLS_12381_G2_SIG);
+      ALL.put(BLS12_381_G1_SIG.code(), BLS12_381_G1_SIG);
+      ALL.put(BLS12_381_G2_SIG.code(), BLS12_381_G2_SIG);
       ALL.put(EDDSA.code(), EDDSA);
       ALL.put(EIP_191.code(), EIP_191);
       ALL.put(ES256.code(), ES256);
       ALL.put(ES256K.code(), ES256K);
-      ALL.put(ES284.code(), ES284);
+      ALL.put(ES384.code(), ES384);
       ALL.put(ES512.code(), ES512);
       ALL.put(NONSTANDARD_SIG.code(), NONSTANDARD_SIG);
       ALL.put(RS256.code(), RS256);

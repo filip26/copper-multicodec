@@ -110,7 +110,7 @@ To include Copper Multicodec in your project, add the following dependency to yo
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>1.1.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -138,4 +138,3 @@ Fork and clone the project repository.
 - [Multicodec](https://github.com/multiformats/multicodec)
 - [Multihash](https://github.com/multiformats/multihash)
 - [unsigned-varint](https://github.com/multiformats/unsigned-varint)
-

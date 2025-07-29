@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Wed Oct 02 16:27:05 CEST 2024 */
+/** Multicodec Registry - generated: Tue Jul 29 16:54:27 CEST 2025 */
 public class SerializationCodec {
 
     /** Serialization: bencode, bencode, status = draft, code = 0x63 */

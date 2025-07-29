@@ -6,11 +6,14 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multihash.Multihash;
 
-/** Multicodec Registry - generated: Wed Oct 02 16:27:05 CEST 2024 */
+/** Multicodec Registry - generated: Tue Jul 29 16:54:27 CEST 2025 */
 public class MultihashCodec {
 
     /** Multihash: bcrypt-pbkdf, Bcrypt-PBKDF key derivation function, status = draft, code = 0xd00d */
     public static final Multihash BCRYPT_PBKDF = Multihash.of("bcrypt-pbkdf", 0xd00d, Multicodec.Status.Draft);
+
+    /** Multihash: bittorrent-pieces-root, BitTorrent v2 pieces root hash., status = draft, code = 0xb702 */
+    public static final Multihash BITTORRENT_PIECES_ROOT = Multihash.of("bittorrent-pieces-root", 0xb702, Multicodec.Status.Draft);
 
     /** Multihash: blake2b-104, status = draft, code = 0xb20d */
     public static final Multihash BLAKE2B_104 = Multihash.of("blake2b-104", 0xb20d, Multicodec.Status.Draft);
@@ -305,6 +308,12 @@ public class MultihashCodec {
 
     /** Multihash: dbl-sha2-256, status = draft, code = 0x56 */
     public static final Multihash DBL_SHA2_256 = Multihash.of("dbl-sha2-256", 0x56, Multicodec.Status.Draft);
+
+    /** Multihash: ed2k, eDonkey2000 hash., status = draft, code = 0xed20 */
+    public static final Multihash ED2K = Multihash.of("ed2k", 0xed20, Multicodec.Status.Draft);
+
+    /** Multihash: fr32-sha256-trunc254-padbintree, A balanced binary tree hash used in Filecoin Piece Commitments as described in FRC-0069, status = draft, code = 0x1011 */
+    public static final Multihash FR32_SHA256_TRUNC254_PADBINTREE = Multihash.of("fr32-sha256-trunc254-padbintree", 0x1011, Multicodec.Status.Draft);
 
     /** Multihash: identity, raw binary, status = permanent, code = 0x0 */
     public static final Multihash IDENTITY = Multihash.of("identity", 0x0, Multicodec.Status.Permanent);
@@ -1078,6 +1087,7 @@ public class MultihashCodec {
 
     static {
       ALL.put(BCRYPT_PBKDF.code(), BCRYPT_PBKDF);
+      ALL.put(BITTORRENT_PIECES_ROOT.code(), BITTORRENT_PIECES_ROOT);
       ALL.put(BLAKE2B_104.code(), BLAKE2B_104);
       ALL.put(BLAKE2B_112.code(), BLAKE2B_112);
       ALL.put(BLAKE2B_120.code(), BLAKE2B_120);
@@ -1176,6 +1186,8 @@ public class MultihashCodec {
       ALL.put(BLAKE2S_96.code(), BLAKE2S_96);
       ALL.put(BLAKE3.code(), BLAKE3);
       ALL.put(DBL_SHA2_256.code(), DBL_SHA2_256);
+      ALL.put(ED2K.code(), ED2K);
+      ALL.put(FR32_SHA256_TRUNC254_PADBINTREE.code(), FR32_SHA256_TRUNC254_PADBINTREE);
       ALL.put(IDENTITY.code(), IDENTITY);
       ALL.put(KANGAROOTWELVE.code(), KANGAROOTWELVE);
       ALL.put(KECCAK_224.code(), KECCAK_224);

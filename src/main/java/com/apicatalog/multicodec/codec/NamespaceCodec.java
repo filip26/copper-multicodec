@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Wed Oct 02 16:27:05 CEST 2024 */
+/** Multicodec Registry - generated: Tue Jul 29 16:54:27 CEST 2025 */
 public class NamespaceCodec {
 
     /** Namespace: arweave-ns, Arweave Namespace, status = draft, code = 0xb29910 */
@@ -36,7 +36,7 @@ public class NamespaceCodec {
     /** Namespace: skynet-ns, Skynet Namespace, status = draft, code = 0xb19910 */
     public static final Multicodec SKYNET_NS = Multicodec.of("skynet-ns", Tag.Namespace, 0xb19910, Multicodec.Status.Draft);
 
-    /** Namespace: streamid, Ceramic Stream Id, status = draft, code = 0xce */
+    /** Namespace: streamid, Ceramic Stream ID, status = draft, code = 0xce */
     public static final Multicodec STREAMID = Multicodec.of("streamid", Tag.Namespace, 0xce, Multicodec.Status.Draft);
 
     /** Namespace: subspace-ns, Subspace Network Namespace, status = draft, code = 0xb39910 */

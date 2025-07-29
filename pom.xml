@@ -178,10 +178,17 @@
           <version>0.8.0</version>
           <extensions>true</extensions>
           <configuration>
-<!--             <publishingServerId>central</publishingServerId> -->
-             <autoPublish>true</autoPublish>
-             <tokenId>${env.CENTRAL_TOKEN_ID}</tokenId>
+                  <publishingServerId>central</publishingServerId>
+       <tokenAuth>true</tokenAuth>
+<!--             <publishingServerId>central</publishingServerId> 
+                 <token>
+      <id>${env.CENTRAL_TOKEN_ID}</id>
+      <value>${env.CENTRAL_TOKEN_VALUE}</value>
+    </token>
+              -->
+<!--             <tokenId>${env.CENTRAL_TOKEN_ID}</tokenId>
             <tokenSecret>${env.CENTRAL_TOKEN_SECRET}</tokenSecret>              
+              -->
           </configuration>
         </plugin>                    
             </plugins>

@@ -178,7 +178,7 @@
           <version>0.8.0</version>
           <extensions>true</extensions>
           <configuration>
-             <publishingServerId>central</publishingServerId>
+<!--             <publishingServerId>central</publishingServerId> -->
              <autoPublish>true</autoPublish>
              <tokenId>${env.CENTRAL_TOKEN_ID}</tokenId>
             <tokenSecret>${env.CENTRAL_TOKEN_SECRET}</tokenSecret>              

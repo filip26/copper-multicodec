@@ -1,7 +1,7 @@
 package com.apicatalog.multicodec.codec;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -30,7 +30,7 @@ public final class MulticodecRegistry {
     /**
      * Mapping from codec tag to the codecs within that category.
      */
-    private static final Map<Tag, Map<Long, ? extends Multicodec>> TAGS;
+    private static final Map<Tag, Map<Long, Multicodec>> TAGS;
 
     /**
      * Mapping from codec numeric code to its {@link Multicodec} definition across
@@ -44,7 +44,7 @@ public final class MulticodecRegistry {
     private static final MulticodecRegistry INSTANCE;
 
     static {
-        TAGS = new HashMap<>();
+        TAGS = new EnumMap<>(Tag.class);
         TAGS.put(Tag.Cid, CidCodec.ALL);
         TAGS.put(Tag.Hash, HashCodec.ALL);
         TAGS.put(Tag.Key, KeyCodec.ALL);
@@ -64,14 +64,14 @@ public final class MulticodecRegistry {
         INSTANCE = new MulticodecRegistry(CODECS);
     }
 
-    private final Map<Long, ? extends Multicodec> codecs;
+    private final Map<Long, Multicodec> codecs;
 
     /**
      * Creates a new registry instance backed by the provided codec mapping.
      *
      * @param codecs a map of numeric codes to codec definitions
      */
-    protected MulticodecRegistry(final Map<Long, ? extends Multicodec> codecs) {
+    protected MulticodecRegistry(final Map<Long, Multicodec> codecs) {
         this.codecs = codecs;
     }
 
@@ -110,7 +110,7 @@ public final class MulticodecRegistry {
      *
      * @return map of numeric code to codec definition
      */
-    public static final Map<Long, ? extends Multicodec> provided() {
+    public static final Map<Long, Multicodec> provided() {
         return CODECS;
     }
 
@@ -120,7 +120,7 @@ public final class MulticodecRegistry {
      * @param tags one or more codec tags to filter by
      * @return map of numeric code to codec definition for matching tags
      */
-    public static final Map<Long, ? extends Multicodec> provided(final Tag... tags) {
+    public static final Map<Long, Multicodec> provided(final Tag... tags) {
         if (tags == null || tags.length == 0) {
             throw new IllegalArgumentException("At least one tag must be provided.");
         }
@@ -149,7 +149,7 @@ public final class MulticodecRegistry {
      *
      * @return map of numeric code to codec definition
      */
-    public Map<Long, ? extends Multicodec> codecs() {
+    public Map<Long, Multicodec> codecs() {
         return codecs;
     }
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Tue Jul 29 16:54:27 CEST 2025 */
+/** Multicodec Registry - generated: Sat Aug 09 14:53:59 CEST 2025 */
 public class HashCodec {
 
     /** Hash: crc32, CRC-32 non-cryptographic hash algorithm (IEEE 802.3), status = draft, code = 0x132 */

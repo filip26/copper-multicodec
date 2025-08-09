@@ -81,6 +81,6 @@ public class Multihash extends Multicodec {
 
     @Override
     public String toString() {
-        return "Multihash [name=" + name + ", code=" + code + "]";
+        return "Multihash [name=" + name + ", tag=" + tag + ", code=" + code + "]";
     }
 }

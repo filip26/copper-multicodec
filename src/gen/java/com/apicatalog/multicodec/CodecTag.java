@@ -54,8 +54,8 @@ public class CodecTag {
                 writer.println();
             });
 
-            writer.print("    protected static final Map<Long,");
-            writer.print(clazz.getSimpleName());
+            writer.print("    protected static final Map<Long,Multicodec");
+//            writer.print(clazz.getSimpleName());
             writer.println("> ALL = new TreeMap<>();");
             writer.println();
             writer.println("    static {");

@@ -113,7 +113,7 @@ public class Multicodec {
         Objects.requireNonNull(value);
 
         if (value.length == 0) {
-            throw new IllegalArgumentException("The value to encode must be non empty byte array.");
+            throw new IllegalArgumentException("The value to encode must be a non-empty byte array.");
         }
 
         final byte[] encoded = new byte[codeVarint.length + value.length];
@@ -166,11 +166,14 @@ public class Multicodec {
         Objects.requireNonNull(encoded);
 
         if ((encoded.length - index) < (codeVarint.length + 1)) {
-            throw new IllegalArgumentException("The value to decode must be non empty byte array, min length = " + (codeVarint.length + 1) + ", actual = " + encoded.length + ".");
+            throw new IllegalArgumentException(
+                    "The value to decode must be a non-empty byte array with a minimum length of "
+                            + (codeVarint.length + 1) + " bytes, but the actual length is " + encoded.length + " bytes.");
         }
 
         if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {
-            throw new IllegalArgumentException("The value to decode is not encoded with " + toString() + ".");
+            throw new IllegalArgumentException(
+                    "The provided value is not encoded with this codec: " + toString() + ".");
         }
 
         return Arrays.copyOfRange(encoded, index + codeVarint.length, encoded.length - index);

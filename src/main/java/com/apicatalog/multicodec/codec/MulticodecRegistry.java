@@ -121,6 +121,9 @@ public final class MulticodecRegistry {
      * @return map of numeric code to codec definition for matching tags
      */
     public static final Map<Long, ? extends Multicodec> provided(final Tag... tags) {
+        if (tags == null || tags.length == 0) {
+            throw new IllegalArgumentException("At least one tag must be provided.");
+        }
         if (tags.length == 1) {
             return TAGS.get(tags[0]);
         }

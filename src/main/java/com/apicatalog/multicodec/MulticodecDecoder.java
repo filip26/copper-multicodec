@@ -83,7 +83,7 @@ public class MulticodecDecoder {
         Objects.requireNonNull(encoded);
 
         if (encoded.length == 0) {
-            throw new IllegalArgumentException("The encoded value be non empty byte array.");
+            throw new IllegalArgumentException("The encoded value must be a non-empty byte array.");
         }
 
         final long code = UVarInt.decode(encoded);
@@ -103,7 +103,8 @@ public class MulticodecDecoder {
     public byte[] decode(final byte[] encoded) throws IllegalArgumentException {
         return getCodec(encoded)
                 .map(codec -> codec.decode(encoded))
-                .orElseThrow(() -> new IllegalArgumentException("Unsupported multicode encoding [" + String.format("0x%hh, 0x%hh, ...", encoded[0], encoded[1]) + "]."));
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Unsupported multicodec encoding [" + String.format("0x%hh, 0x%hh, ...", encoded[0], encoded[1]) + "]."));
     }
 
     /**

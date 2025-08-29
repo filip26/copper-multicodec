@@ -27,6 +27,31 @@ class MultihashTest {
 
     @ParameterizedTest(name = "{index}")
     @MethodSource("testData")
+    void testEncodeFromIndex(byte[] expected, Multihash codec, byte[] input) {
+
+        int index = 1 + (int) (Math.random() * 10);
+
+        byte[] array = new byte[input.length + index];
+
+        System.arraycopy(input, 0, array, index, input.length);
+        assertArrayEquals(expected, codec.encode(array, index));
+    }
+
+    @ParameterizedTest(name = "{index}")
+    @MethodSource("testData")
+    void testEncodeFromRange(byte[] expected, Multihash codec, byte[] input) {
+        int extra = 2 + (int) (Math.random() * 20);
+
+        byte[] array = new byte[input.length + extra];
+
+        int index = 1 + Math.round(extra / 2);
+
+        System.arraycopy(input, 0, array, index, input.length);
+        assertArrayEquals(expected, codec.encode(array, index, input.length));
+    }
+
+    @ParameterizedTest(name = "{index}")
+    @MethodSource("testData")
     void testDecode(byte[] input, Multihash codec, byte[] expected) {
         assertArrayEquals(expected, codec.decode(input));
     }
@@ -50,13 +75,13 @@ class MultihashTest {
         int extra = 2 + (int) (Math.random() * 20);
 
         byte[] array = new byte[input.length + extra];
-        
+
         int index = 1 + Math.round(extra / 2);
-        
+
         System.arraycopy(input, 0, array, index, input.length);
         assertArrayEquals(expected, codec.decode(array, index, input.length));
     }
-    
+
     @ParameterizedTest(name = "{index}")
     @MethodSource("testData")
     void testDecoderDecode(byte[] input) {

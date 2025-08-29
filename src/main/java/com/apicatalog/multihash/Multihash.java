@@ -77,20 +77,67 @@ public class Multihash extends Multicodec {
      */
     @Override
     public byte[] encode(final byte[] value) {
+        return encode(value, 0, value.length);
+    }
+
+    /**
+     * Encodes a value as a multihash starting at the given index.
+     *
+     * <p>
+     * The resulting byte array consists of this multihash's code, the digest
+     * length, and the selected slice of the digest.
+     * </p>
+     *
+     * @param value the hash digest to encode
+     * @param index the starting index (inclusive)
+     * @return the encoded multihash
+     * @throws NullPointerException     if {@code value} is {@code null}
+     * @throws IllegalArgumentException if {@code index} is out of range
+     */
+    @Override
+    public byte[] encode(final byte[] value, final int index) {
+        return encode(value, index, value.length - index);
+    }
+
+    /**
+     * Encodes a subrange of a value as a multihash.
+     *
+     * <p>
+     * The resulting byte array consists of this multihash's code, the digest
+     * length, and exactly {@code length} bytes of the digest starting at
+     * {@code index}.
+     * </p>
+     *
+     * @param value  the hash digest to encode
+     * @param index  the starting index (inclusive)
+     * @param length the number of digest bytes to include
+     * @return the encoded multihash
+     * @throws NullPointerException     if {@code value} is {@code null}
+     * @throws IllegalArgumentException if {@code index} is out of range or if
+     *                                  {@code length} exceeds the available bytes
+     */
+    @Override
+    public byte[] encode(final byte[] value, final int index, final int length) {
 
         Objects.requireNonNull(value);
 
-        if (value.length == 0) {
-            throw new IllegalArgumentException("The value to encode must be a non-empty byte array.");
+        if (index >= value.length) {
+            throw new IllegalArgumentException(
+                    "Index " + index + " is out of range for array length " + value.length + ".");
         }
 
-        final byte[] sizeVarint = UVarInt.encode(value.length);
+        if (length > (value.length - index)) {
+            throw new IllegalArgumentException(
+                    "Requested length (" + length + ") exceeds available bytes (" + (value.length - index) + ").");
+        }
 
-        final byte[] encoded = new byte[codeVarint.length + sizeVarint.length + value.length];
+        final byte[] sizeVarint = UVarInt.encode(length);
+
+        final byte[] encoded = new byte[codeVarint.length + sizeVarint.length + length];
 
         System.arraycopy(codeVarint, 0, encoded, 0, codeVarint.length);
         System.arraycopy(sizeVarint, 0, encoded, codeVarint.length, sizeVarint.length);
-        System.arraycopy(value, 0, encoded, codeVarint.length + sizeVarint.length, value.length);
+        System.arraycopy(value, index, encoded, codeVarint.length + sizeVarint.length, length);
 
         return encoded;
     }

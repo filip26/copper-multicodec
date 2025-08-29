@@ -145,6 +145,23 @@ public final class MulticodecRegistry {
     }
 
     /**
+     * Finds a registered {@link Multicodec} by its name.
+     * <p>
+     * This method searches through all registered codecs and returns the first
+     * match whose {@link Multicodec#name()} equals the given name.
+     * </p>
+     *
+     * @param name the name of the codec to look up (must not be {@code null})
+     * @return an {@link Optional} containing the matching {@link Multicodec}, or an
+     *         empty {@link Optional} if no codec with the given name is found
+     */
+    public final Optional<Multicodec> findCodec(final String name) {
+        return codecs.values().stream()
+                .filter(codec -> codec.name().equals(name))
+                .findFirst();
+    }
+
+    /**
      * Returns the map of codecs contained in this registry instance.
      *
      * @return map of numeric code to codec definition

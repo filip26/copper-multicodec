@@ -1,6 +1,17 @@
 # Copper Multicodec
 
-Copper Multicodec is a Java library that implements [Multicodec](https://github.com/multiformats/multicodec) and [Multihash](https://github.com/multiformats/multihash), enabling efficient encoding and decoding of data.
+Copper Multicodec is a Java library implementing 
+[Multicodec](https://github.com/multiformats/multicodec) and 
+[Multihash](https://github.com/multiformats/multihash), enabling efficient
+encoding and decoding of self-describing data formats.
+
+A multicodec is a **self-describing** format: encoded data always begins
+with a varint code that unambiguously identifies its format and intended
+purpose.  
+
+This design eliminates guesswork, ensures interoperability between systems,
+and makes it possible to introduce new formats without breaking existing
+implementations.
 
 [![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=filip26_copper-multicodec&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=filip26_copper-multicodec)

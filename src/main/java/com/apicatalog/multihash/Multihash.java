@@ -114,7 +114,7 @@ public class Multihash extends Multicodec {
      */
     @Override
     public byte[] decode(final byte[] encoded) {
-        return decode(encoded, 0);
+        return decode(encoded, 0, encoded.length);
     }
 
     /**

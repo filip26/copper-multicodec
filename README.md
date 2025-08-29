@@ -4,6 +4,7 @@ Copper Multicodec is a Java library that implements [Multicodec](https://github.
 
 [![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=filip26_copper-multicodec&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=filip26_copper-multicodec)
+[![javadoc](https://javadoc.io/badge2/com.apicatalog/copper-multicodec/javadoc.svg)](https://javadoc.io/doc/com.apicatalog/copper-multicodec)
 [![Maven Central](https://img.shields.io/maven-central/v/com.apicatalog/copper-multicodec.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:com.apicatalog%20AND%20a:copper-multicodec)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -15,6 +16,8 @@ Copper Multicodec is a Java library that implements [Multicodec](https://github.
 - **Multihash Support:** Provides compatibility with multihash encoding.
 - **Unsigned VarInt Support:** Handles unsigned variable-length integers.
 - **Zero Third-Party Dependencies:** Ensures a lightweight and self-contained implementation.
+
+[Supported Codecs](https://github.com/filip26/copper-multicodec/tree/main/src/main/java/com/apicatalog/multicodec/codec)
 
 ## Examples
 
@@ -110,14 +113,9 @@ To include Copper Multicodec in your project, add the following dependency to yo
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>2.1.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
-
-## Documentation
-
-* [![javadoc](https://javadoc.io/badge2/com.apicatalog/copper-multicodec/javadoc.svg)](https://javadoc.io/doc/com.apicatalog/copper-multicodec)
-* [Supported Codecs](https://github.com/filip26/copper-multicodec/tree/main/src/main/java/com/apicatalog/multicodec/codec)
 
 ## Contributing
 

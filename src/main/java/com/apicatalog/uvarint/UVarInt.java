@@ -1,5 +1,7 @@
 package com.apicatalog.uvarint;
 
+import java.util.Objects;
+
 /**
  * Utility class for encoding and decoding
  * <a href="https://en.wikipedia.org/wiki/LEB128">unsigned variable-length
@@ -70,17 +72,38 @@ public final class UVarInt {
     }
 
     /**
-     * Writes the UVarInt encoding of the given value into the target array starting
-     * at the given index.
+     * Writes the UVarInt-encoded form of the given non-negative value into the
+     * target array starting at the specified index.
      *
-     * @param value   the value to encode
-     * @param uvarint the target byte array
-     * @param index   the starting index
-     * @throws IllegalArgumentException if {@code value} cannot be encoded within
-     *                                  {@link #MAX_VAR_LENGTH} bytes
-     * @throws NullPointerException     if {@code uvarint} is {@code null}
+     * <p>
+     * The encoding uses seven data bits per byte. The most significant bit (MSB) of
+     * each byte is set if more bytes follow. The method returns the number of bytes
+     * written.
+     * </p>
+     *
+     * @param value   the value to encode (must be {@code >= 0})
+     * @param uvarint the destination byte array
+     * @param index   the starting index in {@code uvarint}
+     * @return the number of bytes written
+     *
+     * @throws NullPointerException      if {@code uvarint} is {@code null}
+     * @throws IllegalArgumentException  if {@code value} is negative
+     * @throws IndexOutOfBoundsException if {@code index} is negative, or if the
+     *                                   destination array does not have enough
+     *                                   space to hold the encoding
      */
-    public static final void write(final long value, final byte[] uvarint, final int index) {
+    public static final int write(final long value, final byte[] uvarint, final int index) {
+
+        Objects.requireNonNull(uvarint, "Target array must not be null.");
+
+        if (value < 0) {
+            throw new IllegalArgumentException("Value must be non-negative.");
+        }
+
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Index must be non-negative: " + index + ".");
+        }
+
         int offset = 0;
         long bytes = value;
         boolean next = false;
@@ -90,12 +113,20 @@ public final class UVarInt {
                 uvarint[offset + index - 1] |= CONTINUE_BIT;
             }
 
+            if ((index + offset) >= uvarint.length) {
+                throw new IndexOutOfBoundsException(
+                        "Insufficient space at position " + (index + offset) +
+                                " (array length: " + uvarint.length + ").");
+            }
+
             uvarint[offset + index] = (byte) (bytes & SEGMENT_BITS);
 
             bytes >>>= 7;
             next = bytes != 0;
             offset++;
         } while (next);
+
+        return offset;
     }
 
     /**

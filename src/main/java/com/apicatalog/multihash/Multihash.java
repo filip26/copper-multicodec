@@ -242,6 +242,68 @@ public class Multihash extends Multicodec {
                 length + index);
     }
 
+    /**
+     * Returns the digest length (in bytes) declared by the given multihash-encoded
+     * value, starting at offset {@code 0}.
+     *
+     * <p>
+     * This is a convenience method equivalent to {@link #digestLength(byte[], int)
+     * hashLength(encoded, 0)}.
+     * </p>
+     *
+     * @param encoded the multihash-encoded byte array
+     * @return the declared digest length, in bytes
+     *
+     * @throws NullPointerException     if {@code encoded} is {@code null}
+     * @throws IllegalArgumentException if the input is shorter than
+     *                                  {@code codeVarint.length + 2} bytes, or if
+     *                                  the bytes at offset {@code 0} do not start
+     *                                  with this multihash's code
+     */
+    public long digestLength(byte[] encoded) {
+        return digestLength(encoded, 0);
+    }
+
+    /**
+     * Returns the digest length (in bytes) declared by the given multihash-encoded
+     * value.
+     *
+     * <p>
+     * The method validates that the input begins at {@code index} with this
+     * multihash's varint code, then decodes the varint length that immediately
+     * follows the code.
+     * </p>
+     *
+     * @param encoded the multihash-encoded byte array
+     * @param index   the starting offset within {@code encoded} at which the
+     *                multihash begins
+     * @return the declared digest length, in bytes
+     *
+     * @throws NullPointerException      if {@code encoded} is {@code null}
+     * @throws IllegalArgumentException  if the input is shorter than
+     *                                   {@code codeVarint.length + 2} bytes, or if
+     *                                   the bytes at {@code index} do not start
+     *                                   with this multihash's code
+     * @throws IndexOutOfBoundsException if {@code index} is negative or exceeds the
+     *                                   available range
+     */
+    public long digestLength(byte[] encoded, int index) {
+        Objects.requireNonNull(encoded);
+
+        if (encoded.length < (codeVarint.length + 2)) {
+            throw new IllegalArgumentException(
+                    "The value to decode must be a non-empty byte array with a minimum length of "
+                            + (codeVarint.length + 2) + " bytes, but the actual length is " + encoded.length + " bytes.");
+        }
+
+        if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {
+            throw new IllegalArgumentException(
+                    "The provided value is not encoded with this multihash: " + toString() + ".");
+        }
+
+        return UVarInt.decode(encoded, index + codeVarint.length);
+    }
+
     @Override
     public String toString() {
         return "Multihash [name=" + name + ", tag=" + tag + ", code=" + code + "]";

@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Sat Aug 09 14:53:59 CEST 2025 */
+/** Multicodec Registry - generated: Fri Aug 29 18:18:52 CEST 2025 */
 public class SerializationCodec {
 
     /** Serialization: bencode, bencode, status = draft, code = 0x63 */
@@ -45,6 +45,9 @@ public class SerializationCodec {
     /** Serialization: ssz, SimpleSerialize (SSZ) serialization, status = draft, code = 0xb501 */
     public static final Multicodec SSZ = Multicodec.of("ssz", Tag.Serialization, 0xb501, Multicodec.Status.Draft);
 
+    /** Serialization: x509-certificate, DER-encoded X.509 (PKIX) certificate per RFC 5280; single certificate only (no chain); raw DER bytes (not PEM), status = draft, code = 0x210 */
+    public static final Multicodec X509_CERTIFICATE = Multicodec.of("x509-certificate", Tag.Serialization, 0x210, Multicodec.Status.Draft);
+
     protected static final Map<Long,Multicodec> ALL = new TreeMap<>();
 
     static {
@@ -60,6 +63,7 @@ public class SerializationCodec {
       ALL.put(PROVENANCE_LOG_SCRIPT.code(), PROVENANCE_LOG_SCRIPT);
       ALL.put(RLP.code(), RLP);
       ALL.put(SSZ.code(), SSZ);
+      ALL.put(X509_CERTIFICATE.code(), X509_CERTIFICATE);
     }
 
     protected SerializationCodec() { /* protected */ }

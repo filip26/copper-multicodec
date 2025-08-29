@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multihash.Multihash;
 
-/** Multicodec Registry - generated: Sat Aug 09 14:53:59 CEST 2025 */
+/** Multicodec Registry - generated: Fri Aug 29 18:18:52 CEST 2025 */
 public class MultihashCodec {
 
     /** Multihash: bcrypt-pbkdf, Bcrypt-PBKDF key derivation function, status = draft, code = 0xd00d */

@@ -109,17 +109,62 @@ public class Multicodec {
      * @throws IllegalArgumentException if {@code value} is empty
      */
     public byte[] encode(final byte[] value) {
+        return encode(value, 0, value.length);
+    }
+
+    /**
+     * Encodes a value into this codec starting from the given index.
+     *
+     * <p>
+     * Prepends this codec's varint prefix to the specified slice of the input and
+     * returns the encoded byte array.
+     * </p>
+     *
+     * @param value the input byte array to encode
+     * @param index the starting index (inclusive)
+     * @return the encoded value
+     * @throws NullPointerException     if {@code value} is {@code null}
+     * @throws IllegalArgumentException if {@code index} is out of range or if the
+     *                                  remaining length is invalid
+     */
+    public byte[] encode(final byte[] value, int index) {
+        return encode(value, index, value.length - index);
+    }
+
+    /**
+     * Encodes a value into this codec from a given subrange.
+     *
+     * <p>
+     * Prepends this codec's varint prefix to the specified range of the input and
+     * returns the encoded byte array.
+     * </p>
+     *
+     * @param value  the input byte array to encode
+     * @param index  the starting index (inclusive)
+     * @param length the number of bytes to include from {@code index}
+     * @return the encoded value
+     * @throws NullPointerException     if {@code value} is {@code null}
+     * @throws IllegalArgumentException if {@code index} is out of range or if
+     *                                  {@code length} exceeds the available bytes
+     */
+    public byte[] encode(final byte[] value, int index, int length) {
 
         Objects.requireNonNull(value);
 
-        if (value.length == 0) {
-            throw new IllegalArgumentException("The value to encode must be a non-empty byte array.");
+        if (index >= value.length) {
+            throw new IllegalArgumentException(
+                    "Index " + index + " is out of range for array length " + value.length + ".");
         }
 
-        final byte[] encoded = new byte[codeVarint.length + value.length];
+        if (length > (value.length - index)) {
+            throw new IllegalArgumentException(
+                    "Requested length (" + length + ") exceeds available bytes (" + (value.length - index) + ").");
+        }
+
+        final byte[] encoded = new byte[codeVarint.length + length];
 
         System.arraycopy(codeVarint, 0, encoded, 0, codeVarint.length);
-        System.arraycopy(value, 0, encoded, codeVarint.length, value.length);
+        System.arraycopy(value, index, encoded, codeVarint.length, length);
 
         return encoded;
     }
@@ -147,28 +192,49 @@ public class Multicodec {
      *                                  begin with this codec's varint prefix
      */
     public byte[] decode(final byte[] encoded) {
-        return decode(encoded, 0);
+        return decode(encoded, 0, encoded.length);
     }
 
     /**
      * Decodes an encoded value starting from a given index.
-     * 
-     * @param encoded the encoded value
+     *
+     * @param encoded the encoded byte array
      * @param index   the starting index (inclusive)
-     * @return the decoded (original) byte array
+     * @return the decoded (original) payload
      * @throws NullPointerException     if {@code encoded} is {@code null}
-     * @throws IllegalArgumentException if the value is too short from {@code index}
-     *                                  onward or does not begin with this codec's
-     *                                  varint prefix
+     * @throws IllegalArgumentException if {@code index} or {@code length} are
+     *                                  invalid, if the data is too short, or if it
+     *                                  does not start with this codec's prefix
      */
     public byte[] decode(final byte[] encoded, final int index) {
+        return decode(encoded, index, encoded.length - index);
+    }
+
+    /**
+     * Decodes an encoded value from a subrange of the array.
+     *
+     * @param encoded the encoded byte array
+     * @param index   the starting index (inclusive)
+     * @param length  the number of bytes to read from {@code index}
+     * @return the decoded payload
+     * @throws NullPointerException     if {@code encoded} is {@code null}
+     * @throws IllegalArgumentException if the index/length are invalid, the range
+     *                                  is too short, or the data does not start
+     *                                  with this codec's prefix
+     */
+    public byte[] decode(final byte[] encoded, final int index, final int length) {
 
         Objects.requireNonNull(encoded);
 
-        if ((encoded.length - index) < (codeVarint.length + 1)) {
+        if (length > (encoded.length - index)) {
+            throw new IllegalArgumentException(
+                    "The requested decode length (" + length + ") is greater than the available bytes (" + (encoded.length - index) + ").");
+        }
+
+        if (length < (codeVarint.length + 1)) {
             throw new IllegalArgumentException(
                     "The value to decode must be a non-empty byte array with a minimum length of "
-                            + (codeVarint.length + 1) + " bytes, but the actual length is " + encoded.length + " bytes.");
+                            + (codeVarint.length + 1) + " bytes, but the actual length is " + length + " bytes.");
         }
 
         if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {
@@ -176,7 +242,7 @@ public class Multicodec {
                     "The provided value is not encoded with this codec: " + toString() + ".");
         }
 
-        return Arrays.copyOfRange(encoded, index + codeVarint.length, encoded.length - index);
+        return Arrays.copyOfRange(encoded, index + codeVarint.length, length + index);
     }
 
     @Override

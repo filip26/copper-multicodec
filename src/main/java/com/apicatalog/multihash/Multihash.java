@@ -96,32 +96,82 @@ public class Multihash extends Multicodec {
     }
 
     /**
+     * Decodes a multihash value.
+     *
+     * <p>
+     * Validates that the encoded data begins with this multihash's code, then reads
+     * the declared digest length and verifies it matches the remaining data before
+     * returning the digest bytes.
+     * </p>
+     *
+     * @param encoded the multihash-encoded byte array
+     * @return the decoded digest bytes
+     * @throws NullPointerException     if {@code encoded} is {@code null}
+     * @throws IllegalArgumentException if the data is too short, does not start
+     *                                  with this multihash's code, or if the
+     *                                  declared digest length does not match the
+     *                                  actual data
+     */
+    @Override
+    public byte[] decode(final byte[] encoded) {
+        return decode(encoded, 0);
+    }
+
+    /**
      * Decodes a multihash value starting from the given index.
      *
      * <p>
-     * Validates that the encoded data matches this multihash's code, then reads the
-     * declared digest length and verifies it matches the actual remaining data
-     * length before returning the digest bytes.
+     * Validates that the encoded data begins with this multihash's code, then reads
+     * the declared digest length and verifies it matches the remaining data before
+     * returning the digest bytes.
      * </p>
      *
      * @param encoded the multihash-encoded byte array
      * @param index   the starting index (inclusive)
-     * @return the decoded hash digest bytes
+     * @return the decoded digest bytes
      * @throws NullPointerException     if {@code encoded} is {@code null}
-     * @throws IllegalArgumentException if the encoded data is too short, not
-     *                                  encoded with this multihash's code, or the
+     * @throws IllegalArgumentException if the data is too short, does not start
+     *                                  with this multihash's code, or if the
      *                                  declared digest length does not match the
-     *                                  actual data length
+     *                                  actual data
      */
     @Override
     public byte[] decode(byte[] encoded, int index) {
+        return decode(encoded, index, encoded.length - index);
+    }
+
+    /**
+     * Decodes a multihash value from a subrange of the array.
+     *
+     * <p>
+     * Validates that the encoded data begins with this multihash's code, then reads
+     * the declared digest length and verifies it matches the given range before
+     * returning the digest bytes.
+     * </p>
+     *
+     * @param encoded the multihash-encoded byte array
+     * @param index   the starting index (inclusive)
+     * @param length  the number of bytes to read from {@code index}
+     * @return the decoded digest bytes
+     * @throws NullPointerException     if {@code encoded} is {@code null}
+     * @throws IllegalArgumentException if the range is invalid, too short, does not
+     *                                  start with this multihash's code, or if the
+     *                                  declared digest length does not match
+     */
+    @Override
+    public byte[] decode(byte[] encoded, int index, int length) {
 
         Objects.requireNonNull(encoded);
+
+        if (length > (encoded.length - index)) {
+            throw new IllegalArgumentException(
+                    "The requested decode length (" + length + ") is greater than the available bytes (" + (encoded.length - index) + ").");
+        }
 
         if ((encoded.length - index) < (codeVarint.length + 2)) {
             throw new IllegalArgumentException(
                     "The value to decode must be a non-empty byte array with a minimum length of "
-                            + (codeVarint.length + 2) + " bytes, but the actual length is " + encoded.length + " bytes.");
+                            + (codeVarint.length + 2) + " bytes, but the actual length is " + length + " bytes.");
         }
 
         if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {
@@ -133,14 +183,16 @@ public class Multihash extends Multicodec {
         long size = UVarInt.decode(encoded, index + codeVarint.length);
         int sizeVarintLength = UVarInt.byteLength(size);
 
-        if (size != (encoded.length - index - codeVarint.length - sizeVarintLength)) {
+        if (size != (length - codeVarint.length - sizeVarintLength)) {
             throw new IllegalArgumentException(
                     "Digest size mismatch: declared size is " + size + " bytes, but the actual digest size is " +
-                            (encoded.length - index - codeVarint.length - sizeVarintLength) + " bytes.");
+                            (length - codeVarint.length - sizeVarintLength) + " bytes.");
         }
 
         // Extract digest
-        return Arrays.copyOfRange(encoded, index + codeVarint.length + sizeVarintLength, encoded.length - index);
+        return Arrays.copyOfRange(encoded,
+                index + codeVarint.length + sizeVarintLength,
+                length);
     }
 
     @Override

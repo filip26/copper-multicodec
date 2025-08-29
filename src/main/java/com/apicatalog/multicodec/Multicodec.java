@@ -152,23 +152,44 @@ public class Multicodec {
 
     /**
      * Decodes an encoded value starting from a given index.
-     * 
-     * @param encoded the encoded value
+     *
+     * @param encoded the encoded byte array
      * @param index   the starting index (inclusive)
-     * @return the decoded (original) byte array
+     * @return the decoded (original) payload
      * @throws NullPointerException     if {@code encoded} is {@code null}
-     * @throws IllegalArgumentException if the value is too short from {@code index}
-     *                                  onward or does not begin with this codec's
-     *                                  varint prefix
+     * @throws IllegalArgumentException if {@code index} or {@code length} are
+     *                                  invalid, if the data is too short, or if it
+     *                                  does not start with this codec's prefix
      */
     public byte[] decode(final byte[] encoded, final int index) {
+        return decode(encoded, index, encoded.length - index);
+    }
+
+    /**
+     * Decodes an encoded value from a subrange of the array.
+     *
+     * @param encoded the encoded byte array
+     * @param index   the starting index (inclusive)
+     * @param length  the number of bytes to read from {@code index}
+     * @return the decoded payload
+     * @throws NullPointerException     if {@code encoded} is {@code null}
+     * @throws IllegalArgumentException if the index/length are invalid, the range
+     *                                  is too short, or the data does not start
+     *                                  with this codec's prefix
+     */
+    public byte[] decode(final byte[] encoded, final int index, final int length) {
 
         Objects.requireNonNull(encoded);
 
-        if ((encoded.length - index) < (codeVarint.length + 1)) {
+        if (length > (encoded.length - index)) {
+            throw new IllegalArgumentException(
+                    "The requested decode length (" + length + ") is greater than the available bytes (" + (encoded.length - index) + ").");
+        }
+
+        if (length < (codeVarint.length + 1)) {
             throw new IllegalArgumentException(
                     "The value to decode must be a non-empty byte array with a minimum length of "
-                            + (codeVarint.length + 1) + " bytes, but the actual length is " + encoded.length + " bytes.");
+                            + (codeVarint.length + 1) + " bytes, but the actual length is " + length + " bytes.");
         }
 
         if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {
@@ -176,7 +197,7 @@ public class Multicodec {
                     "The provided value is not encoded with this codec: " + toString() + ".");
         }
 
-        return Arrays.copyOfRange(encoded, index + codeVarint.length, encoded.length - index);
+        return Arrays.copyOfRange(encoded, index + codeVarint.length, length);
     }
 
     @Override

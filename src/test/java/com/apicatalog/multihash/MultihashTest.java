@@ -11,8 +11,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import com.apicatalog.multicodec.MulticodecDecoder;
 import com.apicatalog.multicodec.Multicodec.Tag;
+import com.apicatalog.multicodec.MulticodecDecoder;
 import com.apicatalog.multicodec.codec.MultihashCodec;
 
 class MultihashTest {
@@ -92,6 +92,12 @@ class MultihashTest {
     @MethodSource("testData")
     void testDecoderGet(byte[] input, Multihash expected) {
         assertEquals(expected, DECODER.getCodec(input).orElseThrow(IllegalArgumentException::new));
+    }
+
+    @ParameterizedTest(name = "{index}")
+    @MethodSource("testData")
+    void testDigestLength(byte[] input, Multihash codec, byte[] expected) {
+        assertEquals(expected.length, codec.digestLength(input));
     }
 
     static Stream<Arguments> testData() {

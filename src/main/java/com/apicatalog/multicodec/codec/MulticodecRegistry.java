@@ -3,6 +3,7 @@ package com.apicatalog.multicodec.codec;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -91,6 +92,7 @@ public final class MulticodecRegistry {
      * @return a new registry instance containing only matching codecs
      */
     public static final MulticodecRegistry getInstance(final Tag... tags) {
+        Objects.requireNonNull(tags);
         return new MulticodecRegistry(provided(tags));
     }
 
@@ -101,6 +103,12 @@ public final class MulticodecRegistry {
      * @return a new registry instance containing only the provided codecs
      */
     public static final MulticodecRegistry getInstance(final Multicodec... codecs) {
+        Objects.requireNonNull(codecs);
+
+        if (codecs.length == 0) {
+            throw new IllegalArgumentException("At least one codec must be provided.");
+        }
+
         return new MulticodecRegistry(Arrays.stream(codecs)
                 .collect(Collectors.toMap(Multicodec::code, Function.identity())));
     }
@@ -145,6 +153,23 @@ public final class MulticodecRegistry {
     }
 
     /**
+     * Finds a registered {@link Multicodec} by its name.
+     * <p>
+     * This method searches through all registered codecs and returns the first
+     * match whose {@link Multicodec#name()} equals the given name.
+     * </p>
+     *
+     * @param name the name of the codec to look up (must not be {@code null})
+     * @return an {@link Optional} containing the matching {@link Multicodec}, or an
+     *         empty {@link Optional} if no codec with the given name is found
+     */
+    public final Optional<Multicodec> findCodec(final String name) {
+        return codecs.values().stream()
+                .filter(codec -> codec.name().equals(name))
+                .findFirst();
+    }
+
+    /**
      * Returns the map of codecs contained in this registry instance.
      *
      * @return map of numeric code to codec definition
@@ -152,4 +177,14 @@ public final class MulticodecRegistry {
     public Map<Long, Multicodec> codecs() {
         return codecs;
     }
+
+    /**
+     * Returns the number of registered codecs in this registry.
+     *
+     * @return the total count of registered codecs
+     */
+    public long size() {
+        return codecs.size();
+    }
+
 }

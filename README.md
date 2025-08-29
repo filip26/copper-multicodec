@@ -1,6 +1,22 @@
 # Copper Multicodec
 
-Copper Multicodec is a Java library that implements [Multicodec](https://github.com/multiformats/multicodec) and [Multihash](https://github.com/multiformats/multihash), enabling efficient encoding and decoding of data.
+A multicodec is a **self-describing** format: encoded data always begins
+with a varint code that unambiguously identifies its format and intended
+purpose.  
+
+This design eliminates guesswork, ensures interoperability between systems,
+and makes it possible to introduce new formats without breaking existing
+implementations.  
+
+The multicodec identifier tells applications how the data is meant to be
+interpreted and processed.  
+
+Each multicodec is tagged to reflect its purpose - for example, hash functions (e.g., `sha2-256`), cryptography keys (e.g., `ed25519-pub`), and other identifiers used across the multiformats ecosystem.
+
+Copper Multicodec is a Java library implementing 
+[Multicodec](https://github.com/multiformats/multicodec) and 
+[Multihash](https://github.com/multiformats/multihash), enabling efficient
+encoding and decoding of self-describing data formats.
 
 [![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=filip26_copper-multicodec&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=filip26_copper-multicodec)
@@ -10,14 +26,12 @@ Copper Multicodec is a Java library that implements [Multicodec](https://github.
 
 ## Features
 
-- **Static Codec Registry:** Predefined codecs for efficient access.
-- **Direct Static Access to Codecs:** Eliminates runtime searches for codecs.
-- **Custom Codec Support:** Allows customization of supported codecs.
-- **Multihash Support:** Provides compatibility with multihash encoding.
-- **Unsigned VarInt Support:** Handles unsigned variable-length integers.
-- **Zero Third-Party Dependencies:** Ensures a lightweight and self-contained implementation.
-
-[Supported Codecs](https://github.com/filip26/copper-multicodec/tree/main/src/main/java/com/apicatalog/multicodec/codec)
+- Static codec registry with predefined codecs for efficient access  
+- Direct static access to codecs without runtime lookups  
+- Support for custom codecs through extension  
+- Multihash compatibility  
+- Unsigned VarInt (UVarInt) encoding and decoding  
+- Zero third-party dependencies for a lightweight, self-contained implementation
 
 ## Examples
 
@@ -41,8 +55,9 @@ var decoder = MulticodecDecoder.getInstance(codecs...);
 byte[] decoded = decoder.decode(encoded);
 
 /* or check if encoding is supported  */
-Multicodec codec = decoder.getCodec(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
-byte[] decoded = codec.decode(encoded);
+byte[] decoded = decoder.getCodec(encoded)
+                          .map(codec -> codec.decode(encoded))
+                          .orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
 
 /* or directly when only one codec is supported */
 byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);
@@ -65,9 +80,9 @@ var registry = MulticodecRegistry.getInstance(Tag.Key, Tag.Hash);
 var registry = MulticodecRegistry.getInstance(codecs...);
 
 /* get codec */
-var codec = registry.getCodec(code).orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
-byte[] encoded = codec.encode(input);
-
+byte[] encoded = registry.getCodec(code)
+                         .map(codec -> codec.encode(input))
+                         .orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
 ```
 
 ### Multihash
@@ -80,8 +95,9 @@ var decoder = MulticodecDecoder.getInstance(Tag.Multihash);
 byte[] decoded = decoder.decode(encoded);
 
 /* or check if supported  */
-var codec = decoder.get(encoded).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
-byte[] decoded = codec.decode(encoded);
+byte[] decoded = decoder.getCodec(encoded)
+                        .map(codec -> codec.decode(encoded))
+                        .orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
 
 /* or directly */
 byte[] decoded = MultihashCodec.SHA2_384.decode(encoded);
@@ -97,11 +113,10 @@ if (MultihashCodec.SHA2_384.isEncoded(encoded)) {
 var registry = MulticodecRegistry.getInstance(Tag.Multihash);
 
 /* encode an input as multihash */
-var codec = registry.get(code).orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
-byte[] encoded = codec.encode(input);
-
+byte[] encoded = registry.getCodec(code)
+                         .map(codec -> codec.encode(input))
+                         .orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
 ```
-
 
 ## Installation
 
@@ -115,6 +130,27 @@ To include Copper Multicodec in your project, add the following dependency to yo
     <artifactId>copper-multicodec</artifactId>
     <version>2.2.0</version>
 </dependency>
+```
+
+## ld-cli
+
+[ld-cli](https://github.com/filip26/ld-cli) is a command-line utility for
+working with multiformats including multibase, multicodec, and multihash,
+as well as JSON-LD and related specifications.
+
+It provides encoding, decoding, detection, analysis, and format conversion
+features, making it useful for inspecting identifiers, testing content
+addressing, and integrating multiformats into development workflows.
+
+### Example
+
+Detect and analyze a multibase + multicodec value
+```bash
+> ld-cli multicodec --analyze --multibase <<< 'z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu'
+
+Multibase:  name=base58btc, prefix=z, length=58 chars
+Multicodec: name=ed25519-pub, code=237, varint=[0xED,0x01], tag=Key, status=Draft
+Length:     32 bytes
 ```
 
 ## Contributing
@@ -131,8 +167,14 @@ Fork and clone the project repository.
 > mvn clean package
 ```
 
-## Additional Resources
-- [Copper Multibase](https://github.com/filip26/copper-multibase)
+## Resources
+- [Codecs Registry](https://github.com/multiformats/multicodec/blob/master/table.csv)
 - [Multicodec](https://github.com/multiformats/multicodec)
 - [Multihash](https://github.com/multiformats/multihash)
 - [unsigned-varint](https://github.com/multiformats/unsigned-varint)
+- [Copper Multibase](https://github.com/filip26/copper-multibase)
+
+## Commercial Support
+
+Commercial support and consulting are available.  
+For inquiries, please contact: filip26@gmail.com

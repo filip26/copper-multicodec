@@ -25,10 +25,10 @@
         <junit.version>5.13.4</junit.version>
     </properties>
 
-    <name>Copper Multicodec</name>
+    <name>Copper Multicodec &amp; Multihash</name>
 
     <description>
-        Multicodec &amp; Multihash API, Registry
+        Multicodec &amp; Multihash - encoder/decoder for self-describing data formats.
     </description>
 
     <licenses>

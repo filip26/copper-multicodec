@@ -6,7 +6,7 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Sat Aug 09 14:53:59 CEST 2025 */
+/** Multicodec Registry - generated: Fri Aug 29 18:18:52 CEST 2025 */
 public class HashCodec {
 
     /** Hash: crc32, CRC-32 non-cryptographic hash algorithm (IEEE 802.3), status = draft, code = 0x132 */
@@ -14,6 +14,9 @@ public class HashCodec {
 
     /** Hash: crc64-ecma, CRC-64 non-cryptographic hash algorithm (ECMA-182 - Annex B), status = draft, code = 0x164 */
     public static final Multicodec CRC64_ECMA = Multicodec.of("crc64-ecma", Tag.Hash, 0x164, Multicodec.Status.Draft);
+
+    /** Hash: crc64-nvme, CRC-64 checksum based on the NVME polynomial as specified in the NVM Express® NVM Command Set Specification, status = draft, code = 0x165 */
+    public static final Multicodec CRC64_NVME = Multicodec.of("crc64-nvme", Tag.Hash, 0x165, Multicodec.Status.Draft);
 
     /** Hash: murmur3-32, status = draft, code = 0x23 */
     public static final Multicodec MURMUR3_32 = Multicodec.of("murmur3-32", Tag.Hash, 0x23, Multicodec.Status.Draft);
@@ -44,6 +47,7 @@ public class HashCodec {
     static {
       ALL.put(CRC32.code(), CRC32);
       ALL.put(CRC64_ECMA.code(), CRC64_ECMA);
+      ALL.put(CRC64_NVME.code(), CRC64_NVME);
       ALL.put(MURMUR3_32.code(), MURMUR3_32);
       ALL.put(MURMUR3_X64_128.code(), MURMUR3_X64_128);
       ALL.put(MURMUR3_X64_64.code(), MURMUR3_X64_64);

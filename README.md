@@ -4,17 +4,14 @@ A multicodec is a **self-describing** format: encoded data always begins
 with a varint code that unambiguously identifies its format and intended
 purpose.  
 
-The codec identifier tells applications how the data is meant to be
-interpreted and processed.  
-
-Multicodec codes are tagged by categories that reflect their purpose -
-for example, content types (e.g., `dag-cbor`), hash functions (e.g.,
-`sha2-256`), cryptography keys (e.g., `ed25519-pub`), and other identifiers
-used across the multiformats ecosystem.
-
 This design eliminates guesswork, ensures interoperability between systems,
 and makes it possible to introduce new formats without breaking existing
 implementations.  
+
+The multicodec identifier tells applications how the data is meant to be
+interpreted and processed.  
+
+Each multicodec is tagged to reflect its purpose - for example, hash functions (e.g., `sha2-256`), cryptography keys (e.g., `ed25519-pub`), and other identifiers used across the multiformats ecosystem.
 
 Copper Multicodec is a Java library implementing 
 [Multicodec](https://github.com/multiformats/multicodec) and 

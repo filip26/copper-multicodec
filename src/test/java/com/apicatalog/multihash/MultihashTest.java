@@ -33,6 +33,32 @@ class MultihashTest {
 
     @ParameterizedTest(name = "{index}")
     @MethodSource("testData")
+    void testDecodeFromIndex(byte[] input, Multihash codec, byte[] expected) {
+
+        int index = 1 + (int) (Math.random() * 10);
+
+        byte[] array = new byte[input.length + index];
+
+        System.arraycopy(input, 0, array, index, input.length);
+        assertArrayEquals(expected, codec.decode(array, index));
+    }
+
+    @ParameterizedTest(name = "{index}")
+    @MethodSource("testData")
+    void testDecodeRange(byte[] input, Multihash codec, byte[] expected) {
+
+        int extra = 2 + (int) (Math.random() * 20);
+
+        byte[] array = new byte[input.length + extra];
+        
+        int index = 1 + Math.round(extra / 2);
+        
+        System.arraycopy(input, 0, array, index, input.length);
+        assertArrayEquals(expected, codec.decode(array, index, input.length));
+    }
+    
+    @ParameterizedTest(name = "{index}")
+    @MethodSource("testData")
     void testDecoderDecode(byte[] input) {
         assertNotNull(DECODER.decode(input));
     }

@@ -197,7 +197,7 @@ public class Multicodec {
                     "The provided value is not encoded with this codec: " + toString() + ".");
         }
 
-        return Arrays.copyOfRange(encoded, index + codeVarint.length, length);
+        return Arrays.copyOfRange(encoded, index + codeVarint.length, length + index);
     }
 
     @Override

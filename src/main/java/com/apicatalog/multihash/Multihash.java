@@ -168,7 +168,7 @@ public class Multihash extends Multicodec {
                     "The requested decode length (" + length + ") is greater than the available bytes (" + (encoded.length - index) + ").");
         }
 
-        if ((encoded.length - index) < (codeVarint.length + 2)) {
+        if (length < (codeVarint.length + 2)) {
             throw new IllegalArgumentException(
                     "The value to decode must be a non-empty byte array with a minimum length of "
                             + (codeVarint.length + 2) + " bytes, but the actual length is " + length + " bytes.");
@@ -192,7 +192,7 @@ public class Multihash extends Multicodec {
         // Extract digest
         return Arrays.copyOfRange(encoded,
                 index + codeVarint.length + sizeVarintLength,
-                length);
+                length + index);
     }
 
     @Override

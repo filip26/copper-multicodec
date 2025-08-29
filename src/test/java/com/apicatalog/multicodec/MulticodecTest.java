@@ -30,4 +30,15 @@ class MulticodecTest {
         assertArrayEquals("Hello".getBytes(), codec.decode(new byte[] { 0x7b, 0x48, 0x65, 0x6C, 0x6C, 0x6F }));
     }
 
+    @Test
+    void testDecodeFromIndex() {
+        final Multicodec codec = Multicodec.of("test-hash", Tag.Hash, 123l);
+        assertArrayEquals("Hello".getBytes(), codec.decode(new byte[] { 0x0, 0x7b, 0x48, 0x65, 0x6C, 0x6C, 0x6F }, 1));
+    }
+
+    @Test
+    void testDecodeFromRange() {
+        final Multicodec codec = Multicodec.of("test-hash", Tag.Hash, 123l);
+        assertArrayEquals("Hello".getBytes(), codec.decode(new byte[] { 0xa, 0xb, 0x7b, 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x1, 0x2, 0x3 }, 2, 6));
+    }
 }

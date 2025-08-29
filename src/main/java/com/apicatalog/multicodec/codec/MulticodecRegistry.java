@@ -3,6 +3,7 @@ package com.apicatalog.multicodec.codec;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -91,6 +92,7 @@ public final class MulticodecRegistry {
      * @return a new registry instance containing only matching codecs
      */
     public static final MulticodecRegistry getInstance(final Tag... tags) {
+        Objects.requireNonNull(tags);
         return new MulticodecRegistry(provided(tags));
     }
 
@@ -101,6 +103,12 @@ public final class MulticodecRegistry {
      * @return a new registry instance containing only the provided codecs
      */
     public static final MulticodecRegistry getInstance(final Multicodec... codecs) {
+        Objects.requireNonNull(codecs);
+
+        if (codecs.length == 0) {
+            throw new IllegalArgumentException("At least one codec must be provided.");
+        }
+
         return new MulticodecRegistry(Arrays.stream(codecs)
                 .collect(Collectors.toMap(Multicodec::code, Function.identity())));
     }
@@ -169,4 +177,14 @@ public final class MulticodecRegistry {
     public Map<Long, Multicodec> codecs() {
         return codecs;
     }
+
+    /**
+     * Returns the number of registered codecs in this registry.
+     *
+     * @return the total count of registered codecs
+     */
+    public long size() {
+        return codecs.size();
+    }
+
 }

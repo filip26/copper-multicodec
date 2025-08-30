@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.MulticodecDecoder;
 import com.apicatalog.multicodec.codec.MultihashCodec;
+import com.apicatalog.uvarint.UVarInt;
 
 class MultihashTest {
 
@@ -66,6 +67,8 @@ class MultihashTest {
 
         System.arraycopy(input, 0, array, index, input.length);
         assertArrayEquals(expected, codec.decode(array, index));
+        assertEquals(expected.length, codec.digestLength(array, index));
+        assertEquals(codec.length() + UVarInt.byteLength(expected.length), input.length - codec.digestLength(array, index));
     }
 
     @ParameterizedTest(name = "{index}")
@@ -80,6 +83,8 @@ class MultihashTest {
 
         System.arraycopy(input, 0, array, index, input.length);
         assertArrayEquals(expected, codec.decode(array, index, input.length));
+        assertEquals(expected.length, codec.digestLength(array, index));
+        assertEquals(codec.length() + UVarInt.byteLength(expected.length), input.length - codec.digestLength(array, index));        
     }
 
     @ParameterizedTest(name = "{index}")

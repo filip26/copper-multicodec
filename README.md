@@ -109,20 +109,12 @@ if (MultihashCodec.SHA2_384.isEncoded(encoded)) {
   ...
 }
 
-
-/* get registry initialized with all multihash codecs */
-var registry = MulticodecRegistry.getInstance(Tag.Multihash);
-
 /* determine digest index  */
-var index = registry.getCodec(encoded)
+var index = decoder.getCodec(encoded)
                     .map(Multihash.class::cast)
-                    .mapToInt(codec -> codec.length() + codec.digestLength(encoded))
+                    .mapToInt(codec -> encoded.length - codec.digestLength(encoded))
                     .orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
 
-/* encode an input as multihash */
-byte[] encoded = registry.getCodec(code)
-                         .map(codec -> codec.encode(input))
-                         .orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
 ```
 
 ## Installation

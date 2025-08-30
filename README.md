@@ -115,6 +115,7 @@ var registry = MulticodecRegistry.getInstance(Tag.Multihash);
 
 /* determine digest index  */
 var index = registry.getCodec(encoded)
+                    .map(Multihash.class::cast)
                     .mapToInt(codec -> codec.length() + codec.digestLength(encoded))
                     .orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
 

@@ -106,6 +106,7 @@ byte[] decoded = MultihashCodec.SHA2_384.decode(encoded);
 
 /* check if byte array is encoded with multihash codec */
 if (MultihashCodec.SHA2_384.isEncoded(encoded)) {
+  var digestLength = MultihashCodec.SHA2_384.digestLength(encoded);
   ...
 }
 
@@ -127,7 +128,7 @@ To include Copper Multicodec in your project, add the following dependency to yo
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
 </dependency>
 ```
 

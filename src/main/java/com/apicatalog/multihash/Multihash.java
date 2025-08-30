@@ -214,31 +214,19 @@ public class Multihash extends Multicodec {
             throw new IllegalArgumentException(
                     "The requested decode length (" + length + ") is greater than the available bytes (" + (encoded.length - index) + ").");
         }
+        
+        long digestLength = digestLength(encoded, index, length);
+        int varintDigestLength = UVarInt.byteLength(digestLength);
 
-        if (length < (codeVarint.length + 2)) {
+        if (digestLength != (length - codeVarint.length - varintDigestLength)) {
             throw new IllegalArgumentException(
-                    "The value to decode must be a non-empty byte array with a minimum length of "
-                            + (codeVarint.length + 2) + " bytes, but the actual length is " + length + " bytes.");
-        }
-
-        if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {
-            throw new IllegalArgumentException(
-                    "The provided value is not encoded with this multihash: " + toString() + ".");
-        }
-
-        // Get digest size
-        long size = UVarInt.decode(encoded, index + codeVarint.length);
-        int sizeVarintLength = UVarInt.byteLength(size);
-
-        if (size != (length - codeVarint.length - sizeVarintLength)) {
-            throw new IllegalArgumentException(
-                    "Digest size mismatch: declared size is " + size + " bytes, but the actual digest size is " +
-                            (length - codeVarint.length - sizeVarintLength) + " bytes.");
+                    "Digest size mismatch: declared size is " + digestLength + " bytes, but the actual digest size is " +
+                            (length - codeVarint.length - varintDigestLength) + " bytes.");
         }
 
         // Extract digest
         return Arrays.copyOfRange(encoded,
-                index + codeVarint.length + sizeVarintLength,
+                index + codeVarint.length + varintDigestLength,
                 length + index);
     }
 
@@ -261,7 +249,7 @@ public class Multihash extends Multicodec {
      *                                  with this multihash's code
      */
     public long digestLength(byte[] encoded) {
-        return digestLength(encoded, 0);
+        return digestLength(encoded, 0, encoded.length);
     }
 
     /**
@@ -288,12 +276,16 @@ public class Multihash extends Multicodec {
      *                                   available range
      */
     public long digestLength(byte[] encoded, int index) {
+        return digestLength(encoded, index, encoded.length - index);
+    }
+
+    protected long digestLength(byte[] encoded, int index, int length) {
         Objects.requireNonNull(encoded);
 
-        if (encoded.length < (codeVarint.length + 2)) {
+        if (length < (codeVarint.length + 2)) {
             throw new IllegalArgumentException(
                     "The value to decode must be a non-empty byte array with a minimum length of "
-                            + (codeVarint.length + 2) + " bytes, but the actual length is " + encoded.length + " bytes.");
+                            + (codeVarint.length + 2) + " bytes, but the actual length is " + length + " bytes.");
         }
 
         if (!IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index])) {

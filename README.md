@@ -24,7 +24,7 @@ encoding and decoding of self-describing data formats.
 [![Maven Central](https://img.shields.io/maven-central/v/com.apicatalog/copper-multicodec.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:com.apicatalog%20AND%20a:copper-multicodec)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## Features
+## ✨ Features
 
 - Static codec registry with predefined codecs for efficient access  
 - Direct static access to codecs without runtime lookups  
@@ -56,8 +56,8 @@ byte[] decoded = decoder.decode(encoded);
 
 /* or check if encoding is supported  */
 byte[] decoded = decoder.getCodec(encoded)
-                          .map(codec -> codec.decode(encoded))
-                          .orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
+                        .map(codec -> codec.decode(encoded))
+                        .orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
 
 /* or directly when only one codec is supported */
 byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);
@@ -106,16 +106,16 @@ byte[] decoded = MultihashCodec.SHA2_384.decode(encoded);
 
 /* check if byte array is encoded with multihash codec */
 if (MultihashCodec.SHA2_384.isEncoded(encoded)) {
+  var digestLength = MultihashCodec.SHA2_384.digestLength(encoded);
   ...
 }
 
-/* get registry initialized with all multihash codecs */
-var registry = MulticodecRegistry.getInstance(Tag.Multihash);
+/* determine digest index  */
+var index = decoder.getCodec(encoded)
+                    .map(Multihash.class::cast)
+                    .mapToInt(codec -> encoded.length - codec.digestLength(encoded))
+                    .orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
 
-/* encode an input as multihash */
-byte[] encoded = registry.getCodec(code)
-                         .map(codec -> codec.encode(input))
-                         .orElseThrow(() -> new IllegalArgumentException("Unsupported multihash."));
 ```
 
 ## Installation
@@ -128,13 +128,13 @@ To include Copper Multicodec in your project, add the following dependency to yo
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
 </dependency>
 ```
 
-## ld-cli
+## 🛠️ LD-CLI
 
-[ld-cli](https://github.com/filip26/ld-cli) is a command-line utility for
+[LD-CLI](https://github.com/filip26/ld-cli) is a command-line utility for
 working with multiformats including multibase, multicodec, and multihash,
 as well as JSON-LD and related specifications.
 

@@ -56,8 +56,8 @@ byte[] decoded = decoder.decode(encoded);
 
 /* or check if encoding is supported  */
 byte[] decoded = decoder.getCodec(encoded)
-                          .map(codec -> codec.decode(encoded))
-                          .orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
+                        .map(codec -> codec.decode(encoded))
+                        .orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
 
 /* or directly when only one codec is supported */
 byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);

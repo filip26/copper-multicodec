@@ -215,18 +215,18 @@ public class Multihash extends Multicodec {
                     "The requested decode length (" + length + ") is greater than the available bytes (" + (encoded.length - index) + ").");
         }
         
-        long size = digestLength(encoded, index, length);
-        int sizeVarintLength = UVarInt.byteLength(size);
+        long digestLength = digestLength(encoded, index, length);
+        int varintDigestLength = UVarInt.byteLength(digestLength);
 
-        if (size != (length - codeVarint.length - sizeVarintLength)) {
+        if (digestLength != (length - codeVarint.length - varintDigestLength)) {
             throw new IllegalArgumentException(
-                    "Digest size mismatch: declared size is " + size + " bytes, but the actual digest size is " +
-                            (length - codeVarint.length - sizeVarintLength) + " bytes.");
+                    "Digest size mismatch: declared size is " + digestLength + " bytes, but the actual digest size is " +
+                            (length - codeVarint.length - varintDigestLength) + " bytes.");
         }
 
         // Extract digest
         return Arrays.copyOfRange(encoded,
-                index + codeVarint.length + sizeVarintLength,
+                index + codeVarint.length + varintDigestLength,
                 length + index);
     }
 

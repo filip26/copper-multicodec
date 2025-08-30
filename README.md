@@ -24,7 +24,7 @@ encoding and decoding of self-describing data formats.
 [![Maven Central](https://img.shields.io/maven-central/v/com.apicatalog/copper-multicodec.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:com.apicatalog%20AND%20a:copper-multicodec)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## Features
+## ✨ Features
 
 - Static codec registry with predefined codecs for efficient access  
 - Direct static access to codecs without runtime lookups  
@@ -132,9 +132,9 @@ To include Copper Multicodec in your project, add the following dependency to yo
 </dependency>
 ```
 
-## ld-cli
+## 🛠️ LD-CLI
 
-[ld-cli](https://github.com/filip26/ld-cli) is a command-line utility for
+[LD-CLI](https://github.com/filip26/ld-cli) is a command-line utility for
 working with multiformats including multibase, multicodec, and multihash,
 as well as JSON-LD and related specifications.
 

@@ -1,13 +1,16 @@
 package com.apicatalog.multicodec.codec;
 
 import java.util.TreeMap;
+import java.time.Instant;
 import java.util.Map;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Fri Aug 29 18:18:52 CEST 2025 */
+/** Multicodec Registry - generated: Sat Feb 07 19:12:43 CET 2026 */
 public class NamespaceCodec {
+
+    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:43.998Z");
 
     /** Namespace: arweave-ns, Arweave Namespace, status = draft, code = 0xb29910 */
     public static final Multicodec ARWEAVE_NS = Multicodec.of("arweave-ns", Tag.Namespace, 0xb29910, Multicodec.Status.Draft);

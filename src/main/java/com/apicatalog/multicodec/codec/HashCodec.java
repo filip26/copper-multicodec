@@ -1,13 +1,16 @@
 package com.apicatalog.multicodec.codec;
 
 import java.util.TreeMap;
+import java.time.Instant;
 import java.util.Map;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Fri Aug 29 18:18:52 CEST 2025 */
+/** Multicodec Registry - generated: Sat Feb 07 19:12:43 CET 2026 */
 public class HashCodec {
+
+    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:43.991Z");
 
     /** Hash: crc32, CRC-32 non-cryptographic hash algorithm (IEEE 802.3), status = draft, code = 0x132 */
     public static final Multicodec CRC32 = Multicodec.of("crc32", Tag.Hash, 0x132, Multicodec.Status.Draft);

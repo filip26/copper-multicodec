@@ -1,13 +1,16 @@
 package com.apicatalog.multicodec.codec;
 
 import java.util.TreeMap;
+import java.time.Instant;
 import java.util.Map;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Fri Aug 29 18:18:52 CEST 2025 */
+/** Multicodec Registry - generated: Sat Feb 07 19:12:44 CET 2026 */
 public class VarsigCodec {
+
+    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:44.006Z");
 
     /** Varsig: bls12_381-g1-sig, G1 signature for BLS12-381, status = draft, code = 0xd0ea */
     public static final Multicodec BLS12_381_G1_SIG = Multicodec.of("bls12_381-g1-sig", Tag.Varsig, 0xd0ea, Multicodec.Status.Draft);

@@ -1,13 +1,16 @@
 package com.apicatalog.multicodec.codec;
 
 import java.util.TreeMap;
+import java.time.Instant;
 import java.util.Map;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Fri Aug 29 18:18:52 CEST 2025 */
+/** Multicodec Registry - generated: Sat Feb 07 19:12:43 CET 2026 */
 public class CidCodec {
+
+    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:43.996Z");
 
     /** Cid: cidv1, CIDv1, status = permanent, code = 0x1 */
     public static final Multicodec CIDV1 = Multicodec.of("cidv1", Tag.Cid, 0x1, Multicodec.Status.Permanent);

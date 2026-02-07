@@ -18,7 +18,7 @@ Copper Multicodec is a Java library implementing
 [Multihash](https://github.com/multiformats/multihash), enabling efficient
 encoding and decoding of self-describing data formats.
 
-[![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
+[![Java 8 CI](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml/badge.svg?branch=main)](https://github.com/filip26/copper-multicodec/actions/workflows/java8-build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=filip26_copper-multicodec&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=filip26_copper-multicodec)
 [![javadoc](https://javadoc.io/badge2/com.apicatalog/copper-multicodec/javadoc.svg)](https://javadoc.io/doc/com.apicatalog/copper-multicodec)
 [![Maven Central](https://img.shields.io/maven-central/v/com.apicatalog/copper-multicodec.svg?label=Maven%20Central)](https://mvnrepository.com/artifact/com.apicatalog/copper-multicodec)
@@ -33,7 +33,7 @@ encoding and decoding of self-describing data formats.
 - Unsigned VarInt (UVarInt) encoding and decoding  
 - Zero third-party dependencies for a lightweight, self-contained implementation
 
-## Examples
+## 💡 Examples
 
 ```java
 /* encode an input as P-521 public key */
@@ -118,7 +118,7 @@ var index = decoder.getCodec(encoded)
 
 ```
 
-## Installation
+## 📦 Installation
 
 ### Maven
 
@@ -153,28 +153,27 @@ Multicodec: name=ed25519-pub, code=237, varint=[0xED,0x01], tag=Key, status=Draf
 Length:     32 bytes
 ```
 
-## Contributing
+## 🤝 Contributing
 
-All PR's welcome!
-
+Contributions are welcome! Please submit a pull request.
 
 ### Building
 
-Fork and clone the project repository.
+Fork and clone the repository, then build with Maven:
 
 ```bash
 > cd copper-multicodec
 > mvn clean package
 ```
 
-## Resources
+## 📚 Resources
 - [Codecs Registry](https://github.com/multiformats/multicodec/blob/master/table.csv)
 - [Multicodec](https://github.com/multiformats/multicodec)
 - [Multihash](https://github.com/multiformats/multihash)
 - [unsigned-varint](https://github.com/multiformats/unsigned-varint)
 - [Copper Multibase](https://github.com/filip26/copper-multibase)
 
-## Commercial Support
+## 💼 Commercial Support
 
 Commercial support and consulting are available.  
 For inquiries, please contact: filip26@gmail.com

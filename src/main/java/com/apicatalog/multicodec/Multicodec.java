@@ -177,9 +177,34 @@ public class Multicodec {
      *         prefix, {@code false} otherwise
      */
     public boolean isEncoded(final byte[] encoded) {
+        return isEncoded(encoded, 0, encoded.length);
+    }
+
+    /**
+     * Checks if the given encoded byte array starts with this codec's varint code.
+     * 
+     * @param encoded the byte array to test
+     * @param index   the starting index (inclusive)
+     * @return {@code true} if {@code encoded} starts with this codec's varint
+     *         prefix, {@code false} otherwise
+     */
+    public boolean isEncoded(final byte[] encoded, final int index) {
+        return isEncoded(encoded, index, encoded.length - index);        
+    }
+
+    /**
+     * Checks if the given encoded byte array starts with this codec's varint code.
+     * 
+     * @param encoded the byte array to test
+     * @param index   the starting index (inclusive)
+     * @param length  the number of bytes to read from {@code index}
+     * @return {@code true} if {@code encoded} starts with this codec's varint
+     *         prefix, {@code false} otherwise
+     */
+    public boolean isEncoded(final byte[] encoded, final int index, final int length) {
         return encoded != null
-                && encoded.length >= codeVarint.length
-                && IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i]);
+                && length >= codeVarint.length
+                && IntStream.range(0, codeVarint.length).allMatch(i -> codeVarint[i] == encoded[i + index]);
     }
 
     /**
@@ -228,7 +253,8 @@ public class Multicodec {
 
         if (length > (encoded.length - index)) {
             throw new IllegalArgumentException(
-                    "The requested decode length (" + length + ") is greater than the available bytes (" + (encoded.length - index) + ").");
+                    "The requested decode length (" + length + ") is greater than the available bytes ("
+                            + (encoded.length - index) + ").");
         }
 
         if (length < (codeVarint.length + 1)) {

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -23,6 +24,7 @@ public class CodecTag {
             writer.println("package com.apicatalog.multicodec.codec;");
             writer.println();
             writer.println("import java.util.TreeMap;");
+            writer.println("import java.time.Instant;");
             writer.println("import java.util.Map;");
             writer.println();
             if (Multicodec.class.equals(clazz)) {
@@ -42,6 +44,9 @@ public class CodecTag {
             writer.println(" {");
             writer.println();
 
+            writer.println("    public static final Instant UPDATED = Instant.parse(\"" + Instant.now().toString() + "\");");
+            writer.println();
+            
             Collection<CodecDef> defs = stream
                     .filter(columns -> tag.equals(columns[1].trim()))
                     .map(CodecDef::from)

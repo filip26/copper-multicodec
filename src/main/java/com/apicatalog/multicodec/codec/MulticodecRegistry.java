@@ -109,8 +109,10 @@ public final class MulticodecRegistry {
             throw new IllegalArgumentException("At least one codec must be provided.");
         }
 
-        return new MulticodecRegistry(Arrays.stream(codecs)
-                .collect(Collectors.toMap(Multicodec::code, Function.identity())));
+        return new MulticodecRegistry(
+                Arrays
+                        .stream(codecs)
+                        .collect(Collectors.toMap(Multicodec::code, Function.identity())));
     }
 
     /**

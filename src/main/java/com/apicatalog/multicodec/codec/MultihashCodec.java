@@ -1,13 +1,16 @@
 package com.apicatalog.multicodec.codec;
 
 import java.util.TreeMap;
+import java.time.Instant;
 import java.util.Map;
 
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multihash.Multihash;
 
-/** Multicodec Registry - generated: Sat Feb 07 01:16:25 CET 2026 */
+/** Multicodec Registry - generated: Sat Feb 07 19:12:43 CET 2026 */
 public class MultihashCodec {
+
+    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:43.954Z");
 
     /** Multihash: bcrypt-pbkdf, Bcrypt-PBKDF key derivation function, status = draft, code = 0xd00d */
     public static final Multihash BCRYPT_PBKDF = Multihash.of("bcrypt-pbkdf", 0xd00d, Multicodec.Status.Draft);

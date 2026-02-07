@@ -1,13 +1,16 @@
 package com.apicatalog.multicodec.codec;
 
 import java.util.TreeMap;
+import java.time.Instant;
 import java.util.Map;
 
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Sat Feb 07 01:16:25 CET 2026 */
+/** Multicodec Registry - generated: Sat Feb 07 19:12:43 CET 2026 */
 public class KeyCodec {
+
+    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:43.909Z");
 
     /** Key: aes-128, 128-bit AES symmetric key, status = draft, code = 0xa0 */
     public static final Multicodec AES_128_KEY = Multicodec.of("aes-128", Tag.Key, 0xa0, Multicodec.Status.Draft);

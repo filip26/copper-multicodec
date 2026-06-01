@@ -7,10 +7,13 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Sat Feb 07 19:12:43 CET 2026 */
+/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
 public class NamespaceCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:43.998Z");
+    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.578Z");
+
+    /** Namespace: adnl, TON ADNL address: 32-byte SHA-256(0x4813b4c6_LE || Ed25519-pubkey), status = draft, code = 0xb69910 */
+    public static final Multicodec ADNL = Multicodec.of("adnl", Tag.Namespace, 0xb69910, Multicodec.Status.Draft);
 
     /** Namespace: arweave-ns, Arweave Namespace, status = draft, code = 0xb29910 */
     public static final Multicodec ARWEAVE_NS = Multicodec.of("arweave-ns", Tag.Namespace, 0xb29910, Multicodec.Status.Draft);
@@ -33,6 +36,30 @@ public class NamespaceCodec {
     /** Namespace: lbry, LBRY Address, status = draft, code = 0x8c */
     public static final Multicodec LBRY = Multicodec.of("lbry", Tag.Namespace, 0x8c, Multicodec.Status.Draft);
 
+    /** Namespace: massa, Massa blockchain ecosystem, status = draft, code = 0xb59910 */
+    public static final Multicodec MASSA = Multicodec.of("massa", Tag.Namespace, 0xb59910, Multicodec.Status.Draft);
+
+    /** Namespace: massa-buildnet, Massa buildnet network, status = draft, code = 0xb59912 */
+    public static final Multicodec MASSA_BUILDNET = Multicodec.of("massa-buildnet", Tag.Namespace, 0xb59912, Multicodec.Status.Draft);
+
+    /** Namespace: massa-deweb, Massa DeWeb decentralized web, status = draft, code = 0xb59913 */
+    public static final Multicodec MASSA_DEWEB = Multicodec.of("massa-deweb", Tag.Namespace, 0xb59913, Multicodec.Status.Draft);
+
+    /** Namespace: massa-gossip, Massa Gossip decentralized messaging, status = draft, code = 0xb59914 */
+    public static final Multicodec MASSA_GOSSIP = Multicodec.of("massa-gossip", Tag.Namespace, 0xb59914, Multicodec.Status.Draft);
+
+    /** Namespace: massa-gossip-id, Massa Gossip ID target, status = draft, code = 0xb59917 */
+    public static final Multicodec MASSA_GOSSIP_ID = Multicodec.of("massa-gossip-id", Tag.Namespace, 0xb59917, Multicodec.Status.Draft);
+
+    /** Namespace: massa-mainnet, Massa mainnet network, status = draft, code = 0xb59911 */
+    public static final Multicodec MASSA_MAINNET = Multicodec.of("massa-mainnet", Tag.Namespace, 0xb59911, Multicodec.Status.Draft);
+
+    /** Namespace: massa-mns, Massa Name Service target, status = draft, code = 0xb59915 */
+    public static final Multicodec MASSA_MNS = Multicodec.of("massa-mns", Tag.Namespace, 0xb59915, Multicodec.Status.Draft);
+
+    /** Namespace: massa-sc, Massa smart-contract address target, status = draft, code = 0xb59916 */
+    public static final Multicodec MASSA_SC = Multicodec.of("massa-sc", Tag.Namespace, 0xb59916, Multicodec.Status.Draft);
+
     /** Namespace: path, Namespace for string paths. Corresponds to `/` in ASCII., status = permanent, code = 0x2f */
     public static final Multicodec PATH = Multicodec.of("path", Tag.Namespace, 0x2f, Multicodec.Status.Permanent);
 
@@ -54,6 +81,7 @@ public class NamespaceCodec {
     protected static final Map<Long,Multicodec> ALL = new TreeMap<>();
 
     static {
+      ALL.put(ADNL.code(), ADNL);
       ALL.put(ARWEAVE_NS.code(), ARWEAVE_NS);
       ALL.put(DNSLINK.code(), DNSLINK);
       ALL.put(IPFS.code(), IPFS);
@@ -61,6 +89,14 @@ public class NamespaceCodec {
       ALL.put(IPNS.code(), IPNS);
       ALL.put(KUMANDRA_NS.code(), KUMANDRA_NS);
       ALL.put(LBRY.code(), LBRY);
+      ALL.put(MASSA.code(), MASSA);
+      ALL.put(MASSA_BUILDNET.code(), MASSA_BUILDNET);
+      ALL.put(MASSA_DEWEB.code(), MASSA_DEWEB);
+      ALL.put(MASSA_GOSSIP.code(), MASSA_GOSSIP);
+      ALL.put(MASSA_GOSSIP_ID.code(), MASSA_GOSSIP_ID);
+      ALL.put(MASSA_MAINNET.code(), MASSA_MAINNET);
+      ALL.put(MASSA_MNS.code(), MASSA_MNS);
+      ALL.put(MASSA_SC.code(), MASSA_SC);
       ALL.put(PATH.code(), PATH);
       ALL.put(SKYNET_NS.code(), SKYNET_NS);
       ALL.put(STREAMID.code(), STREAMID);

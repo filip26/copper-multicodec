@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Sat Feb 07 19:12:43 CET 2026 */
+/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
 public class CidCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:43.996Z");
+    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.577Z");
 
     /** Cid: cidv1, CIDv1, status = permanent, code = 0x1 */
     public static final Multicodec CIDV1 = Multicodec.of("cidv1", Tag.Cid, 0x1, Multicodec.Status.Permanent);

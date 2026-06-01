@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Sat Feb 07 19:12:44 CET 2026 */
+/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
 public class MultiformatCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:44Z");
+    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.580Z");
 
     /** Multiformat: caip-50, CAIP-50 multi-chain account ID, status = draft, code = 0xca */
     public static final Multicodec CAIP_50 = Multicodec.of("caip-50", Tag.Multiformat, 0xca, Multicodec.Status.Draft);

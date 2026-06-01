@@ -7,10 +7,13 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Sat Feb 07 19:12:44 CET 2026 */
+/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
 public class VarsigCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:44.006Z");
+    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.586Z");
+
+    /** Varsig: bip340, BIP340 Signature Algorithm, status = draft, code = 0xd01206 */
+    public static final Multicodec BIP340 = Multicodec.of("bip340", Tag.Varsig, 0xd01206, Multicodec.Status.Draft);
 
     /** Varsig: bls12_381-g1-sig, G1 signature for BLS12-381, status = draft, code = 0xd0ea */
     public static final Multicodec BLS12_381_G1_SIG = Multicodec.of("bls12_381-g1-sig", Tag.Varsig, 0xd0ea, Multicodec.Status.Draft);
@@ -45,6 +48,7 @@ public class VarsigCodec {
     protected static final Map<Long,Multicodec> ALL = new TreeMap<>();
 
     static {
+      ALL.put(BIP340.code(), BIP340);
       ALL.put(BLS12_381_G1_SIG.code(), BLS12_381_G1_SIG);
       ALL.put(BLS12_381_G2_SIG.code(), BLS12_381_G2_SIG);
       ALL.put(EDDSA.code(), EDDSA);

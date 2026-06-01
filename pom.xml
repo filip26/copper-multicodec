@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>2.4.0</version>
+    <version>3.0.0</version>
     <packaging>jar</packaging>
     <url>https://github.com/filip26/copper-multicodec</url>
     <scm>
@@ -28,7 +28,8 @@
     <name>Copper Multicodec &amp; Multihash</name>
 
     <description>
-        Multicodec &amp; Multihash - encoder/decoder for self-describing data formats.
+        Multicodec &amp; Multihash - encoder/decoder for self-describing data
+        formats.
     </description>
 
     <licenses>
@@ -151,25 +152,25 @@
                         <version>3.2.8</version>
                         <executions>
                             <execution>
-                              <id>sign-artifacts</id>
-                              <phase>verify</phase>
-                              <goals>
-                                  <goal>sign</goal>
-                              </goals>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
-               <plugin>
-                  <groupId>org.sonatype.central</groupId>
-                  <artifactId>central-publishing-maven-plugin</artifactId>
-                  <version>0.10.0</version>
-                <extensions>true</extensions>
-                  <configuration>
-                    <publishingServerId>central</publishingServerId>
-                    <autoPublish>true</autoPublish>
-                  </configuration>
-                </plugin>                    
-            </plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.10.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
         </profile>
     </profiles>

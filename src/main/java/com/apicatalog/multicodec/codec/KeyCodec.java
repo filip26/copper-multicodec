@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Sat Feb 07 19:12:43 CET 2026 */
+/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
 public class KeyCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:43.909Z");
+    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.506Z");
 
     /** Key: aes-128, 128-bit AES symmetric key, status = draft, code = 0xa0 */
     public static final Multicodec AES_128_KEY = Multicodec.of("aes-128", Tag.Key, 0xa0, Multicodec.Status.Draft);
@@ -20,6 +20,12 @@ public class KeyCodec {
 
     /** Key: aes-256, 256-bit AES symmetric key, status = draft, code = 0xa2 */
     public static final Multicodec AES_256_KEY = Multicodec.of("aes-256", Tag.Key, 0xa2, Multicodec.Status.Draft);
+
+    /** Key: bip340-priv, BIP340 private key, status = draft, code = 0x1341 */
+    public static final Multicodec BIP340_PRIVATE_KEY = Multicodec.of("bip340-priv", Tag.Key, 0x1341, Multicodec.Status.Draft);
+
+    /** Key: bip340-pub, BIP340 public key, status = draft, code = 0x1340 */
+    public static final Multicodec BIP340_PUBLIC_KEY = Multicodec.of("bip340-pub", Tag.Key, 0x1340, Multicodec.Status.Draft);
 
     /** Key: bls12_381-g1-priv, BLS12-381 G1 private key, status = draft, code = 0x1309 */
     public static final Multicodec BLS12_381_G1_PRIVATE_KEY = Multicodec.of("bls12_381-g1-priv", Tag.Key, 0x1309, Multicodec.Status.Draft);
@@ -102,11 +108,29 @@ public class KeyCodec {
     /** Key: lamport-sha3-512-pub, Lamport public key based on SHA3-512, status = draft, code = 0x1a14 */
     public static final Multicodec LAMPORT_SHA3_512_PUBLIC_KEY = Multicodec.of("lamport-sha3-512-pub", Tag.Key, 0x1a14, Multicodec.Status.Draft);
 
+    /** Key: mldsa-44-priv, ML-DSA 44 private key; expanded key format (2560 bytes) as specified by FIPS 204, status = draft, code = 0x1317 */
+    public static final Multicodec MLDSA_44_PRIVATE_KEY = Multicodec.of("mldsa-44-priv", Tag.Key, 0x1317, Multicodec.Status.Draft);
+
+    /** Key: mldsa-44-priv-seed, ML-DSA 44 private key seed; (32 bytes) as specified by FIPS 204, status = draft, code = 0x131a */
+    public static final Multicodec MLDSA_44_PRIVATE_SEED_KEY = Multicodec.of("mldsa-44-priv-seed", Tag.Key, 0x131a, Multicodec.Status.Draft);
+
     /** Key: mldsa-44-pub, ML-DSA 44 public key; as specified by FIPS 204, status = draft, code = 0x1210 */
     public static final Multicodec MLDSA_44_PUBLIC_KEY = Multicodec.of("mldsa-44-pub", Tag.Key, 0x1210, Multicodec.Status.Draft);
 
+    /** Key: mldsa-65-priv, ML-DSA 65 private key; expanded key format (4032 bytes) as specified by FIPS 204, status = draft, code = 0x1318 */
+    public static final Multicodec MLDSA_65_PRIVATE_KEY = Multicodec.of("mldsa-65-priv", Tag.Key, 0x1318, Multicodec.Status.Draft);
+
+    /** Key: mldsa-65-priv-seed, ML-DSA 65 private key seed; (32 bytes) as specified by FIPS 204, status = draft, code = 0x131b */
+    public static final Multicodec MLDSA_65_PRIVATE_SEED_KEY = Multicodec.of("mldsa-65-priv-seed", Tag.Key, 0x131b, Multicodec.Status.Draft);
+
     /** Key: mldsa-65-pub, ML-DSA 65 public key; as specified by FIPS 204, status = draft, code = 0x1211 */
     public static final Multicodec MLDSA_65_PUBLIC_KEY = Multicodec.of("mldsa-65-pub", Tag.Key, 0x1211, Multicodec.Status.Draft);
+
+    /** Key: mldsa-87-priv, ML-DSA 87 private key; expanded key format (4896 bytes) as specified by FIPS 204, status = draft, code = 0x1319 */
+    public static final Multicodec MLDSA_87_PRIVATE_KEY = Multicodec.of("mldsa-87-priv", Tag.Key, 0x1319, Multicodec.Status.Draft);
+
+    /** Key: mldsa-87-priv-seed, ML-DSA 87 private key seed; (32 bytes) as specified by FIPS 204, status = draft, code = 0x131c */
+    public static final Multicodec MLDSA_87_PRIVATE_SEED_KEY = Multicodec.of("mldsa-87-priv-seed", Tag.Key, 0x131c, Multicodec.Status.Draft);
 
     /** Key: mldsa-87-pub, ML-DSA 87 public key; as specified by FIPS 204, status = draft, code = 0x1212 */
     public static final Multicodec MLDSA_87_PUBLIC_KEY = Multicodec.of("mldsa-87-pub", Tag.Key, 0x1212, Multicodec.Status.Draft);
@@ -225,6 +249,8 @@ public class KeyCodec {
       ALL.put(AES_128_KEY.code(), AES_128_KEY);
       ALL.put(AES_192_KEY.code(), AES_192_KEY);
       ALL.put(AES_256_KEY.code(), AES_256_KEY);
+      ALL.put(BIP340_PRIVATE_KEY.code(), BIP340_PRIVATE_KEY);
+      ALL.put(BIP340_PUBLIC_KEY.code(), BIP340_PUBLIC_KEY);
       ALL.put(BLS12_381_G1_PRIVATE_KEY.code(), BLS12_381_G1_PRIVATE_KEY);
       ALL.put(BLS12_381_G1_PRIVATE_SHARE_KEY.code(), BLS12_381_G1_PRIVATE_SHARE_KEY);
       ALL.put(BLS12_381_G1_PUBLIC_KEY.code(), BLS12_381_G1_PUBLIC_KEY);
@@ -252,8 +278,14 @@ public class KeyCodec {
       ALL.put(LAMPORT_SHA3_512_PRIVATE_KEY.code(), LAMPORT_SHA3_512_PRIVATE_KEY);
       ALL.put(LAMPORT_SHA3_512_PRIVATE_SHARE_KEY.code(), LAMPORT_SHA3_512_PRIVATE_SHARE_KEY);
       ALL.put(LAMPORT_SHA3_512_PUBLIC_KEY.code(), LAMPORT_SHA3_512_PUBLIC_KEY);
+      ALL.put(MLDSA_44_PRIVATE_KEY.code(), MLDSA_44_PRIVATE_KEY);
+      ALL.put(MLDSA_44_PRIVATE_SEED_KEY.code(), MLDSA_44_PRIVATE_SEED_KEY);
       ALL.put(MLDSA_44_PUBLIC_KEY.code(), MLDSA_44_PUBLIC_KEY);
+      ALL.put(MLDSA_65_PRIVATE_KEY.code(), MLDSA_65_PRIVATE_KEY);
+      ALL.put(MLDSA_65_PRIVATE_SEED_KEY.code(), MLDSA_65_PRIVATE_SEED_KEY);
       ALL.put(MLDSA_65_PUBLIC_KEY.code(), MLDSA_65_PUBLIC_KEY);
+      ALL.put(MLDSA_87_PRIVATE_KEY.code(), MLDSA_87_PRIVATE_KEY);
+      ALL.put(MLDSA_87_PRIVATE_SEED_KEY.code(), MLDSA_87_PRIVATE_SEED_KEY);
       ALL.put(MLDSA_87_PUBLIC_KEY.code(), MLDSA_87_PUBLIC_KEY);
       ALL.put(MLKEM_1024_PRIVATE_KEY.code(), MLKEM_1024_PRIVATE_KEY);
       ALL.put(MLKEM_1024_PUBLIC_KEY.code(), MLKEM_1024_PUBLIC_KEY);

@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multihash.Multihash;
 
-/** Multicodec Registry - generated: Sat Feb 07 19:12:43 CET 2026 */
+/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
 public class MultihashCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-02-07T18:12:43.954Z");
+    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.545Z");
 
     /** Multihash: bcrypt-pbkdf, Bcrypt-PBKDF key derivation function, status = draft, code = 0xd00d */
     public static final Multihash BCRYPT_PBKDF = Multihash.of("bcrypt-pbkdf", 0xd00d, Multicodec.Status.Draft);
@@ -320,10 +320,7 @@ public class MultihashCodec {
 
     /** Multihash: identity, raw binary, status = permanent, code = 0x0 */
     public static final Multihash IDENTITY = Multihash.of("identity", 0x0, Multicodec.Status.Permanent);
-
-    /** Multihash: kangarootwelve, KangarooTwelve is an extendable-output hash function based on Keccak-p, status = draft, code = 0x1d01 */
-    public static final Multihash KANGAROOTWELVE = Multihash.of("kangarootwelve", 0x1d01, Multicodec.Status.Draft);
-
+    
     /** Multihash: keccak-224, keccak has variable output length. The number specifies the core length, status = draft, code = 0x1a */
     public static final Multihash KECCAK_224 = Multihash.of("keccak-224", 0x1a, Multicodec.Status.Draft);
 
@@ -335,6 +332,12 @@ public class MultihashCodec {
 
     /** Multihash: keccak-512, status = draft, code = 0x1d */
     public static final Multihash KECCAK_512 = Multihash.of("keccak-512", 0x1d, Multicodec.Status.Draft);
+
+    /** Multihash: kt-128, KangarooTwelve KT128 extendable-output hash function (XOF) as defined in RFC 9861, status = draft, code = 0x1d01 */
+    public static final Multihash KT_128 = Multihash.of("kt-128", 0x1d01, Multicodec.Status.Draft);
+
+    /** Multihash: kt-256, KangarooTwelve KT256 extendable-output hash function (XOF) as defined in RFC 9861, status = draft, code = 0x1d02 */
+    public static final Multihash KT_256 = Multihash.of("kt-256", 0x1d02, Multicodec.Status.Draft);
 
     /** Multihash: md4, status = draft, code = 0xd4 */
     public static final Multihash MD4 = Multihash.of("md4", 0xd4, Multicodec.Status.Draft);
@@ -1192,11 +1195,12 @@ public class MultihashCodec {
       ALL.put(ED2K.code(), ED2K);
       ALL.put(FR32_SHA256_TRUNC254_PADBINTREE.code(), FR32_SHA256_TRUNC254_PADBINTREE);
       ALL.put(IDENTITY.code(), IDENTITY);
-      ALL.put(KANGAROOTWELVE.code(), KANGAROOTWELVE);
       ALL.put(KECCAK_224.code(), KECCAK_224);
       ALL.put(KECCAK_256.code(), KECCAK_256);
       ALL.put(KECCAK_384.code(), KECCAK_384);
       ALL.put(KECCAK_512.code(), KECCAK_512);
+      ALL.put(KT_128.code(), KT_128);
+      ALL.put(KT_256.code(), KT_256);
       ALL.put(MD4.code(), MD4);
       ALL.put(MD5.code(), MD5);
       ALL.put(POSEIDON_BLS12_381_A2_FC1.code(), POSEIDON_BLS12_381_A2_FC1);

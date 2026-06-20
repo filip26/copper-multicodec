@@ -128,7 +128,7 @@ To include Copper Multicodec in your project, add the following dependency to yo
 <dependency>
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
-    <version>2.4.0</version>
+    <version>${multicodec.version}</version>
 </dependency>
 ```
 

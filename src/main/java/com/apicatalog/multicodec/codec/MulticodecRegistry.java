@@ -31,13 +31,13 @@ public final class MulticodecRegistry {
     /**
      * Mapping from codec tag to the codecs within that category.
      */
-    private static final Map<Tag, Map<Long, Multicodec>> TAGS;
+    private static final Map<Tag, Map<Integer, Multicodec>> TAGS;
 
     /**
      * Mapping from codec numeric code to its {@link Multicodec} definition across
      * all tags.
      */
-    private static final Map<Long, Multicodec> CODECS;
+    private static final Map<Integer, Multicodec> CODECS;
 
     /**
      * Singleton instance containing all known codecs.
@@ -65,14 +65,14 @@ public final class MulticodecRegistry {
         INSTANCE = new MulticodecRegistry(CODECS);
     }
 
-    private final Map<Long, Multicodec> codecs;
+    private final Map<Integer, Multicodec> codecs;
 
     /**
      * Creates a new registry instance backed by the provided codec mapping.
      *
      * @param codecs a map of numeric codes to codec definitions
      */
-    protected MulticodecRegistry(final Map<Long, Multicodec> codecs) {
+    protected MulticodecRegistry(final Map<Integer, Multicodec> codecs) {
         this.codecs = codecs;
     }
 
@@ -120,7 +120,7 @@ public final class MulticodecRegistry {
      *
      * @return map of numeric code to codec definition
      */
-    public static final Map<Long, Multicodec> provided() {
+    public static final Map<Integer, Multicodec> provided() {
         return CODECS;
     }
 
@@ -130,7 +130,7 @@ public final class MulticodecRegistry {
      * @param tags one or more codec tags to filter by
      * @return map of numeric code to codec definition for matching tags
      */
-    public static final Map<Long, Multicodec> provided(final Tag... tags) {
+    public static final Map<Integer, Multicodec> provided(final Tag... tags) {
         if (tags == null || tags.length == 0) {
             throw new IllegalArgumentException("At least one tag must be provided.");
         }
@@ -150,7 +150,7 @@ public final class MulticodecRegistry {
      * @return an {@link Optional} containing the codec if found, or empty if no
      *         match exists
      */
-    public final Optional<Multicodec> getCodec(final long code) {
+    public final Optional<Multicodec> getCodec(final int code) {
         return Optional.ofNullable(codecs.get(code));
     }
 
@@ -176,7 +176,7 @@ public final class MulticodecRegistry {
      *
      * @return map of numeric code to codec definition
      */
-    public Map<Long, Multicodec> codecs() {
+    public Map<Integer, Multicodec> codecs() {
         return codecs;
     }
 

@@ -34,7 +34,7 @@ public class CodecDef {
 
     public final void writeCode(PrintWriter writer, Class<?> clazz) {
         writer.print("    ");
-        writer.print("public static final long ");
+        writer.print("public static final int ");
         writer.print(getJavaName());
         writer.print("_CODE = ");
         writer.print(String.format("0x%x", code));
@@ -93,7 +93,6 @@ public class CodecDef {
         return name.replaceAll("-", "_")
                 .replace("priv", "PRIVATE")
                 .replace("pub", "PUBLIC")
-                .toUpperCase()
-                + ((Tag.Key == tag) ? "_KEY" : "");
+                .toUpperCase();
     }
 }

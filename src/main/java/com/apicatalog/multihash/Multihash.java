@@ -32,7 +32,7 @@ public class Multihash extends Multicodec {
      * @param uvarint the varint-encoded code
      * @param status  the registration status
      */
-    protected Multihash(String name, long code, byte[] uvarint, Status status) {
+    protected Multihash(String name, int code, byte[] uvarint, Status status) {
         super(name, Tag.Multihash, code, uvarint, status);
     }
 
@@ -43,7 +43,7 @@ public class Multihash extends Multicodec {
      * @param code the multicodec code
      * @return a new {@code Multihash} instance
      */
-    public static Multihash of(String name, long code) {
+    public static Multihash of(String name, int code) {
         return of(name, code, null);
     }
 
@@ -55,7 +55,7 @@ public class Multihash extends Multicodec {
      * @param status the registration status
      * @return a new {@code Multihash} instance
      */
-    public static Multihash of(String name, long code, Status status) {
+    public static Multihash of(String name, int code, Status status) {
         return new Multihash(name, code, UVarInt.encode(code), status);
     }
 
@@ -212,15 +212,17 @@ public class Multihash extends Multicodec {
 
         if (length > (encoded.length - index)) {
             throw new IllegalArgumentException(
-                    "The requested decode length (" + length + ") is greater than the available bytes (" + (encoded.length - index) + ").");
+                    "The requested decode length (" + length + ") is greater than the available bytes ("
+                            + (encoded.length - index) + ").");
         }
-        
+
         long digestLength = digestLength(encoded, index, length);
         int varintDigestLength = UVarInt.byteLength(digestLength);
 
         if (digestLength != (length - codeVarint.length - varintDigestLength)) {
             throw new IllegalArgumentException(
-                    "Digest size mismatch: declared size is " + digestLength + " bytes, but the actual digest size is " +
+                    "Digest size mismatch: declared size is " + digestLength + " bytes, but the actual digest size is "
+                            +
                             (length - codeVarint.length - varintDigestLength) + " bytes.");
         }
 
@@ -248,7 +250,7 @@ public class Multihash extends Multicodec {
      *                                  the bytes at offset {@code 0} do not start
      *                                  with this multihash's code
      */
-    public long digestLength(byte[] encoded) {
+    public int digestLength(byte[] encoded) {
         return digestLength(encoded, 0, encoded.length);
     }
 
@@ -275,11 +277,11 @@ public class Multihash extends Multicodec {
      * @throws IndexOutOfBoundsException if {@code index} is negative or exceeds the
      *                                   available range
      */
-    public long digestLength(byte[] encoded, int index) {
+    public int digestLength(byte[] encoded, int index) {
         return digestLength(encoded, index, encoded.length - index);
     }
 
-    protected long digestLength(byte[] encoded, int index, int length) {
+    protected int digestLength(byte[] encoded, int index, int length) {
         Objects.requireNonNull(encoded);
 
         if (length < (codeVarint.length + 2)) {
@@ -293,11 +295,24 @@ public class Multihash extends Multicodec {
                     "The provided value is not encoded with this multihash: " + toString() + ".");
         }
 
-        return UVarInt.decode(encoded, index + codeVarint.length);
+        long code = UVarInt.decode(encoded, index + codeVarint.length);
+
+        if (code < Integer.MIN_VALUE || code > Integer.MAX_VALUE) {
+
+            StringBuilder hex = new StringBuilder();
+            for (byte b : encoded) {
+                hex.append(String.format("%02x", b));
+            }
+
+            throw new IllegalArgumentException(
+                    "The code is out of range, code=" + Long.toUnsignedString(code) + ", varint=" + hex.toString());
+        }
+
+        return (int) code;
     }
 
     @Override
     public String toString() {
-        return "Multihash [name=" + name + ", tag=" + tag + ", code=" + code + "]";
+        return "Multihash [name=" + name + ", tag=" + tag + ", code=" + Integer.toUnsignedString(code) + "]";
     }
 }

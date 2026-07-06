@@ -6,7 +6,9 @@
     <groupId>com.apicatalog</groupId>
     <artifactId>copper-multicodec</artifactId>
     <version>4.0.0</version>
+    
     <packaging>jar</packaging>
+    
     <url>https://github.com/filip26/copper-multicodec</url>
     <scm>
         <connection>scm:git:git://github.com/filip26/copper-multicodec.git</connection>
@@ -162,7 +164,7 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
-                        <version>0.10.0</version>
+                        <version>0.11.0</version>
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>

@@ -1,9 +1,11 @@
 package com.apicatalog.multicodec;
 
 import java.io.PrintWriter;
+import java.util.StringJoiner;
 
 import com.apicatalog.multicodec.Multicodec.Status;
 import com.apicatalog.multicodec.Multicodec.Tag;
+import com.apicatalog.uvarint.UVarInt;
 
 public class CodecDef {
 
@@ -32,6 +34,13 @@ public class CodecDef {
 
     public final void writeCode(PrintWriter writer, Class<?> clazz) {
         writer.print("    ");
+        writer.print("public static final int ");
+        writer.print(getJavaName());
+        writer.print("_CODE = ");
+        writer.print(String.format("0x%x", code));
+        writer.println(";");
+        
+        writer.print("    ");
         writer.print("/** ");
         writer.print(tag);
         writer.print(": ");
@@ -46,7 +55,15 @@ public class CodecDef {
         }
         writer.print(", code = ");
         writer.print(String.format("0x%x", code));
-        writer.println(" */");
+        writer.print(", uvarint = [");
+        
+        StringJoiner joiner = new StringJoiner(", ");
+        for (byte b : UVarInt.encode(code)) {
+            joiner.add("0x" + String.format("%02x", b));
+        }
+        writer.print(joiner.toString());
+                
+        writer.println("] */");
 
         writer.print("    ");
         writer.print("public static final ");
@@ -63,7 +80,8 @@ public class CodecDef {
             writer.print(tag.name());
             writer.print(", ");
         }
-        writer.print(String.format("0x%x", code));
+        writer.print(getJavaName());
+        writer.print("_CODE");
         if (status != null) {
             writer.print(", Multicodec.Status.");
             writer.print(status);

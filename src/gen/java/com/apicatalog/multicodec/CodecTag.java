@@ -68,7 +68,7 @@ public class CodecTag {
             defs.forEach(def -> {
                 writer.print("      ALL.put(");
                 writer.print(def.getJavaName());
-                writer.print(".code(), ");
+                writer.print("_CODE, ");
                 writer.print(def.getJavaName());
                 writer.println(");");
             });

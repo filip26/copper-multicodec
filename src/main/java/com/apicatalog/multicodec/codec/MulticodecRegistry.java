@@ -81,7 +81,7 @@ public final class MulticodecRegistry {
      *
      * @return the global codec registry
      */
-    public static final MulticodecRegistry getInstance() {
+    public static final MulticodecRegistry newInstance() {
         return INSTANCE;
     }
 
@@ -91,7 +91,7 @@ public final class MulticodecRegistry {
      * @param tags one or more codec tags to filter by
      * @return a new registry instance containing only matching codecs
      */
-    public static final MulticodecRegistry getInstance(final Tag... tags) {
+    public static final MulticodecRegistry newInstance(final Tag... tags) {
         Objects.requireNonNull(tags);
         return new MulticodecRegistry(provided(tags));
     }
@@ -102,7 +102,7 @@ public final class MulticodecRegistry {
      * @param codecs one or more codec definitions to include
      * @return a new registry instance containing only the provided codecs
      */
-    public static final MulticodecRegistry getInstance(final Multicodec... codecs) {
+    public static final MulticodecRegistry newInstance(final Multicodec... codecs) {
         Objects.requireNonNull(codecs);
 
         if (codecs.length == 0) {
@@ -185,7 +185,7 @@ public final class MulticodecRegistry {
      *
      * @return the total count of registered codecs
      */
-    public long size() {
+    public int size() {
         return codecs.size();
     }
 

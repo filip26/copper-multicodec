@@ -37,19 +37,19 @@ encoding and decoding of self-describing data formats.
 
 ```java
 /* encode an input as P-521 public key */
-byte[] encoded = KeyCodec.P521_PUBLIC_KEY.encode(input);
+byte[] encoded = KeyCodec.P521_PUBLIC.encode(input);
 
 /* encode an input as an identity */
 byte[] encoded = MultihashCodec.IDENTITY.encode(input);
 
-/* get decoder instance initialized with all supported codecs */
-var decoder = MulticodecDecoder.getInstance();
+/* create decoder instance initialized with all supported codecs */
+var decoder = MulticodecDecoder.newInstance();
 
-/* get custom decoder initialized with codecs tagged as key and hash */
-var decoder = MulticodecDecoder.getInstance(Tag.Key, Tag.Hash);
+/* create custom decoder initialized with codecs tagged as key and hash */
+var decoder = MulticodecDecoder.newInstance(Tag.Key, Tag.Hash);
 
-/* get custom decoder initialized with custom codec set  */
-var decoder = MulticodecDecoder.getInstance(codecs...);
+/* create custom decoder initialized with custom codec set  */
+var decoder = MulticodecDecoder.newInstance(codecs...);
 
 /* decode */
 byte[] decoded = decoder.decode(encoded);
@@ -60,10 +60,10 @@ byte[] decoded = decoder.getCodec(encoded)
                         .orElseThrow(() -> new IllegalArgumentException("Unsupported codec."));
 
 /* or directly when only one codec is supported */
-byte[] decoded = KeyCodec.P521_PUBLIC_KEY.decode(encoded);
+byte[] decoded = KeyCodec.P521_PUBLIC.decode(encoded);
 
 /* check if byte array is encoded with a codec */
-if (KeyCodec.P521_PUBLIC_KEY.isEncoded(encoded)) {
+if (KeyCodec.P521_PUBLIC.isEncoded(encoded)) {
   ...
 }
 
@@ -71,13 +71,13 @@ if (KeyCodec.P521_PUBLIC_KEY.isEncoded(encoded)) {
 var codec = Multicodec.of(name, tag, code);
 
 /* get registry instance initialized with all supported codecs */
-var registry = MulticodecRegistry.getInstance();
+var registry = MulticodecRegistry.newInstance();
 
 /* get custom registry initialized with codecs tagged as key and hash */
-var registry = MulticodecRegistry.getInstance(Tag.Key, Tag.Hash);
+var registry = MulticodecRegistry.newInstance(Tag.Key, Tag.Hash);
 
 /* get custom registry initialized with custom codec set  */
-var registry = MulticodecRegistry.getInstance(codecs...);
+var registry = MulticodecRegistry.newInstance(codecs...);
 
 /* get codec */
 byte[] encoded = registry.getCodec(code)
@@ -89,7 +89,7 @@ byte[] encoded = registry.getCodec(code)
 
 ```java
 /* get multihash decoder initialized with all multihash codecs */
-var decoder = MulticodecDecoder.getInstance(Tag.Multihash);
+var decoder = MulticodecDecoder.newInstance(Tag.Multihash);
 
 /* decode; digest size is checked and removed */
 byte[] decoded = decoder.decode(encoded);

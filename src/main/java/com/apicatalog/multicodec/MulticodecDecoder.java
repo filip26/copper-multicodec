@@ -40,7 +40,7 @@ public class MulticodecDecoder {
      * @return a new decoder instance containing all known codecs
      */
     public static MulticodecDecoder newInstance() {
-        return new MulticodecDecoder(MulticodecRegistry.getInstance());
+        return new MulticodecDecoder(MulticodecRegistry.newInstance());
     }
 
     /**
@@ -61,7 +61,7 @@ public class MulticodecDecoder {
             throw new IllegalArgumentException("At least one tag must be provided.");
         }
 
-        return new MulticodecDecoder(MulticodecRegistry.getInstance(tags));
+        return new MulticodecDecoder(MulticodecRegistry.newInstance(tags));
     }
 
     /**
@@ -78,7 +78,7 @@ public class MulticodecDecoder {
             throw new IllegalArgumentException("At least one codec must be provided.");
         }
 
-        return new MulticodecDecoder(MulticodecRegistry.getInstance(codecs));
+        return new MulticodecDecoder(MulticodecRegistry.newInstance(codecs));
     }
 
     /**

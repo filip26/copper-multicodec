@@ -54,7 +54,7 @@ public class Multicodec {
 
     protected final String name;
     protected final byte[] codeVarint;
-    protected final long code;
+    protected final int code;
     protected final Tag tag;
     protected final Status status;
 
@@ -67,7 +67,7 @@ public class Multicodec {
      * @param uvarint the varint-encoded form of the code
      * @param status  the registration status
      */
-    protected Multicodec(String name, Tag tag, long code, byte[] uvarint, Status status) {
+    protected Multicodec(String name, Tag tag, int code, byte[] uvarint, Status status) {
         this.tag = tag;
         this.name = name;
         this.code = code;
@@ -83,7 +83,7 @@ public class Multicodec {
      * @param code the codec numeric code
      * @return a new {@code Multicodec} instance
      */
-    public static Multicodec of(String name, Tag tag, long code) {
+    public static Multicodec of(String name, Tag tag, int code) {
         return of(name, tag, code, null);
     }
 
@@ -96,7 +96,7 @@ public class Multicodec {
      * @param status the codec registration status
      * @return a new {@code Multicodec} instance
      */
-    public static Multicodec of(String name, Tag tag, long code, Status status) {
+    public static Multicodec of(String name, Tag tag, int code, Status status) {
         return new Multicodec(name, tag, code, UVarInt.encode(code), status);
     }
 
@@ -334,7 +334,7 @@ public class Multicodec {
      * 
      * @return the numeric code
      */
-    public long code() {
+    public int code() {
         return code;
     }
 

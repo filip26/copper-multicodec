@@ -18,7 +18,7 @@ import com.apicatalog.uvarint.UVarInt;
 
 class MultihashTest {
 
-    static final MulticodecDecoder DECODER = MulticodecDecoder.getInstance(Tag.Multihash);
+    static final MulticodecDecoder DECODER = MulticodecDecoder.newInstance(Tag.Multihash);
 
     @ParameterizedTest(name = "{index}")
     @MethodSource("testData")

@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 22:44:55 CEST 2026 */
 public class KeyCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.506Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:55.886Z");
 
     /** Key: aes-128, 128-bit AES symmetric key, status = draft, code = 0xa0 */
     public static final Multicodec AES_128_KEY = Multicodec.of("aes-128", Tag.Key, 0xa0, Multicodec.Status.Draft);
@@ -72,7 +72,7 @@ public class KeyCodec {
     /** Key: ed448-priv, Ed448 private key, status = draft, code = 0x1311 */
     public static final Multicodec ED448_PRIVATE_KEY = Multicodec.of("ed448-priv", Tag.Key, 0x1311, Multicodec.Status.Draft);
 
-    /** Key: ed448-pub, Ed448 public Key, status = draft, code = 0x1203 */
+    /** Key: ed448-pub, Ed448 public key, status = draft, code = 0x1203 */
     public static final Multicodec ED448_PUBLIC_KEY = Multicodec.of("ed448-pub", Tag.Key, 0x1203, Multicodec.Status.Draft);
 
     /** Key: jwk_jcs-priv, JSON object containing only the required members of a JWK (RFC 7518 and RFC 7517) representing the private key. Serialisation based on JCS (RFC 8785), status = draft, code = 0x1316 */
@@ -135,7 +135,7 @@ public class KeyCodec {
     /** Key: mldsa-87-pub, ML-DSA 87 public key; as specified by FIPS 204, status = draft, code = 0x1212 */
     public static final Multicodec MLDSA_87_PUBLIC_KEY = Multicodec.of("mldsa-87-pub", Tag.Key, 0x1212, Multicodec.Status.Draft);
 
-    /** Key: mlkem-1024-priv, ML-KEM 1024 public key; as specified by FIPS 203, status = draft, code = 0x1315 */
+    /** Key: mlkem-1024-priv, ML-KEM 1024 private key; as specified by FIPS 203, status = draft, code = 0x1315 */
     public static final Multicodec MLKEM_1024_PRIVATE_KEY = Multicodec.of("mlkem-1024-priv", Tag.Key, 0x1315, Multicodec.Status.Draft);
 
     /** Key: mlkem-1024-pub, ML-KEM 1024 public key; as specified by FIPS 203, status = draft, code = 0x120d */
@@ -147,7 +147,7 @@ public class KeyCodec {
     /** Key: mlkem-512-pub, ML-KEM 512 public key; as specified by FIPS 203, status = draft, code = 0x120b */
     public static final Multicodec MLKEM_512_PUBLIC_KEY = Multicodec.of("mlkem-512-pub", Tag.Key, 0x120b, Multicodec.Status.Draft);
 
-    /** Key: mlkem-768-priv, ML-KEM 768 public key; as specified by FIPS 203, status = draft, code = 0x1314 */
+    /** Key: mlkem-768-priv, ML-KEM 768 private key; as specified by FIPS 203, status = draft, code = 0x1314 */
     public static final Multicodec MLKEM_768_PRIVATE_KEY = Multicodec.of("mlkem-768-priv", Tag.Key, 0x1314, Multicodec.Status.Draft);
 
     /** Key: mlkem-768-pub, ML-KEM 768 public key; as specified by FIPS 203, status = draft, code = 0x120c */
@@ -156,19 +156,19 @@ public class KeyCodec {
     /** Key: p256-priv, P-256 private key, status = draft, code = 0x1306 */
     public static final Multicodec P256_PRIVATE_KEY = Multicodec.of("p256-priv", Tag.Key, 0x1306, Multicodec.Status.Draft);
 
-    /** Key: p256-pub, P-256 public Key (compressed), status = draft, code = 0x1200 */
+    /** Key: p256-pub, P-256 public key (compressed), status = draft, code = 0x1200 */
     public static final Multicodec P256_PUBLIC_KEY = Multicodec.of("p256-pub", Tag.Key, 0x1200, Multicodec.Status.Draft);
 
     /** Key: p384-priv, P-384 private key, status = draft, code = 0x1307 */
     public static final Multicodec P384_PRIVATE_KEY = Multicodec.of("p384-priv", Tag.Key, 0x1307, Multicodec.Status.Draft);
 
-    /** Key: p384-pub, P-384 public Key (compressed), status = draft, code = 0x1201 */
+    /** Key: p384-pub, P-384 public key (compressed), status = draft, code = 0x1201 */
     public static final Multicodec P384_PUBLIC_KEY = Multicodec.of("p384-pub", Tag.Key, 0x1201, Multicodec.Status.Draft);
 
     /** Key: p521-priv, P-521 private key, status = draft, code = 0x1308 */
     public static final Multicodec P521_PRIVATE_KEY = Multicodec.of("p521-priv", Tag.Key, 0x1308, Multicodec.Status.Draft);
 
-    /** Key: p521-pub, P-521 public Key (compressed), status = draft, code = 0x1202 */
+    /** Key: p521-pub, P-521 public key (compressed), status = draft, code = 0x1202 */
     public static final Multicodec P521_PUBLIC_KEY = Multicodec.of("p521-pub", Tag.Key, 0x1202, Multicodec.Status.Draft);
 
     /** Key: rsa-priv, RSA private key, status = draft, code = 0x1305 */
@@ -183,38 +183,74 @@ public class KeyCodec {
     /** Key: secp256k1-pub, Secp256k1 public key (compressed), status = draft, code = 0xe7 */
     public static final Multicodec SECP256K1_PUBLIC_KEY = Multicodec.of("secp256k1-pub", Tag.Key, 0xe7, Multicodec.Status.Draft);
 
+    /** Key: slhdsa-sha2-128f-priv, SLH-DSA-SHA2-128f private key; as specified by FIPS 205, status = draft, code = 0x131f */
+    public static final Multicodec SLHDSA_SHA2_128F_PRIVATE_KEY = Multicodec.of("slhdsa-sha2-128f-priv", Tag.Key, 0x131f, Multicodec.Status.Draft);
+
     /** Key: slhdsa-sha2-128f-pub, SLH-DSA-SHA2-128f public key; as specified by FIPS 205, status = draft, code = 0x1222 */
     public static final Multicodec SLHDSA_SHA2_128F_PUBLIC_KEY = Multicodec.of("slhdsa-sha2-128f-pub", Tag.Key, 0x1222, Multicodec.Status.Draft);
+
+    /** Key: slhdsa-sha2-128s-priv, SLH-DSA-SHA2-128s private key; as specified by FIPS 205, status = draft, code = 0x131d */
+    public static final Multicodec SLHDSA_SHA2_128S_PRIVATE_KEY = Multicodec.of("slhdsa-sha2-128s-priv", Tag.Key, 0x131d, Multicodec.Status.Draft);
 
     /** Key: slhdsa-sha2-128s-pub, SLH-DSA-SHA2-128s public key; as specified by FIPS 205, status = draft, code = 0x1220 */
     public static final Multicodec SLHDSA_SHA2_128S_PUBLIC_KEY = Multicodec.of("slhdsa-sha2-128s-pub", Tag.Key, 0x1220, Multicodec.Status.Draft);
 
+    /** Key: slhdsa-sha2-192f-priv, SLH-DSA-SHA2-192f private key; as specified by FIPS 205, status = draft, code = 0x1323 */
+    public static final Multicodec SLHDSA_SHA2_192F_PRIVATE_KEY = Multicodec.of("slhdsa-sha2-192f-priv", Tag.Key, 0x1323, Multicodec.Status.Draft);
+
     /** Key: slhdsa-sha2-192f-pub, SLH-DSA-SHA2-192f public key; as specified by FIPS 205, status = draft, code = 0x1226 */
     public static final Multicodec SLHDSA_SHA2_192F_PUBLIC_KEY = Multicodec.of("slhdsa-sha2-192f-pub", Tag.Key, 0x1226, Multicodec.Status.Draft);
+
+    /** Key: slhdsa-sha2-192s-priv, SLH-DSA-SHA2-192s private key; as specified by FIPS 205, status = draft, code = 0x1321 */
+    public static final Multicodec SLHDSA_SHA2_192S_PRIVATE_KEY = Multicodec.of("slhdsa-sha2-192s-priv", Tag.Key, 0x1321, Multicodec.Status.Draft);
 
     /** Key: slhdsa-sha2-192s-pub, SLH-DSA-SHA2-192s public key; as specified by FIPS 205, status = draft, code = 0x1224 */
     public static final Multicodec SLHDSA_SHA2_192S_PUBLIC_KEY = Multicodec.of("slhdsa-sha2-192s-pub", Tag.Key, 0x1224, Multicodec.Status.Draft);
 
+    /** Key: slhdsa-sha2-256f-priv, SLH-DSA-SHA2-256f private key; as specified by FIPS 205, status = draft, code = 0x1327 */
+    public static final Multicodec SLHDSA_SHA2_256F_PRIVATE_KEY = Multicodec.of("slhdsa-sha2-256f-priv", Tag.Key, 0x1327, Multicodec.Status.Draft);
+
     /** Key: slhdsa-sha2-256f-pub, SLH-DSA-SHA2-256f public key; as specified by FIPS 205, status = draft, code = 0x122a */
     public static final Multicodec SLHDSA_SHA2_256F_PUBLIC_KEY = Multicodec.of("slhdsa-sha2-256f-pub", Tag.Key, 0x122a, Multicodec.Status.Draft);
+
+    /** Key: slhdsa-sha2-256s-priv, SLH-DSA-SHA2-256s private key; as specified by FIPS 205, status = draft, code = 0x1325 */
+    public static final Multicodec SLHDSA_SHA2_256S_PRIVATE_KEY = Multicodec.of("slhdsa-sha2-256s-priv", Tag.Key, 0x1325, Multicodec.Status.Draft);
 
     /** Key: slhdsa-sha2-256s-pub, SLH-DSA-SHA2-256s public key; as specified by FIPS 205, status = draft, code = 0x1228 */
     public static final Multicodec SLHDSA_SHA2_256S_PUBLIC_KEY = Multicodec.of("slhdsa-sha2-256s-pub", Tag.Key, 0x1228, Multicodec.Status.Draft);
 
+    /** Key: slhdsa-shake-128f-priv, SLH-DSA-SHAKE-128f private key; as specified by FIPS 205, status = draft, code = 0x1320 */
+    public static final Multicodec SLHDSA_SHAKE_128F_PRIVATE_KEY = Multicodec.of("slhdsa-shake-128f-priv", Tag.Key, 0x1320, Multicodec.Status.Draft);
+
     /** Key: slhdsa-shake-128f-pub, SLH-DSA-SHAKE-128f public key; as specified by FIPS 205, status = draft, code = 0x1223 */
     public static final Multicodec SLHDSA_SHAKE_128F_PUBLIC_KEY = Multicodec.of("slhdsa-shake-128f-pub", Tag.Key, 0x1223, Multicodec.Status.Draft);
+
+    /** Key: slhdsa-shake-128s-priv, SLH-DSA-SHAKE-128s private key; as specified by FIPS 205, status = draft, code = 0x131e */
+    public static final Multicodec SLHDSA_SHAKE_128S_PRIVATE_KEY = Multicodec.of("slhdsa-shake-128s-priv", Tag.Key, 0x131e, Multicodec.Status.Draft);
 
     /** Key: slhdsa-shake-128s-pub, SLH-DSA-SHAKE-128s public key; as specified by FIPS 205, status = draft, code = 0x1221 */
     public static final Multicodec SLHDSA_SHAKE_128S_PUBLIC_KEY = Multicodec.of("slhdsa-shake-128s-pub", Tag.Key, 0x1221, Multicodec.Status.Draft);
 
+    /** Key: slhdsa-shake-192f-priv, SLH-DSA-SHAKE-192f private key; as specified by FIPS 205, status = draft, code = 0x1324 */
+    public static final Multicodec SLHDSA_SHAKE_192F_PRIVATE_KEY = Multicodec.of("slhdsa-shake-192f-priv", Tag.Key, 0x1324, Multicodec.Status.Draft);
+
     /** Key: slhdsa-shake-192f-pub, SLH-DSA-SHAKE-192f public key; as specified by FIPS 205, status = draft, code = 0x1227 */
     public static final Multicodec SLHDSA_SHAKE_192F_PUBLIC_KEY = Multicodec.of("slhdsa-shake-192f-pub", Tag.Key, 0x1227, Multicodec.Status.Draft);
+
+    /** Key: slhdsa-shake-192s-priv, SLH-DSA-SHAKE-192s private key; as specified by FIPS 205, status = draft, code = 0x1322 */
+    public static final Multicodec SLHDSA_SHAKE_192S_PRIVATE_KEY = Multicodec.of("slhdsa-shake-192s-priv", Tag.Key, 0x1322, Multicodec.Status.Draft);
 
     /** Key: slhdsa-shake-192s-pub, SLH-DSA-SHAKE-192s public key; as specified by FIPS 205, status = draft, code = 0x1225 */
     public static final Multicodec SLHDSA_SHAKE_192S_PUBLIC_KEY = Multicodec.of("slhdsa-shake-192s-pub", Tag.Key, 0x1225, Multicodec.Status.Draft);
 
+    /** Key: slhdsa-shake-256f-priv, SLH-DSA-SHAKE-256f private key; as specified by FIPS 205, status = draft, code = 0x1328 */
+    public static final Multicodec SLHDSA_SHAKE_256F_PRIVATE_KEY = Multicodec.of("slhdsa-shake-256f-priv", Tag.Key, 0x1328, Multicodec.Status.Draft);
+
     /** Key: slhdsa-shake-256f-pub, SLH-DSA-SHAKE-256f public key; as specified by FIPS 205, status = draft, code = 0x122b */
     public static final Multicodec SLHDSA_SHAKE_256F_PUBLIC_KEY = Multicodec.of("slhdsa-shake-256f-pub", Tag.Key, 0x122b, Multicodec.Status.Draft);
+
+    /** Key: slhdsa-shake-256s-priv, SLH-DSA-SHAKE-256s private key; as specified by FIPS 205, status = draft, code = 0x1326 */
+    public static final Multicodec SLHDSA_SHAKE_256S_PRIVATE_KEY = Multicodec.of("slhdsa-shake-256s-priv", Tag.Key, 0x1326, Multicodec.Status.Draft);
 
     /** Key: slhdsa-shake-256s-pub, SLH-DSA-SHAKE-256s public key; as specified by FIPS 205, status = draft, code = 0x1229 */
     public static final Multicodec SLHDSA_SHAKE_256S_PUBLIC_KEY = Multicodec.of("slhdsa-shake-256s-pub", Tag.Key, 0x1229, Multicodec.Status.Draft);
@@ -240,10 +276,10 @@ public class KeyCodec {
     /** Key: x448-priv, X448 private key, status = draft, code = 0x1312 */
     public static final Multicodec X448_PRIVATE_KEY = Multicodec.of("x448-priv", Tag.Key, 0x1312, Multicodec.Status.Draft);
 
-    /** Key: x448-pub, X448 public Key, status = draft, code = 0x1204 */
+    /** Key: x448-pub, X448 public key, status = draft, code = 0x1204 */
     public static final Multicodec X448_PUBLIC_KEY = Multicodec.of("x448-pub", Tag.Key, 0x1204, Multicodec.Status.Draft);
 
-    protected static final Map<Long,Multicodec> ALL = new TreeMap<>();
+    protected static final Map<Integer,Multicodec> ALL = new TreeMap<>();
 
     static {
       ALL.put(AES_128_KEY.code(), AES_128_KEY);
@@ -303,17 +339,29 @@ public class KeyCodec {
       ALL.put(RSA_PUBLIC_KEY.code(), RSA_PUBLIC_KEY);
       ALL.put(SECP256K1_PRIVATE_KEY.code(), SECP256K1_PRIVATE_KEY);
       ALL.put(SECP256K1_PUBLIC_KEY.code(), SECP256K1_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHA2_128F_PRIVATE_KEY.code(), SLHDSA_SHA2_128F_PRIVATE_KEY);
       ALL.put(SLHDSA_SHA2_128F_PUBLIC_KEY.code(), SLHDSA_SHA2_128F_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHA2_128S_PRIVATE_KEY.code(), SLHDSA_SHA2_128S_PRIVATE_KEY);
       ALL.put(SLHDSA_SHA2_128S_PUBLIC_KEY.code(), SLHDSA_SHA2_128S_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHA2_192F_PRIVATE_KEY.code(), SLHDSA_SHA2_192F_PRIVATE_KEY);
       ALL.put(SLHDSA_SHA2_192F_PUBLIC_KEY.code(), SLHDSA_SHA2_192F_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHA2_192S_PRIVATE_KEY.code(), SLHDSA_SHA2_192S_PRIVATE_KEY);
       ALL.put(SLHDSA_SHA2_192S_PUBLIC_KEY.code(), SLHDSA_SHA2_192S_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHA2_256F_PRIVATE_KEY.code(), SLHDSA_SHA2_256F_PRIVATE_KEY);
       ALL.put(SLHDSA_SHA2_256F_PUBLIC_KEY.code(), SLHDSA_SHA2_256F_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHA2_256S_PRIVATE_KEY.code(), SLHDSA_SHA2_256S_PRIVATE_KEY);
       ALL.put(SLHDSA_SHA2_256S_PUBLIC_KEY.code(), SLHDSA_SHA2_256S_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHAKE_128F_PRIVATE_KEY.code(), SLHDSA_SHAKE_128F_PRIVATE_KEY);
       ALL.put(SLHDSA_SHAKE_128F_PUBLIC_KEY.code(), SLHDSA_SHAKE_128F_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHAKE_128S_PRIVATE_KEY.code(), SLHDSA_SHAKE_128S_PRIVATE_KEY);
       ALL.put(SLHDSA_SHAKE_128S_PUBLIC_KEY.code(), SLHDSA_SHAKE_128S_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHAKE_192F_PRIVATE_KEY.code(), SLHDSA_SHAKE_192F_PRIVATE_KEY);
       ALL.put(SLHDSA_SHAKE_192F_PUBLIC_KEY.code(), SLHDSA_SHAKE_192F_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHAKE_192S_PRIVATE_KEY.code(), SLHDSA_SHAKE_192S_PRIVATE_KEY);
       ALL.put(SLHDSA_SHAKE_192S_PUBLIC_KEY.code(), SLHDSA_SHAKE_192S_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHAKE_256F_PRIVATE_KEY.code(), SLHDSA_SHAKE_256F_PRIVATE_KEY);
       ALL.put(SLHDSA_SHAKE_256F_PUBLIC_KEY.code(), SLHDSA_SHAKE_256F_PUBLIC_KEY);
+      ALL.put(SLHDSA_SHAKE_256S_PRIVATE_KEY.code(), SLHDSA_SHAKE_256S_PRIVATE_KEY);
       ALL.put(SLHDSA_SHAKE_256S_PUBLIC_KEY.code(), SLHDSA_SHAKE_256S_PUBLIC_KEY);
       ALL.put(SM2_PRIVATE_KEY.code(), SM2_PRIVATE_KEY);
       ALL.put(SM2_PUBLIC_KEY.code(), SM2_PUBLIC_KEY);

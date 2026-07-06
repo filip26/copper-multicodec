@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multihash.Multihash;
 
-/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 22:44:55 CEST 2026 */
 public class MultihashCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.545Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:55.952Z");
 
     /** Multihash: bcrypt-pbkdf, Bcrypt-PBKDF key derivation function, status = draft, code = 0xd00d */
     public static final Multihash BCRYPT_PBKDF = Multihash.of("bcrypt-pbkdf", 0xd00d, Multicodec.Status.Draft);
@@ -320,7 +320,7 @@ public class MultihashCodec {
 
     /** Multihash: identity, raw binary, status = permanent, code = 0x0 */
     public static final Multihash IDENTITY = Multihash.of("identity", 0x0, Multicodec.Status.Permanent);
-    
+
     /** Multihash: keccak-224, keccak has variable output length. The number specifies the core length, status = draft, code = 0x1a */
     public static final Multihash KECCAK_224 = Multihash.of("keccak-224", 0x1a, Multicodec.Status.Draft);
 
@@ -1089,7 +1089,7 @@ public class MultihashCodec {
     /** Multihash: x11, status = draft, code = 0x1100 */
     public static final Multihash X11 = Multihash.of("x11", 0x1100, Multicodec.Status.Draft);
 
-    protected static final Map<Long,Multicodec> ALL = new TreeMap<>();
+    protected static final Map<Integer,Multicodec> ALL = new TreeMap<>();
 
     static {
       ALL.put(BCRYPT_PBKDF.code(), BCRYPT_PBKDF);

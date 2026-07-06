@@ -39,7 +39,7 @@ public class MulticodecDecoder {
      * 
      * @return a new decoder instance containing all known codecs
      */
-    public static MulticodecDecoder getInstance() {
+    public static MulticodecDecoder newInstance() {
         return new MulticodecDecoder(MulticodecRegistry.getInstance());
     }
 
@@ -54,7 +54,7 @@ public class MulticodecDecoder {
      * @param tags one or more codec tags to match
      * @return a new decoder instance containing only codecs with matching tags
      */
-    public static MulticodecDecoder getInstance(Tag... tags) {
+    public static MulticodecDecoder newInstance(Tag... tags) {
         Objects.requireNonNull(tags);
 
         if (tags.length == 0) {
@@ -71,7 +71,7 @@ public class MulticodecDecoder {
      * @param codecs one or more codecs to register
      * @return a new decoder instance containing only the provided codecs
      */
-    public static MulticodecDecoder getInstance(Multicodec... codecs) {
+    public static MulticodecDecoder newInstance(Multicodec... codecs) {
         Objects.requireNonNull(codecs);
 
         if (codecs.length == 0) {
@@ -97,10 +97,19 @@ public class MulticodecDecoder {
         if (encoded.length == 0) {
             throw new IllegalArgumentException("The encoded value must be a non-empty byte array.");
         }
-
+        
         final long code = UVarInt.decode(encoded);
+        if (code < Integer.MIN_VALUE || code > Integer.MAX_VALUE) {
+            
+            StringBuilder hex = new StringBuilder();
+            for (byte b : encoded) {
+                hex.append(String.format("%02x", b));
+            }
+            
+            throw new IllegalArgumentException("The code is out of range, code=" + Long.toUnsignedString(code) + ", varint=" + hex.toString());
+        }
 
-        return registry.getCodec(code);
+        return registry.getCodec((int) code);
     }
 
     /**

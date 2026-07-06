@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 22:44:56 CEST 2026 */
 public class SerializationCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.582Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:56.017Z");
 
     /** Serialization: bencode, bencode, status = draft, code = 0x63 */
     public static final Multicodec BENCODE = Multicodec.of("bencode", Tag.Serialization, 0x63, Multicodec.Status.Draft);
@@ -51,7 +51,7 @@ public class SerializationCodec {
     /** Serialization: x509-certificate, DER-encoded X.509 (PKIX) certificate per RFC 5280; single certificate only (no chain); raw DER bytes (not PEM), status = draft, code = 0x210 */
     public static final Multicodec X509_CERTIFICATE = Multicodec.of("x509-certificate", Tag.Serialization, 0x210, Multicodec.Status.Draft);
 
-    protected static final Map<Long,Multicodec> ALL = new TreeMap<>();
+    protected static final Map<Integer,Multicodec> ALL = new TreeMap<>();
 
     static {
       ALL.put(BENCODE.code(), BENCODE);

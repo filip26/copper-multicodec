@@ -12,7 +12,7 @@ class MulticodecDecoderTest {
 
     @Test
     void testGetInstance() {
-        final MulticodecDecoder decoder = MulticodecDecoder.getInstance();
+        final MulticodecDecoder decoder = MulticodecDecoder.newInstance();
         assertNotNull(decoder);
         assertTrue(KeyCodec.ALL.values().stream()
                 .allMatch(codec -> decoder.getCodec(codec.varint()).isPresent()));
@@ -28,7 +28,7 @@ class MulticodecDecoderTest {
 
     @Test
     void testGetInstanceKeyTag() {
-        final MulticodecDecoder decoder = MulticodecDecoder.getInstance(Tag.Key);
+        final MulticodecDecoder decoder = MulticodecDecoder.newInstance(Tag.Key);
         assertNotNull(decoder);
         assertTrue(KeyCodec.ALL.values().stream()
                 .allMatch(codec -> decoder.getCodec(codec.varint()).isPresent()));
@@ -38,7 +38,7 @@ class MulticodecDecoderTest {
 
     @Test
     void testGetInstanceHashKeyTag() {
-        final MulticodecDecoder decoder = MulticodecDecoder.getInstance(Tag.Key, Tag.Hash);
+        final MulticodecDecoder decoder = MulticodecDecoder.newInstance(Tag.Key, Tag.Hash);
         assertNotNull(decoder);
         assertTrue(KeyCodec.ALL.values().stream()
                 .allMatch(codec -> decoder.getCodec(codec.varint()).isPresent()));

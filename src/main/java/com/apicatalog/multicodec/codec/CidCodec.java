@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Mon Jun 01 18:59:15 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 22:44:56 CEST 2026 */
 public class CidCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-06-01T16:59:15.577Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:56.004Z");
 
     /** Cid: cidv1, CIDv1, status = permanent, code = 0x1 */
     public static final Multicodec CIDV1 = Multicodec.of("cidv1", Tag.Cid, 0x1, Multicodec.Status.Permanent);
@@ -21,7 +21,7 @@ public class CidCodec {
     /** Cid: cidv3, CIDv3, status = draft, code = 0x3 */
     public static final Multicodec CIDV3 = Multicodec.of("cidv3", Tag.Cid, 0x3, Multicodec.Status.Draft);
 
-    protected static final Map<Long,Multicodec> ALL = new TreeMap<>();
+    protected static final Map<Integer,Multicodec> ALL = new TreeMap<>();
 
     static {
       ALL.put(CIDV1.code(), CIDV1);

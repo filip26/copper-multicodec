@@ -59,7 +59,7 @@ public class CodecTag {
                 writer.println();
             });
 
-            writer.print("    protected static final Map<Long,Multicodec");
+            writer.print("    protected static final Map<Integer,Multicodec");
 //            writer.print(clazz.getSimpleName());
             writer.println("> ALL = new TreeMap<>();");
             writer.println();

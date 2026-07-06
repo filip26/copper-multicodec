@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Mon Jul 06 22:44:56 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 23:11:10 CEST 2026 */
 public class HashCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:56Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T21:11:10.636258289Z");
 
     /** Hash: crc32, CRC-32 non-cryptographic hash algorithm (IEEE 802.3), status = draft, code = 0x132 */
     public static final Multicodec CRC32 = Multicodec.of("crc32", Tag.Hash, 0x132, Multicodec.Status.Draft);

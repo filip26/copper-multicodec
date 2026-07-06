@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Mon Jul 06 22:44:56 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 23:11:10 CEST 2026 */
 public class VarsigCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:56.024Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T21:11:10.649934071Z");
 
     /** Varsig: bip340, BIP340 Signature Algorithm, status = draft, code = 0xd01206 */
     public static final Multicodec BIP340 = Multicodec.of("bip340", Tag.Varsig, 0xd01206, Multicodec.Status.Draft);

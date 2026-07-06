@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Mon Jul 06 22:44:55 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 23:11:10 CEST 2026 */
 public class MultiaddrCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:55.993Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T21:11:10.632117595Z");
 
     /** Multiaddr: certhash, TLS certificate's fingerprint as a multihash, status = draft, code = 0x1d2 */
     public static final Multicodec CERTHASH = Multicodec.of("certhash", Tag.Multiaddr, 0x1d2, Multicodec.Status.Draft);

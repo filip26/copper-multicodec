@@ -75,7 +75,6 @@ public class CodecDef {
         return name.replaceAll("-", "_")
                 .replace("priv", "PRIVATE")
                 .replace("pub", "PUBLIC")
-                .toUpperCase()
-                + ((Tag.Key == tag) ? "_KEY" : "");
+                .toUpperCase();
     }
 }

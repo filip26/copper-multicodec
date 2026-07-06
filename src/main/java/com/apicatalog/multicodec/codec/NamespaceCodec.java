@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Mon Jul 06 22:44:56 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 23:11:10 CEST 2026 */
 public class NamespaceCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:56.007Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T21:11:10.641022680Z");
 
     /** Namespace: adnl, TON ADNL address: 32-byte SHA-256(0x4813b4c6_LE || Ed25519-pubkey), status = draft, code = 0xb69910 */
     public static final Multicodec ADNL = Multicodec.of("adnl", Tag.Namespace, 0xb69910, Multicodec.Status.Draft);

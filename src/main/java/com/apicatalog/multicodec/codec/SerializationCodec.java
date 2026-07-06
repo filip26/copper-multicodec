@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Mon Jul 06 22:44:56 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 23:11:10 CEST 2026 */
 public class SerializationCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:56.017Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T21:11:10.645221891Z");
 
     /** Serialization: bencode, bencode, status = draft, code = 0x63 */
     public static final Multicodec BENCODE = Multicodec.of("bencode", Tag.Serialization, 0x63, Multicodec.Status.Draft);

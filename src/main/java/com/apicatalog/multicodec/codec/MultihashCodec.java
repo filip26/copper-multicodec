@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec;
 import com.apicatalog.multihash.Multihash;
 
-/** Multicodec Registry - generated: Mon Jul 06 22:44:55 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 23:11:10 CEST 2026 */
 public class MultihashCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:55.952Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T21:11:10.613912785Z");
 
     /** Multihash: bcrypt-pbkdf, Bcrypt-PBKDF key derivation function, status = draft, code = 0xd00d */
     public static final Multihash BCRYPT_PBKDF = Multihash.of("bcrypt-pbkdf", 0xd00d, Multicodec.Status.Draft);

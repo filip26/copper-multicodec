@@ -7,10 +7,10 @@ import java.util.Map;
 import com.apicatalog.multicodec.Multicodec.Tag;
 import com.apicatalog.multicodec.Multicodec;
 
-/** Multicodec Registry - generated: Mon Jul 06 22:44:56 CEST 2026 */
+/** Multicodec Registry - generated: Mon Jul 06 23:11:10 CEST 2026 */
 public class TransportCodec {
 
-    public static final Instant UPDATED = Instant.parse("2026-07-06T20:44:56.021Z");
+    public static final Instant UPDATED = Instant.parse("2026-07-06T21:11:10.648052673Z");
 
     /** Transport: transport-bitswap, Bitswap datatransfer, status = draft, code = 0x900 */
     public static final Multicodec TRANSPORT_BITSWAP = Multicodec.of("transport-bitswap", Tag.Transport, 0x900, Multicodec.Status.Draft);

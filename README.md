@@ -70,13 +70,13 @@ if (KeyCodec.P521_PUBLIC.isEncoded(encoded)) {
 /* create a custom codec */
 var codec = Multicodec.of(name, tag, code);
 
-/* get registry instance initialized with all supported codecs */
+/* create registry instance initialized with all supported codecs */
 var registry = MulticodecRegistry.newInstance();
 
-/* get custom registry initialized with codecs tagged as key and hash */
+/* create custom registry initialized with codecs tagged as key and hash */
 var registry = MulticodecRegistry.newInstance(Tag.Key, Tag.Hash);
 
-/* get custom registry initialized with custom codec set  */
+/* create custom registry initialized with custom codec set  */
 var registry = MulticodecRegistry.newInstance(codecs...);
 
 /* get codec */
@@ -88,7 +88,7 @@ byte[] encoded = registry.getCodec(code)
 ### Multihash
 
 ```java
-/* get multihash decoder initialized with all multihash codecs */
+/* create multihash decoder initialized with all multihash codecs */
 var decoder = MulticodecDecoder.newInstance(Tag.Multihash);
 
 /* decode; digest size is checked and removed */
